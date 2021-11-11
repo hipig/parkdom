@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
+use App\Http\Controllers\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,3 +16,10 @@ use App\Http\Controllers;
 */
 
 Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
+
+Route::middleware('guest')->group(function () {
+
+    Route::get('login', [Auth\AuthenticatedSessionController::class, 'create'])->name('login');
+    Route::post('login', [Auth\AuthenticatedSessionController::class, 'store']);
+
+});
