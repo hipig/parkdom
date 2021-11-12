@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
+use App\Http\Controllers\Admin;
 use App\Http\Controllers\Auth;
 
 /*
@@ -21,5 +22,13 @@ Route::middleware('guest')->group(function () {
 
     Route::get('login', [Auth\AuthenticatedSessionController::class, 'create'])->name('login');
     Route::post('login', [Auth\AuthenticatedSessionController::class, 'store']);
+
+});
+
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+
+    Route::post('/logout', [AUth\AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+    Route::get('/', [Admin\DashboardController::class, 'index'])->name('dashboard');
 
 });

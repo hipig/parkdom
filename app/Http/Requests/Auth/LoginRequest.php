@@ -35,7 +35,12 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('username', 'password'), $this->filled('remember'))) {
+        $credentials = [
+            $this->username() => $this->username,
+            'password' => $this->password,
+        ];
+
+        if (! Auth::attempt($credentials, $this->filled('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
@@ -69,6 +74,11 @@ class LoginRequest extends FormRequest
                 'minutes' => ceil($seconds / 60),
             ]),
         ]);
+    }
+
+    public function username()
+    {
+        return filter_var($this->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
     }
 
     /**
