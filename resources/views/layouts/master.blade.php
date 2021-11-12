@@ -6,10 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     @hasSection('title')
-        <title>@yield('title') - {{ config('app.name') }}</title>
+        <title>@yield('title') - {{ $generalSetting->site_name }}</title>
     @else
         <title>{{ config('app.name') }}</title>
     @endif
+
+    <meta name="keywords" content="@yield('keywords', $generalSetting->site_keywords ?? '')">
+    <meta name="description" content="@yield('description', $generalSetting->site_description ?? '')">
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">

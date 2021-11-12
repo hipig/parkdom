@@ -30,10 +30,10 @@
 
     <div class="sidebar-scroll-section" data-simplebar>
         <x-admin.sidebar.menu>
-            <x-admin.sidebar.item label="仪表盘" icon="heroicon-s-home" href="{{ route('admin.dashboard') }}" :active="if_route_pattern('admin.dashboard')"></x-admin.sidebar.item>
+            <x-admin.sidebar.item label="仪表盘" icon="heroicon-s-home" href="{{ route('admin.dashboard') }}" :active="if_route('admin.dashboard')"></x-admin.sidebar.item>
             <x-admin.sidebar.group label="系统">
-                <x-admin.sidebar.item label="系统设置" icon="heroicon-s-cog">
-                    <x-admin.sidebar.subitem label="基础" href="#"></x-admin.sidebar.subitem>
+                <x-admin.sidebar.item label="系统设置" icon="heroicon-s-cog" :active="if_route_pattern('admin.settings.*')">
+                    <x-admin.sidebar.subitem label="基础" href="{{ route('admin.settings.general') }}" :active="if_route('admin.settings.general')"></x-admin.sidebar.subitem>
                     <x-admin.sidebar.subitem label="域名" href="#"></x-admin.sidebar.subitem>
                     <x-admin.sidebar.subitem label="报价" href="#"></x-admin.sidebar.subitem>
                     <x-admin.sidebar.subitem label="邮箱配置" href="#"></x-admin.sidebar.subitem>

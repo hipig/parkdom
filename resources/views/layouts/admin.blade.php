@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('body')
-    <div id="app" x-data="pageContainer" class="flex flex-col mx-auto w-full min-h-screen" :class="{'lg:pl-64': desktopSidebarOpen}">
+    <div id="app" x-data="pageContainer" class="flex flex-col mx-auto w-full min-h-screen bg-gray-100" :class="{'lg:pl-64': desktopSidebarOpen}">
         @include('partials.admin.sidebar')
         @include('partials.admin.header')
             <main id="page-content" class="flex flex-auto flex-col max-w-full pt-16">
