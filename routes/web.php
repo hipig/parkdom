@@ -40,4 +40,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
 
     });
 
+    Route::resource('domains', Admin\DomainsController::class);
+
 });

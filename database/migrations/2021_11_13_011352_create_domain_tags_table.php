@@ -16,7 +16,7 @@ class CreateDomainTagsTable extends Migration
         Schema::create('domain_tags', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('domain_id')->nullable()->comment('域名ID');
-            $table->unsignedBigInteger('tag_id')->comment('标签ID');
+            $table->string('name')->comment('标签名称');
             $table->timestamps();
         });
     }

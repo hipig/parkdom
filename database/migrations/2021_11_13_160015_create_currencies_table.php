@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTagsTable extends Migration
+class CreateCurrenciesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateTagsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create('currencies', function (Blueprint $table) {
             $table->id();
-            $table->string('type', 64)->comment('类型');
-            $table->string('name')->comment('标签名称');
+            $table->string('code')->unique()->comment('编码');
+            $table->string('prefix')->comment('前缀');
+            $table->tinyInteger('status')->default(\App\Models\Currency::STATUS_ENABLE)->comment('状态：1-启用 2-禁用');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateTagsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tags');
+        Schema::dropIfExists('currencies');
     }
 }

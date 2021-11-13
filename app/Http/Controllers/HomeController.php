@@ -13,7 +13,7 @@ class HomeController extends Controller
 
         if (!$service->isSameOfAppHost($host)) {
 
-            $domain = $service->findOneByName($host);
+            $domain = $service->saveDomainByHost($host);
 
             return view('domains.show', compact('domain'));
         }

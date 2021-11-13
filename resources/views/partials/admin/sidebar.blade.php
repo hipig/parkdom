@@ -46,16 +46,15 @@
             </x-admin.sidebar.group>
             <x-admin.sidebar.group label="应用">
                 <x-admin.sidebar.item label="报价列表" icon="heroicon-s-currency-dollar"></x-admin.sidebar.item>
-                <x-admin.sidebar.item label="域名管理" icon="heroicon-s-globe-alt">
+                <x-admin.sidebar.item label="域名管理" icon="heroicon-s-globe-alt" :active="if_route_pattern('admin.domains.*')">
                     <x-admin.sidebar.subitem label="导入域名" href="#"></x-admin.sidebar.subitem>
-                    <x-admin.sidebar.subitem label="域名列表" href="#"></x-admin.sidebar.subitem>
-                    <x-admin.sidebar.subitem label="后缀" href="#"></x-admin.sidebar.subitem>
+                    <x-admin.sidebar.subitem label="域名列表" href="{{ route('admin.domains.index') }}" :active="if_route_pattern('admin.domains.*')"></x-admin.sidebar.subitem>
                     <x-admin.sidebar.subitem label="标签" href="#"></x-admin.sidebar.subitem>
                 </x-admin.sidebar.item>
                 <x-admin.sidebar.item label="概况统计" icon="heroicon-s-chart-square-bar"></x-admin.sidebar.item>
             </x-admin.sidebar.group>
             <x-admin.sidebar.group label="其他">
-                <x-admin.sidebar.item label="单页" icon="heroicon-s-document-text" href="#"></x-admin.sidebar.item>
+                <x-admin.sidebar.item label="单页管理" icon="heroicon-s-document-text" href="#"></x-admin.sidebar.item>
                 <x-admin.sidebar.item label="联系我们" icon="heroicon-s-chat"></x-admin.sidebar.item>
             </x-admin.sidebar.group>
         </x-admin.sidebar.menu>

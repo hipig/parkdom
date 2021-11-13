@@ -9,7 +9,7 @@ class Domain extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'domain',
         'logo',
         'estimated_price',
         'currency',
@@ -22,5 +22,16 @@ class Domain extends Model
         'seo_description',
     ];
 
+    protected $dates = [
+        'last_updated_at'
+    ];
 
+    protected $with = [
+        'priceCurrency'
+    ];
+
+    public function priceCurrency()
+    {
+        return $this->hasOne(Currency::class, 'code', 'currency');
+    }
 }

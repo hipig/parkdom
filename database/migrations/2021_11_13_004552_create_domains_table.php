@@ -15,7 +15,7 @@ class CreateDomainsTable extends Migration
     {
         Schema::create('domains', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique()->comment('名称');
+            $table->string('domain')->unique()->comment('名称');
             $table->string('logo')->nullable()->comment('LOGO');
             $table->decimal('estimated_price',10, 2)->unsigned()->default(0)->comment('预估价格');
             $table->string('currency', 64)->nullable()->comment('币种');
@@ -27,6 +27,7 @@ class CreateDomainsTable extends Migration
             $table->string('seo_title')->nullable()->comment('网站标题');
             $table->string('seo_keywords')->nullable()->comment('网站关键词');
             $table->text('seo_description')->nullable()->comment('网站描述');
+            $table->timestamp('last_updated_at')->nullable()->comment('最后更新时间');
             $table->timestamps();
         });
     }
