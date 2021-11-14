@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="flex-grow w-full">
-            <div class="border-t border-gray-100 overflow-x-auto min-w-full bg-white">
+            <div class="border-t border-b border-gray-100 overflow-x-auto min-w-full bg-white">
                 <table class="min-w-full text-sm align-middle whitespace-nowrap">
                     <thead>
                     <tr class="text-gray-700 bg-gray-50 font-semibold">
@@ -38,17 +38,17 @@
                         @forelse($domains as $domain)
                             <tr class="border-t border-gray-100">
                                 <td class="py-3 px-6 text-center">
-                                    <a href="http://{{ $domain->domain }}" class="text-indigo-600 hover:text-indigo-700 hover:underline" target="_blank">{{ $domain->domain }}</a>
+                                    <a href="{{ $domain->url }}" class="text-indigo-600 hover:text-indigo-700 hover:underline" target="_blank">{{ $domain->domain }}</a>
                                 </td>
                                 <td class="py-3 px-6 text-center">
-                                    <span class="text-red-600">￥{{ $domain->estimated_price }}</span>
+                                    <span class="text-red-600">{{ optional($domain->priceCurrency)->prefix }} {{ $domain->estimated_price }}</span>
                                 </td>
                                 <td class="py-3 px-6 text-center">
                                     <span class="text-gray-500">{{ $domain->created_at }}</span>
                                 </td>
                                 <td class="py-3 px-6">
                                     <a href="{{ route('admin.domains.edit', $domain) }}" class="inline-flex justify-center items-center space-x-1 border font-semibold focus:outline-none px-2 py-1 leading-5 text-sm rounded border-gray-300 bg-white text-gray-800 shadow-sm hover:text-gray-800 hover:bg-gray-100 hover:border-gray-300 hover:shadow focus:ring focus:ring-gray-500 focus:ring-opacity-25 active:bg-white active:border-white active:shadow-none">
-                                        <x-heroicon-s-pencil  class="w-4 h-4"/>
+                                        <x-heroicon-s-pencil class="w-4 h-4"/>
                                         <span>编辑</span>
                                     </a>
                                 </td>
@@ -61,6 +61,8 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+        <div class="py-3 px-5 lg:px-6 flex-grow w-full">
             {{ $domains->withQueryString()->links('partials.admin.pagination') }}
         </div>
     </div>

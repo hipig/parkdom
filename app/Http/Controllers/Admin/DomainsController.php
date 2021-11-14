@@ -28,11 +28,15 @@ class DomainsController extends Controller
         $domain = Domain::create($request->only([
             'domain',
             'logo',
-            'estimated_price'
+            'estimated_price',
+            'currency',
+            'seo_title',
+            'seo_keywords',
+            'seo_description',
         ]));
 
-        $hostInfo = $service->parseHost($domain->name);
-        $domain->fill($hostInfo->only('suffix', 'length'));
+        $hostInfo = $service->parseHost($domain->domain);
+        $domain->fill($hostInfo->only('suffix', 'length')->toArray());
         $domain->save();
 
         event(new DomainCreated($domain));
@@ -43,5 +47,20 @@ class DomainsController extends Controller
     public function edit(Request $request, Domain $domain)
     {
         return view('admin.domains.edit', compact('domain'));
+    }
+
+    public function update(DomainRequest $request, Domain $domain)
+    {
+        $domain->fill($request->only([
+            'logo',
+            'estimated_price',
+            'currency',
+            'seo_title',
+            'seo_keywords',
+            'seo_description',
+        ]));
+        $domain->save();
+
+        return back()->with('success', '域名编辑成功！');
     }
 }

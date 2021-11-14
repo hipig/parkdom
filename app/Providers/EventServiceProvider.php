@@ -18,6 +18,12 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        'App\Events\DomainVisited' => [
+            'App\Listeners\recordDomainVisit',
+        ],
+        'App\Events\DomainCreated' => [
+            'App\Listeners\queryDomainWhois',
+        ],
     ];
 
     /**

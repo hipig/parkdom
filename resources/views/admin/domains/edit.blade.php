@@ -16,13 +16,14 @@
             <h3>域名编辑 {{ $domain->domain }}</h3>
         </div>
         <div class="p-5 lg:p-6 flex-grow w-full">
-            <form action="{{ route('admin.domains.edit', $domain) }}" method="post" class="space-y-6">
+            <form action="{{ route('admin.domains.update', $domain) }}" method="post" class="space-y-6">
                 <div hidden>
                     @csrf
+                    @method('put')
                 </div>
                 <div class="space-y-1 md:space-y-0 md:flex">
                     <label for="domain" class="font-semibold py-2 md:w-1/5 flex-none md:mr-6 text-right"><span class="text-red-600 px-1">*</span>域名</label>
-                    <input type="text" id="domain" name="domain" value="{{ old('domain', $domain->domain) }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full md:w-3/5 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入域名">
+                    <input type="text" id="domain" name="domain" value="{{ old('domain', $domain->domain) }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full md:w-3/5 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入域名" readonly>
                 </div>
                 <div class="space-y-1 md:space-y-0 md:flex">
                     <label for="logo" class="font-semibold py-2 md:w-1/5 flex-none md:mr-6 text-right">LOGO</label>
@@ -36,7 +37,7 @@
                                 <div class="absolute inset-y-0 left-0 w-8 my-px ml-px flex items-center justify-center pointer-events-none rounded-l">
                                     <span class="text-gray-500" x-text="currencyPrefix"></span>
                                 </div>
-                                <input type="text" id="estimated_price" name="estimated_price" value="{{ old('estimated_price', 0) }}" class="block border border-gray-200 rounded pl-8 pr-12 pr-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入预估价格">
+                                <input type="text" id="estimated_price" name="estimated_price" value="{{ old('estimated_price', $domain->estimated_price) }}" class="block border border-gray-200 rounded pl-8 pr-12 pr-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入预估价格">
                                 <div class="absolute inset-y-0 right-0 flex items-center">
                                     <label for="currency" class="sr-only">Currency</label>
                                     <select id="currency" name="currency" :value="currency" @change="currencySelect($event.target.value)" class="h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-md focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
@@ -81,7 +82,7 @@
         document.addEventListener('alpine:init', () => {
             Alpine.data('toggleCurrencyContainer', () => ({
                 currencyList: [],
-                currentCurrency: @json($domain->price_currency),
+                currentCurrency: @json($domain->priceCurrency),
                 currency: '',
                 currencyPrefix: '',
 

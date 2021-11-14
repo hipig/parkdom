@@ -49,7 +49,7 @@
                         <div class="space-y-4">
                             <div class="space-y-2 sm:flex sm:items-center sm:justify-between sm:space-x-2 sm:space-y-0">
                                 <label class="flex items-center">
-                                    <input type="checkbox" class="border border-gray-200 rounded h-4 w-4 text-indigo-500 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" />
+                                    <input type="checkbox" name="remember" class="border border-gray-200 rounded h-4 w-4 text-indigo-500 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" />
                                     <span class="ml-2">
                                         记住我
                                     </span>

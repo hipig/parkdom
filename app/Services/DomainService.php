@@ -5,8 +5,11 @@ namespace App\Services;
 
 
 use App\Events\DomainCreated;
+use App\Events\DomainVisited;
 use App\Models\Domain;
+use App\Models\DomainVisit;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Jenssegers\Agent\Agent;
 
 class DomainService
 {
@@ -60,23 +63,68 @@ class DomainService
     /**
      * 保存域名
      * @param $host
+     * @param $ip
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
+     * @throws \Exception
      * @author zhujiapeng
      * @date 2021/11/13
      */
-    public function saveDomainByHost($host)
+    public function storeDomain($host, $ip)
     {
-        $hostInfo = $this->parseHost($host);
+        $domainInfo = $this->parseHost($host);
 
         try {
-            $domain = Domain::query()->where('domain', $hostInfo->get('domain'))->firstOrFail();
+            $domain = Domain::query()->where('domain', $domainInfo->get('domain'))->firstOrFail();
         } catch (ModelNotFoundException $e) {
-            $domain = Domain::create($hostInfo->only('domain', 'suffix', 'length')->toArray());
+            $domain = Domain::create($domainInfo->only('domain', 'suffix', 'length')->toArray());
 
             event(new DomainCreated($domain));
         }
 
+        event(new DomainVisited($domain, $host, $ip));
+
         return $domain;
+    }
+
+    /**
+     * 触发域名访问事件
+     * @param $host
+     * @param $ip
+     */
+    public function triggerVisitEvent($host, $ip)
+    {
+        event(new DomainVisited($host, $ip));
+    }
+
+    /**
+     * 保存域名访问记录
+     * @param $host
+     * @param $ip
+     * @return mixed
+     * @throws \Exception
+     */
+    public function recordVisit($domain, $host, $ip)
+    {
+        $agent = new Agent();
+        $platform = $agent->platform();
+        $platformVersion = $agent->version($platform);
+        $browser = $agent->browser();
+        $browserVersion = $agent->version($browser);
+
+        $visit = DomainVisit::create([
+            'host' => $host,
+            'ip' => $ip,
+            'device' => $agent->device(),
+            'device_type' => $agent->deviceType(),
+            'platform' => $platform,
+            'platform_version' => $platformVersion,
+            'browser' => $browser,
+            'browser_version' => $browserVersion,
+        ]);
+        $visit->domain()->associate($domain);
+        $visit->save();
+
+        return $visit;
     }
 
     /**

@@ -34,4 +34,9 @@ class Domain extends Model
     {
         return $this->hasOne(Currency::class, 'code', 'currency');
     }
+
+    public function getUrlAttribute()
+    {
+        return 'http://' . $this->domain;
+    }
 }
