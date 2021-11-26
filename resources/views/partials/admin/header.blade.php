@@ -5,7 +5,7 @@
       'lg:pl-64': desktopSidebarOpen
     }"
 >
-    <div class="flex justify-between max-w-8xl mx-auto px-4 lg:px-8 w-full">
+    <div class="flex justify-between max-w-7xl mx-auto px-4 lg:px-8 w-full">
         <div class="flex items-center space-x-2">
             <div class="hidden lg:block">
                 <button

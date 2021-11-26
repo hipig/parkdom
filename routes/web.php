@@ -16,9 +16,14 @@ use App\Http\Controllers\Auth;
 |
 */
 
-Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware('theme.set')->group(function () {
 
-Route::get('domains/{domain}', [Controllers\DomainsController::class, 'show'])->name('domains.show');
+    Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
+
+    Route::get('domains/{domain}', [Controllers\DomainsController::class, 'show'])->name('domains.show');
+
+});
+
 
 Route::middleware('guest')->group(function () {
 
@@ -38,8 +43,24 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
         Route::get('general', [Admin\SettingsController::class, 'editGeneral'])->name('general');
         Route::post('general', [Admin\SettingsController::class, 'updateGeneral'])->name('general.update');
 
+        Route::get('domain', [Admin\SettingsController::class, 'editDomain'])->name('domain');
+        Route::post('domain', [Admin\SettingsController::class, 'updateDomain'])->name('domain.update');
+
+        Route::get('offer', [Admin\SettingsController::class, 'editOffer'])->name('offer');
+        Route::post('offer', [Admin\SettingsController::class, 'updateOffer'])->name('offer.update');
+
+        Route::get('mail', [Admin\SettingsController::class, 'editMail'])->name('mail');
+        Route::post('mail', [Admin\SettingsController::class, 'updateMail'])->name('mail.update');
+
+        Route::resource('currencies', Admin\CurrenciesController::class);
     });
 
+    Route::resource('domain-categories', Admin\DomainCategoriesController::class)->parameters([
+        'domain-categories' => 'category'
+    ])->names('domainCategories');
+
     Route::resource('domains', Admin\DomainsController::class);
+
+    Route::resource('offers', Admin\OffersController::class)->only('index', 'show');
 
 });

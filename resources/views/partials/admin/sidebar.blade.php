@@ -31,31 +31,31 @@
     <div class="sidebar-scroll-section" data-simplebar>
         <x-admin.sidebar.menu>
             <x-admin.sidebar.item label="仪表盘" icon="heroicon-s-home" href="{{ route('admin.dashboard') }}" :active="if_route('admin.dashboard')"></x-admin.sidebar.item>
-            <x-admin.sidebar.group label="系统">
+            <x-admin.sidebar.group label="主要">
                 <x-admin.sidebar.item label="系统设置" icon="heroicon-s-cog" :active="if_route_pattern('admin.settings.*')">
                     <x-admin.sidebar.subitem label="基础" href="{{ route('admin.settings.general') }}" :active="if_route('admin.settings.general')"></x-admin.sidebar.subitem>
-                    <x-admin.sidebar.subitem label="域名" href="#"></x-admin.sidebar.subitem>
-                    <x-admin.sidebar.subitem label="报价" href="#"></x-admin.sidebar.subitem>
-                    <x-admin.sidebar.subitem label="邮箱配置" href="#"></x-admin.sidebar.subitem>
+                    <x-admin.sidebar.subitem label="域名" href="{{ route('admin.settings.domain') }}" :active="if_route('admin.settings.domain')"></x-admin.sidebar.subitem>
+                    <x-admin.sidebar.subitem label="报价" href="{{ route('admin.settings.offer') }}" :active="if_route('admin.settings.offer')"></x-admin.sidebar.subitem>
+                    <x-admin.sidebar.subitem label="邮箱配置" href="{{ route('admin.settings.mail') }}" :active="if_route('admin.settings.mail')"></x-admin.sidebar.subitem>
                     <x-admin.sidebar.subitem label="联系方式" href="#"></x-admin.sidebar.subitem>
                     <x-admin.sidebar.subitem label="验证码" href="#"></x-admin.sidebar.subitem>
-                    <x-admin.sidebar.subitem label="币种" href="#"></x-admin.sidebar.subitem>
+                    <x-admin.sidebar.subitem label="币种" href="{{ route('admin.settings.currencies.index') }}" :active="if_route_pattern('admin.settings.currencies.*')"></x-admin.sidebar.subitem>
                 </x-admin.sidebar.item>
-                <x-admin.sidebar.item label="模板主题" icon="heroicon-s-cube" href="#"></x-admin.sidebar.item>
-                <x-admin.sidebar.item label="本地化" icon="heroicon-s-translate"></x-admin.sidebar.item>
-            </x-admin.sidebar.group>
-            <x-admin.sidebar.group label="应用">
-                <x-admin.sidebar.item label="报价列表" icon="heroicon-s-currency-dollar"></x-admin.sidebar.item>
-                <x-admin.sidebar.item label="域名管理" icon="heroicon-s-globe-alt" :active="if_route_pattern('admin.domains.*')">
-                    <x-admin.sidebar.subitem label="导入域名" href="#"></x-admin.sidebar.subitem>
+                <x-admin.sidebar.item label="域名管理" icon="heroicon-s-globe-alt" :active="if_route_pattern(['admin.domains.*', 'admin.domainCategories.*'])">
+                    <x-admin.sidebar.subitem label="分类"  href="{{ route('admin.domainCategories.index') }}" :active="if_route_pattern('admin.domainCategories.*')"></x-admin.sidebar.subitem>
                     <x-admin.sidebar.subitem label="域名列表" href="{{ route('admin.domains.index') }}" :active="if_route_pattern('admin.domains.*')"></x-admin.sidebar.subitem>
-                    <x-admin.sidebar.subitem label="标签" href="#"></x-admin.sidebar.subitem>
                 </x-admin.sidebar.item>
+                <x-admin.sidebar.item label="报价" icon="heroicon-s-currency-dollar" href="{{ route('admin.offers.index') }}" :active="if_route_pattern('admin.offers.*')"></x-admin.sidebar.item>
                 <x-admin.sidebar.item label="概况统计" icon="heroicon-s-chart-square-bar"></x-admin.sidebar.item>
+
             </x-admin.sidebar.group>
             <x-admin.sidebar.group label="其他">
-                <x-admin.sidebar.item label="单页管理" icon="heroicon-s-document-text" href="#"></x-admin.sidebar.item>
-                <x-admin.sidebar.item label="联系我们" icon="heroicon-s-chat"></x-admin.sidebar.item>
+                <x-admin.sidebar.item label="模板主题" icon="heroicon-s-cube" href="#">
+                    <x-slot name="badge">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-medium leading-4 text-yellow-800 bg-yellow-300">Coming</span>
+                    </x-slot>
+                </x-admin.sidebar.item>
+                <x-admin.sidebar.item label="本地化" icon="heroicon-s-translate"></x-admin.sidebar.item>
             </x-admin.sidebar.group>
         </x-admin.sidebar.menu>
     </div>

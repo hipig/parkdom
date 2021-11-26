@@ -5,7 +5,7 @@
         @include('partials.admin.sidebar')
         @include('partials.admin.header')
             <main id="page-content" class="flex flex-auto flex-col max-w-full pt-16">
-                <div class="max-w-8xl mx-auto p-4 lg:p-8 w-full space-y-6">
+                <div class="max-w-7xl mx-auto p-4 lg:p-8 w-full space-y-6">
 
                     @yield('breadcrumb')
 

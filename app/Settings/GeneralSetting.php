@@ -11,23 +11,20 @@ class GeneralSetting extends Settings
     /**
      * Site Name
      *
-     * @var string
      */
-    public string $site_name;
+    public $site_name;
 
     /**
      * Site Keywords
      *
-     * @var string
      */
-    public string $site_keywords;
+    public $site_keywords;
 
     /**
      * Site Description
      *
-     * @var string
      */
-    public string $site_description;
+    public $site_description;
 
     /**
      * Setting Group

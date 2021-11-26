@@ -18,4 +18,9 @@ class Offer extends Model
         'currency',
         'content'
     ];
+
+    public function domain()
+    {
+        return $this->belongsTo(Domain::class, 'domain_id', 'id');
+    }
 }

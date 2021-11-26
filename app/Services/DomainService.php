@@ -87,16 +87,6 @@ class DomainService
     }
 
     /**
-     * 触发域名访问事件
-     * @param $host
-     * @param $ip
-     */
-    public function triggerVisitEvent($host, $ip)
-    {
-        event(new DomainVisited($host, $ip));
-    }
-
-    /**
      * 保存域名访问记录
      * @param $host
      * @param $ip
@@ -159,7 +149,7 @@ class DomainService
 
             if(in_array($secondSuffix, $this->domainSuffix)){
                 $domain = implode('.', [$thirdSuffix, $secondSuffix, $firstSuffix]);
-                $suffix = implode('.', [$secondSuffix, $firstSuffix]);
+                $suffix = '.' . $secondSuffix . '.' . $firstSuffix;
                 $length = strlen($thirdSuffix);
             }
         }

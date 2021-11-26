@@ -2,7 +2,7 @@
 
 use Spatie\LaravelSettings\Migrations\SettingsMigration;
 
-class CreateGeneralSettings extends SettingsMigration
+class CreateGeneralSetting extends SettingsMigration
 {
     public function up(): void
     {

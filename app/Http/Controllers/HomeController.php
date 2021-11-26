@@ -20,6 +20,6 @@ class HomeController extends Controller
             return view('domains.show', compact('domain'));
         }
 
-        return view('home.index');
+        return redirect()->route('admin.dashboard');
     }
 }

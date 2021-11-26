@@ -14,7 +14,8 @@ class DomainFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'domain' => $this->faker->domainName,
+            'allow_offer' => $this->faker->randomElement([1, 2]),
         ];
     }
 }
