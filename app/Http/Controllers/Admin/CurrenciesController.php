@@ -12,7 +12,7 @@ class CurrenciesController extends Controller
 {
     public function index(Request $request)
     {
-        $currencies = Currency::filter($request->all(), CurrencyFilter::class)->paginate();
+        $currencies = Currency::filter($request->all(), CurrencyFilter::class)->latest()->paginate();
 
         return view('admin.currencies.index', compact('currencies'));
     }

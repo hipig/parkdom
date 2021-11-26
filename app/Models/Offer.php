@@ -15,7 +15,9 @@ class Offer extends Model
         'email',
         'phone',
         'offer_price',
-        'currency',
+        'ip',
+        'country',
+        'country_code',
         'content'
     ];
 

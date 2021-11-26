@@ -12,6 +12,8 @@ class DomainVisit extends Model
         'domain_id',
         'host',
         'ip',
+        'country',
+        'country_code',
         'device',
         'device_type',
         'platform',

@@ -12,7 +12,7 @@ class DomainCategoriesController extends Controller
 {
     public function index(Request $request)
     {
-        $categories = DomainCategory::filter($request->all(), DomainCategoryFilter::class)->paginate();
+        $categories = DomainCategory::filter($request->all(), DomainCategoryFilter::class)->latest()->paginate();
 
         return view('admin.domain-categories.index', compact('categories'));
     }

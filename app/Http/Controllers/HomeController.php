@@ -2,24 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\DomainService;
+use App\Events\DomainCreated;
+use App\Events\DomainVisited;
+use App\Models\Domain;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 
 class HomeController extends Controller
 {
-    public function index(Request $request, DomainService $service)
+    public function index(Request $request)
     {
         $host = $request->getHost();
         $ip = $request->ip();
 
-        if (!$service->isSameOfAppHost($host)) {
+        $domainName = parseHost($host, 'domain');
 
-            $domain = $service->storeDomain($host, $ip);
+        try {
+            $domain = Domain::query()->where('domain', $domainName)->firstOrFail();
+        } catch (ModelNotFoundException $e) {
+            $domain = Domain::create(['domain' => $domainName]);
 
-            return view('domains.show', compact('domain'));
+            event(new DomainCreated($domain));
         }
 
-        return redirect()->route('admin.dashboard');
+        event(new DomainVisited($domain, $host, $ip));
+
+        return view('domains.show', compact('domain'));
     }
 }

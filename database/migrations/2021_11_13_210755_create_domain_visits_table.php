@@ -18,6 +18,8 @@ class CreateDomainVisitsTable extends Migration
             $table->unsignedBigInteger('domain_id')->nullable()->comment('域名ID');
             $table->string('host')->comment('域名');
             $table->string('ip')->comment('IP');
+            $table->string('country')->nullable()->comment('国家');
+            $table->string('country_code')->nullable()->comment('国家编码');
             $table->string('device')->nullable()->comment('设备');
             $table->string('device_type')->nullable()->comment('设备类型');
             $table->string('platform')->nullable()->comment('平台');
@@ -35,6 +37,6 @@ class CreateDomainVisitsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('domain_statistics');
+        Schema::dropIfExists('domain_visits');
     }
 }

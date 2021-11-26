@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Services\DomainService;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -38,7 +37,7 @@ class Domain extends Model
     protected static function booted()
     {
         static::creating(function ($domain) {
-            $domainInfo = (new DomainService())->parseHost($domain->domain);
+            $domainInfo = parseHost($domain->domain);
             $domain->suffix = $domainInfo->get('suffix');
             $domain->length = $domainInfo->get('length');
         });

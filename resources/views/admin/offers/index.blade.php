@@ -35,7 +35,7 @@
                         @forelse($offers as $offer)
                             <tr class="border-t border-gray-100">
                                 <td class="py-3 px-6">
-                                    <a href="{{ $offer->domain->url }}" class="text-indigo-600 hover:text-indigo-700 hover:underline" target="_blank">{{ $offer->domain->domain }}</a>
+                                    <a href="{{ route('admin.domains.show', $offer->domain) }}" class="text-indigo-600 hover:text-indigo-700 hover:underline" target="_blank">{{ $offer->domain->domain }}</a>
                                 </td>
                                 <td class="py-3 px-6">
                                     <span class="text-gray-700">{{ $offer->name }}</span>

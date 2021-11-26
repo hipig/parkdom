@@ -48,7 +48,7 @@
                                     @endif
                                 </td>
                                 <td class="py-3 px-6 text-left">
-                                    <a href="{{ $domain->url }}" class="text-indigo-600 hover:text-indigo-700 hover:underline" target="_blank">{{ $domain->domain }}</a>
+                                    <a href="{{ route('admin.domains.show', $domain) }}" class="text-indigo-600 hover:text-indigo-700 hover:underline" target="_blank">{{ $domain->domain }}</a>
                                 </td>
                                 <td class="py-3 px-6 text-center">
                                     @if($domain->price)

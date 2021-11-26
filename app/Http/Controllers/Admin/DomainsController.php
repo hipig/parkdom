@@ -4,12 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Events\DomainCreated;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\BatchCreateDomainRequest;
 use App\Http\Requests\Admin\CreateDomainRequest;
 use App\ModelFilters\Admin\DomainFilter;
-use App\Models\Currency;
 use App\Models\Domain;
-use App\Services\DomainService;
 use App\Settings\DomainSetting;
 use Illuminate\Http\Request;
 
@@ -64,6 +61,11 @@ class DomainsController extends Controller
         $domain->save();
 
         return back()->with('success', '域名编辑成功！');
+    }
+
+    public function show(Domain $domain)
+    {
+        return redirect()->away($domain->url);
     }
 
     public function destroy(Domain $domain)
