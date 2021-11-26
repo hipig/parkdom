@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', '币种列表')
+@section('title', '系统设置-币种')
 
 @section('breadcrumb')
     <x-admin.breadcrumb.list>
@@ -26,22 +26,22 @@
             <div class="border-t border-b border-gray-100 overflow-x-auto min-w-full bg-white">
                 <table class="min-w-full text-sm align-middle whitespace-nowrap">
                     <thead>
-                    <tr class="text-gray-700 bg-gray-50 font-semibold">
+                    <tr class="text-gray-700 bg-gray-50 font-semibold text-left">
                         <th class="py-2 px-6">编码</th>
                         <th class="py-2 px-6">前缀</th>
-                        <th class="py-2 px-6">状态</th>
+                        <th class="py-2 px-6 text-center">状态</th>
                         <th class="py-2 px-6">创建时间</th>
-                        <th class="py-2 px-6 text-left">操作</th>
+                        <th class="py-2 px-6">操作</th>
                     </tr>
                     </thead>
 
                     <tbody>
                         @forelse($currencies as $currency)
                             <tr class="border-t border-gray-100">
-                                <td class="py-3 px-6 text-center">
+                                <td class="py-3 px-6">
                                     <span class="text-gray-700">{{ $currency->code }}</span>
                                 </td>
-                                <td class="py-3 px-6 text-center">
+                                <td class="py-3 px-6">
                                     <span class="text-gray-500">{{ $currency->prefix }}</span>
                                 </td>
                                 <td class="py-3 px-6 text-center">
@@ -51,7 +51,7 @@
                                         <span class="inline-flex items-center rounded-full py-1 px-2.5 text-sm leading-none text-red-800 bg-red-100">禁用</span>
                                     @endif
                                 </td>
-                                <td class="py-3 px-6 text-center">
+                                <td class="py-3 px-6">
                                     <span class="text-gray-500">{{ $currency->created_at }}</span>
                                 </td>
                                 <td class="py-3 px-6">

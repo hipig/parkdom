@@ -51,6 +51,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
 
         Route::get('mail', [Admin\SettingsController::class, 'editMail'])->name('mail');
         Route::post('mail', [Admin\SettingsController::class, 'updateMail'])->name('mail.update');
+        Route::post('mail/send', [Admin\SettingsController::class, 'sendTestMail'])->middleware('cover.config.mail')->name('mail.testSend');
+
+        Route::get('contact', [Admin\SettingsController::class, 'editContact'])->name('contact');
+        Route::post('contact', [Admin\SettingsController::class, 'updateContact'])->name('contact.update');
 
         Route::resource('currencies', Admin\CurrenciesController::class);
     });
@@ -62,5 +66,12 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::resource('domains', Admin\DomainsController::class);
 
     Route::resource('offers', Admin\OffersController::class)->only('index', 'show');
+
+    Route::prefix('statistics')->name('statistics.')->group(function () {
+
+    });
+
+    Route::get('domain-visits', [Admin\DomainVisitsController::class, 'index'])->name('domainVisits.index');
+
 
 });

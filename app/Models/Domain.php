@@ -58,4 +58,14 @@ class Domain extends Model
     {
         return 'http://' . $this->domain;
     }
+
+    public function getFormatPriceAttribute()
+    {
+        return $this->price ? optional($this->priceCurrency)->prefix.$this->price : $this->price;
+    }
+
+    public function getFormatMinPriceAttribute()
+    {
+        return $this->min_price ? optional($this->priceCurrency)->prefix.$this->min_price : $this->min_price;
+    }
 }

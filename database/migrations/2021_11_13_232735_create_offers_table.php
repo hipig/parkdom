@@ -19,8 +19,7 @@ class CreateOffersTable extends Migration
             $table->string('name')->comment('姓名');
             $table->string('email')->comment('邮箱');
             $table->string('phone')->nullable()->comment('手机号码');
-            $table->decimal('offer_price')->comment('报价');
-            $table->string('currency', 64)->nullable()->comment('币种');
+            $table->decimal('offer_price', 10)->comment('报价');
             $table->text('content')->nullable()->comment('内容');
             $table->boolean('is_noticed')->default(false)->comment('是否已通知');
             $table->timestamps();

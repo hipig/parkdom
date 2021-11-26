@@ -10,6 +10,7 @@ use App\ModelFilters\Admin\DomainFilter;
 use App\Models\Currency;
 use App\Models\Domain;
 use App\Services\DomainService;
+use App\Settings\DomainSetting;
 use Illuminate\Http\Request;
 
 class DomainsController extends Controller
@@ -20,9 +21,9 @@ class DomainsController extends Controller
         return view('admin.domains.index', compact('domains'));
     }
 
-    public function create(Request $request)
+    public function create(Request $request, DomainSetting $setting)
     {
-        return view('admin.domains.create');
+        return view('admin.domains.create', compact('setting'));
     }
 
     public function store(CreateDomainRequest $request)

@@ -19,7 +19,7 @@ class MailSettingRequest extends FormRequest
             'encryption' => 'required',
             'username' => 'required',
             'password' => 'required',
-            'address' => 'required',
+            'address' => 'required|email',
             'name' => 'required',
         ];
     }

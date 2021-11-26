@@ -52,12 +52,12 @@
                                 </td>
                                 <td class="py-3 px-6 text-center">
                                     @if($domain->price)
-                                        <span class="text-red-600">{{ optional($domain->priceCurrency)->prefix }} {{ $domain->price }}</span>
+                                        <span class="text-red-600">{{ $domain->format_price }}</span>
                                     @endif
                                 </td>
                                 <td class="py-3 px-6 text-center">
                                     @if($domain->min_price)
-                                        <span class="text-red-600">{{ optional($domain->priceCurrency)->prefix }} {{ $domain->min_price }}</span>
+                                        <span class="text-red-600">{{ $domain->format_min_price }}</span>
                                     @endif
                                 </td>
                                 <td class="py-3 px-6 text-center">

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', '设置-报价')
+@section('title', '系统设置-报价')
 
 @section('content')
     <div class="flex flex-col rounded shadow-sm bg-white overflow-hidden" x-data="settingContainer">
@@ -34,8 +34,10 @@
                     </div>
                     <div class="space-y-1" x-show="isNotify == 1">
                         <label for="notify_email" class="text-gray-900 font-semibold">通知邮箱</label>
-                        <input type="text" id="notify_email" name="notify_email" value="{{ old('notify_email', $setting->notify_email) }}" class="block border border-gray-200 bg-gray-100 opacity-75 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入通知邮箱" disabled>
-                        <p class="text-sm text-gray-500">请先去 <a href="#" class="text-indigo-600 hover:text-indigo-700 hover:underline">邮箱配置</a> 页面填写相关配置</p>
+                        <input type="text" id="notify_email" name="notify_email" value="{{ old('notify_email', $setting->notify_email) }}" class="block border border-gray-200 {{ $disableInput ? 'bg-gray-100 opacity-75' : '' }} rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入通知邮箱" {{ $disableInput ? 'disabled' : '' }}>
+                        @if($disableInput)
+                            <p class="text-sm text-gray-500">请先去 <a href="{{ route('admin.settings.mail') }}" class="text-indigo-600 hover:text-indigo-700 hover:underline">邮箱服务</a> 页面配置相关信息</p>
+                        @endif
                     </div>
                 </div>
             </div>

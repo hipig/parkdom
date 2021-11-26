@@ -23,4 +23,9 @@ class Offer extends Model
     {
         return $this->belongsTo(Domain::class, 'domain_id', 'id');
     }
+
+    public function getFormatOfferPriceAttribute()
+    {
+        return $this->offer_price ? optional($this->domain->priceCurrency)->prefix.$this->offer_price : $this->offer_price;
+    }
 }

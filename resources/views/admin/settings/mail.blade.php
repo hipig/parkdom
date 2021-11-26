@@ -1,8 +1,8 @@
 @extends('layouts.admin')
-@section('title', '设置-邮箱')
+@section('title', '系统设置-邮箱')
 
 @section('content')
-    <div class="flex flex-col rounded shadow-sm bg-white overflow-hidden">
+    <div class="flex flex-col rounded shadow-sm bg-white overflow-hidden" x-data="settingContainer">
         <div class="py-4 px-5 lg:px-6 w-full bg-gray-50">
             <h3>邮箱设置</h3>
         </div>
@@ -37,7 +37,13 @@
                     </div>
                     <div class="space-y-1">
                         <label for="password" class="text-gray-900 font-semibold">密码</label>
-                        <input type="password" id="password" name="password" value="{{ old('password', $setting->password) }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入密码">
+                        <div class="relative">
+                            <input :type="passwordType" id="password" name="password" value="{{ old('password', $setting->password) }}" class="block border border-gray-200 rounded pr-10 pl-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入密码" />
+                            <div @click="togglePassword" class="absolute inset-y-0 right-0 w-10 my-px mr-px flex items-center justify-center rounded-r text-gray-500 cursor-pointer">
+                                <x-heroicon-s-eye x-show="passwordType === 'password'" class="w-5 h-5"></x-heroicon-s-eye>
+                                <x-heroicon-s-eye-off x-show="passwordType === 'text'" class="w-5 h-5"></x-heroicon-s-eye-off>
+                            </div>
+                        </div>
                     </div>
                     <div class="space-y-1">
                         <label for="name" class="text-gray-900 font-semibold">发件人</label>
@@ -45,11 +51,11 @@
                     </div>
                     <div class="space-y-1">
                         <label for="address" class="text-gray-900 font-semibold">发件人邮箱</label>
-                        <input type="text" id="address" name="address" value="{{ old('host', $setting->address) }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入发件人邮箱">
+                        <input type="email" id="address" name="address" value="{{ old('host', $setting->address) }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入发件人邮箱">
                     </div>
                 </div>
             </div>
-            <div class="py-3 px-5 lg:px-6 w-full bg-gray-50 space-x-2" x-data>
+            <div class="py-3 px-5 lg:px-6 w-full bg-gray-50 space-x-2">
                 <button type="submit" class="inline-flex justify-center items-center space-x-2 rounded border font-semibold focus:outline-none px-4 py-2 leading-5 text-sm border-indigo-700 bg-indigo-700 text-white hover:text-white hover:bg-indigo-800 hover:border-indigo-800 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 active:bg-indigo-700 active:border-indigo-700">
                     确定
                 </button>
@@ -97,13 +103,13 @@
                         </button>
                     </div>
                 </div>
-                <form action="#" method="post">
+                <form action="{{ route('admin.settings.mail.testSend') }}" method="post">
                     @csrf
                     <div class="p-5 lg:p-6 flex-grow w-full">
                         <div class="space-y-6">
                             <div class="space-y-1">
-                                <label for="test_email" class="text-gray-900 font-semibold">邮箱地址</label>
-                                <input type="text" id="test_email" name="test_email" value="{{ old('test_email') }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入邮箱地址">
+                                <label for="email" class="text-gray-900 font-semibold">邮箱地址</label>
+                                <input type="email" id="email" name="email" value="{{ old('email') }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入邮箱地址">
                             </div>
                         </div>
                     </div>
@@ -116,9 +122,8 @@
                             取消
                         </button>
                         <button
-                            type="button"
+                            type="submit"
                             class="inline-flex justify-center items-center space-x-2 border font-semibold focus:outline-none px-4 py-2 leading-5 text-sm rounded border-indigo-700 bg-indigo-700 text-white hover:text-white hover:bg-indigo-800 hover:border-indigo-800 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 active:bg-indigo-700 active:border-indigo-700"
-                            @click="closeModal"
                         >
                             提交
                         </button>
@@ -132,6 +137,15 @@
 @push('scripts')
     <script>
         document.addEventListener('alpine:init', () => {
+            Alpine.data('settingContainer', () => ({
+                passwordType: 'password',
+
+                togglePassword() {
+                    console.log(1111)
+                    this.passwordType = this.passwordType === 'password' ? 'text' : 'password'
+                }
+            }))
+
             Alpine.data('mailContainer', () => ({
                 open: false,
 

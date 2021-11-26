@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', '设置-域名')
+@section('title', '系统设置-域名')
 
 @section('content')
     <div class="flex flex-col rounded shadow-sm bg-white overflow-hidden" x-data="settingContainer">

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', '设置-基础')
+@section('title', '系统设置-基础')
 
 @section('content')
     <div class="flex flex-col rounded shadow-sm bg-white overflow-hidden">

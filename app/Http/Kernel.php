@@ -65,5 +65,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
         'theme.set' => \App\Http\Middleware\ThemeSet::class,
+        'cover.config.mail' => \App\Http\Middleware\CoverConfigOfMail::class,
     ];
 }

@@ -10,7 +10,7 @@ class OffersController extends Controller
 {
     public function index()
     {
-        $offers = Offer::query()->paginate();
+        $offers = Offer::query()->with('domain')->paginate();
 
         return view('admin.offers.index', compact('offers'));
     }
