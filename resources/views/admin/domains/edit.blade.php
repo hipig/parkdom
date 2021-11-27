@@ -45,7 +45,7 @@
                             <div class="py-2 leading-6">{{ $domain->length }}</div>
                         </div>
                         <div class="space-y-1">
-                            <label class="text-gray-900 font-semibold">年龄</label>
+                            <label class="text-gray-900 font-semibold">时长</label>
                             <div class="py-2 leading-6">{{ $domain->age }} 年</div>
                         </div>
                         <div class="space-y-1">
@@ -66,6 +66,15 @@
                         </div>
                     </div>
                     <div class="space-y-1">
+                        <label for="currency" class="text-gray-900 font-semibold">分类</label>
+                        <select id="currency" name="currency" :value="currency" @change="currencySelect($event.target.value)" class="w-full block border border-gray-200 rounded px-3 py-2 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+                            <option value="">请选择分类</option>
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="space-y-1">
                         <label for="description" class="text-gray-900 font-semibold">域名备注</label>
                         <textarea id="description" name="description" class="w-full block border border-gray-200 rounded px-3 py-2 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" rows="4" placeholder="请输入域名备注">{{ old('description', $domain->description) }}</textarea>
                     </div>
@@ -78,7 +87,7 @@
                         <select id="currency" name="currency" :value="currency" @change="currencySelect($event.target.value)" class="w-full block border border-gray-200 rounded px-3 py-2 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
                             <template x-for="currency in currencyList">
                                 <option x-text="currency.code"></option>
-                            </template>>
+                            </template>
                         </select>
                     </div>
                     <div class="space-y-1">
@@ -154,7 +163,7 @@
                   axios.get(`{{ route('api.currencies') }}`)
                     .then(res => {
                         this.currencyList = res.data
-                        this.currency = '{{ $domain->currency }}'
+                        this.currency = '{{ $domain->currency }}' || res.data[0].code
                     })
                 },
 

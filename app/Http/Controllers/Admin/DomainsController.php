@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CreateDomainRequest;
 use App\ModelFilters\Admin\DomainFilter;
 use App\Models\Domain;
+use App\Models\DomainCategory;
 use App\Settings\DomainSetting;
 use Illuminate\Http\Request;
 
@@ -44,8 +45,9 @@ class DomainsController extends Controller
 
     public function edit(Request $request, Domain $domain)
     {
+        $categories = DomainCategory::query()->orderByDesc('sort')->latest()->get();
         $themes = \Theme::all();
-        return view('admin.domains.edit', compact('domain', 'themes'));
+        return view('admin.domains.edit', compact('domain', 'categories', 'themes'));
     }
 
     public function update(Request $request, Domain $domain)

@@ -12,6 +12,7 @@ class DomainCategory extends Model
     protected $fillable = [
         'name',
         'icon',
+        'sort',
         'status',
     ];
 

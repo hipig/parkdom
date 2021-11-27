@@ -41,13 +41,15 @@
                     <x-admin.sidebar.subitem label="验证码" href="#"></x-admin.sidebar.subitem>
                     <x-admin.sidebar.subitem label="币种" href="{{ route('admin.settings.currencies.index') }}" :active="if_route_pattern('admin.settings.currencies.*')"></x-admin.sidebar.subitem>
                 </x-admin.sidebar.item>
-                <x-admin.sidebar.item label="域名管理" icon="heroicon-s-globe-alt" :active="if_route_pattern(['admin.domains.*', 'admin.domainCategories.*'])">
+                <x-admin.sidebar.item label="域名" icon="heroicon-s-globe-alt" :active="if_route_pattern(['admin.domains.*', 'admin.domainCategories.*'])">
                     <x-admin.sidebar.subitem label="分类"  href="{{ route('admin.domainCategories.index') }}" :active="if_route_pattern('admin.domainCategories.*')"></x-admin.sidebar.subitem>
                     <x-admin.sidebar.subitem label="域名列表" href="{{ route('admin.domains.index') }}" :active="if_route_pattern('admin.domains.*')"></x-admin.sidebar.subitem>
                 </x-admin.sidebar.item>
                 <x-admin.sidebar.item label="报价" icon="heroicon-s-currency-dollar" href="{{ route('admin.offers.index') }}" :active="if_route_pattern('admin.offers.*')"></x-admin.sidebar.item>
                 <x-admin.sidebar.item label="概况统计" icon="heroicon-s-chart-square-bar" :active="if_route_pattern(['admin.statistics.*', 'admin.domainVisits.*'])">
                     <x-admin.sidebar.subitem label="访问记录"  href="{{ route('admin.domainVisits.index') }}" :active="if_route_pattern('admin.domainVisits.*')"></x-admin.sidebar.subitem>
+                    <x-admin.sidebar.subitem label="报价统计" href="#"></x-admin.sidebar.subitem>
+                    <x-admin.sidebar.subitem label="域名统计" href="#"></x-admin.sidebar.subitem>
                 </x-admin.sidebar.item>
 
             </x-admin.sidebar.group>
