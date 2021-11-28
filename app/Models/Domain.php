@@ -4,6 +4,7 @@ namespace App\Models;
 
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Jenssegers\Agent\Agent;
 
 class Domain extends Model
 {
@@ -66,5 +67,40 @@ class Domain extends Model
     public function getFormatMinPriceAttribute()
     {
         return $this->min_price ? optional($this->priceCurrency)->prefix.$this->min_price : $this->min_price;
+    }
+
+    public function incrementHit()
+    {
+        $hit = DomainHit::firstOrCreate([
+            'date' => now()->format('Y-m-d')
+        ]);
+        $hit->domain()->associate($this);
+        $hit->increment('times');
+        $hit->save();
+    }
+
+    public function createVisit($host, $ip)
+    {
+        $agent = new Agent();
+        $platform = $agent->platform();
+        $platformVersion = $agent->version($platform);
+        $browser = $agent->browser();
+        $browserVersion = $agent->version($browser);
+        $location = geoip($ip);
+
+        $visit = DomainVisit::create([
+            'host' => $host,
+            'ip' => $ip,
+            'country_code' => $location->iso_code,
+            'country' => $location->country,
+            'device' => $agent->device(),
+            'device_type' => $agent->deviceType(),
+            'platform' => $platform,
+            'platform_version' => $platformVersion,
+            'browser' => $browser,
+            'browser_version' => $browserVersion,
+        ]);
+        $visit->domain()->associate($this);
+        $visit->save();
     }
 }

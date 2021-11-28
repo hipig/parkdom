@@ -73,5 +73,14 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
 
     Route::get('domain-visits', [Admin\DomainVisitsController::class, 'index'])->name('domainVisits.index');
 
+    Route::prefix('statistics')->name('statistics.')->group(function () {
+        Route::get('domain-visit', [Admin\DomainVisitStatisticsController::class, 'index'])->name('visit');
 
+        Route::get('offer', [Admin\OfferStatisticsController::class, 'index'])->name('offer');
+
+        Route::get('domain', [Admin\DomainStatisticsController::class, 'index'])->name('domain');
+        Route::get('domain/visit', [Admin\DomainStatisticsController::class, 'countVisit'])->name('domain.visit');
+        Route::get('domain/hit', [Admin\DomainStatisticsController::class, 'countHit'])->name('domain.hit');
+
+    });
 });

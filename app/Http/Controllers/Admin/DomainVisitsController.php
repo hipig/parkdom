@@ -11,6 +11,7 @@ class DomainVisitsController extends Controller
     public function index()
     {
         $visits = DomainVisit::query()->latest()->paginate();
+
         return view('admin.domain-visits.index', compact('visits'));
     }
 }

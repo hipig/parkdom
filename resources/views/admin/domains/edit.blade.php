@@ -103,6 +103,19 @@
                         <p class="text-sm text-gray-500">立即购买的价格</p>
                     </div>
                     <div class="space-y-1">
+                        <label for="offer_status" class="text-gray-900 font-semibold">允许报价</label>
+                        <div class="flex items-center space-x-6">
+                            <label class="flex items-center">
+                                <input type="radio" name="allow_offer" value="1" x-model="allowOffer" class="border border-gray-200 h-4 w-4 text-indigo-500 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" />
+                                <span class="ml-2">启用</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="allow_offer" value="2" x-model="allowOffer" class="border border-gray-200 h-4 w-4 text-indigo-500 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" />
+                                <span class="ml-2">禁用</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="space-y-1" x-show="allowOffer == 1">
                         <label for="min_price" class="text-gray-900 font-semibold">最低价格</label>
                         <div class="flex items-center">
                             <div class="flex-1 min-w-0 relative">
@@ -149,6 +162,7 @@
                 currency: '',
                 currencyPrefix: '',
                 activeTab: 'domain',
+                allowOffer: '{{ old('all_offer', $domain->allow_offer ?? 1) }}',
 
                 init() {
                     this.getCurrencyList()

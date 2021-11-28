@@ -24,6 +24,9 @@ module.exports = {
         '9xl': '105rem',
         '10xl': '120rem',
       },
+      height: {
+        '192': '48rem'
+      },
       zIndex: {
         '1': 1,
         '60': 60,

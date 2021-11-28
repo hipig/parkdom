@@ -32,7 +32,7 @@ class DomainsController extends Controller
                 'price',
                 'min_price',
                 'currency',
-                'can_offer',
+                'allow_offer',
             ]);
             $input['domain'] = $value;
             $domain = Domain::create($input);
@@ -54,8 +54,10 @@ class DomainsController extends Controller
     {
         $domain->fill($request->only([
             'description',
-            'currency',
             'price',
+            'min_price',
+            'currency',
+            'allow_offer',
             'seo_title',
             'seo_keywords',
             'seo_description',

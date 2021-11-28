@@ -11,7 +11,7 @@
 
 @section('content')
     <div class="flex flex-col rounded shadow-sm bg-white overflow-hidden">
-        <div class="py-3 px-5 lg:px-6 flex-grow w-full">
+        <div class="py-4 px-5 lg:px-6 flex-grow w-full">
             <div class="flex items-center justify-between">
                 <span class="text-gray-900">报价列表</span>
             </div>
@@ -23,6 +23,7 @@
                     <tr class="text-gray-700 bg-gray-50 font-semibold text-left">
                         <th class="py-2 px-6">域名</th>
                         <th class="py-2 px-6">姓名</th>
+                        <th class="py-2 px-6">IP</th>
                         <th class="py-2 px-6">邮箱地址</th>
                         <th class="py-2 px-6">手机号码</th>
                         <th class="py-2 px-6">报价</th>
@@ -39,6 +40,10 @@
                                 </td>
                                 <td class="py-3 px-6">
                                     <span class="text-gray-700">{{ $offer->name }}</span>
+                                </td>
+                                <td class="py-3 px-6">
+                                    <p class="text-gray-700">{{ $offer->ip }}</p>
+                                    <p class="text-gray-500">{{ $offer->country }}</p>
                                 </td>
                                 <td class="py-3 px-6">
                                     <span class="text-gray-500">{{ $offer->email }}</span>

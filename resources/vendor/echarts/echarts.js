@@ -1,0 +1,1 @@
+window.echarts =  require('echarts')

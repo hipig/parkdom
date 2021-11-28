@@ -47,9 +47,10 @@
                 </x-admin.sidebar.item>
                 <x-admin.sidebar.item label="报价" icon="heroicon-s-currency-dollar" href="{{ route('admin.offers.index') }}" :active="if_route_pattern('admin.offers.*')"></x-admin.sidebar.item>
                 <x-admin.sidebar.item label="概况统计" icon="heroicon-s-chart-square-bar" :active="if_route_pattern(['admin.statistics.*', 'admin.domainVisits.*'])">
-                    <x-admin.sidebar.subitem label="访问记录"  href="{{ route('admin.domainVisits.index') }}" :active="if_route_pattern('admin.domainVisits.*')"></x-admin.sidebar.subitem>
-                    <x-admin.sidebar.subitem label="报价统计" href="#"></x-admin.sidebar.subitem>
-                    <x-admin.sidebar.subitem label="域名统计" href="#"></x-admin.sidebar.subitem>
+                    <x-admin.sidebar.subitem label="访问记录" href="{{ route('admin.domainVisits.index') }}" :active="if_route_pattern('admin.domainVisits.*')"></x-admin.sidebar.subitem>
+                    <x-admin.sidebar.subitem label="访问统计" href="{{ route('admin.statistics.visit') }}" :active="if_route('admin.statistics.visit')"></x-admin.sidebar.subitem>
+                    <x-admin.sidebar.subitem label="报价统计" href="{{ route('admin.statistics.offer') }}" :active="if_route('admin.statistics.offer')"></x-admin.sidebar.subitem>
+                    <x-admin.sidebar.subitem label="域名统计" href="{{ route('admin.statistics.domain') }}" :active="if_route('admin.statistics.domain')"></x-admin.sidebar.subitem>
                 </x-admin.sidebar.item>
 
             </x-admin.sidebar.group>
