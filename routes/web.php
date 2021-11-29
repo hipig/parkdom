@@ -16,7 +16,7 @@ use App\Http\Controllers\Auth;
 |
 */
 
-Route::middleware('theme.set')->group(function () {
+Route::middleware('bind.domain')->group(function () {
 
     Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
 

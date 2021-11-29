@@ -10,23 +10,13 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, Domain $hostDomain)
     {
         $host = $request->getHost();
         $ip = $request->ip();
 
-        $domainName = parseHost($host, 'domain');
+        event(new DomainVisited($hostDomain, $host, $ip));
 
-        try {
-            $domain = Domain::query()->where('domain', $domainName)->firstOrFail();
-        } catch (ModelNotFoundException $e) {
-            $domain = Domain::create(['domain' => $domainName]);
-
-            event(new DomainCreated($domain));
-        }
-
-        event(new DomainVisited($domain, $host, $ip));
-
-        return view('domains.show', compact('domain'));
+        return view('domains.show', ['domain' => $hostDomain]);
     }
 }
