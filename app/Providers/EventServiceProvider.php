@@ -24,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\DomainCreated' => [
             'App\Listeners\queryDomainWhois',
         ],
+        'App\Events\OfferSubmitted' => [
+            'App\Listeners\SendEmailNotification',
+        ],
     ];
 
     /**

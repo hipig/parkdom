@@ -22,6 +22,15 @@ class DomainVisit extends Model
         'browser_version',
     ];
 
+    protected static function booted()
+    {
+        static::updating(function ($visit) {
+            $location = geoip($visit->ip);
+            $visit->country_code = $location->iso_code;
+            $visit->country = $location->country;
+        });
+    }
+
     public function domain()
     {
         return $this->belongsTo(Domain::class, 'domain_id', 'id');

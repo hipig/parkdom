@@ -20,7 +20,7 @@ class CreateDomainsTable extends Migration
             $table->string('logo')->nullable()->comment('LOGO');
             $table->decimal('price',10, 2)->unsigned()->nullable()->comment('价格');
             $table->decimal('min_price',10, 2)->unsigned()->nullable()->comment('最低价格');
-            $table->string('currency', 64)->nullable()->comment('币种');
+            $table->string('currency', 64)->default('USD')->comment('币种');
             $table->string('suffix', 64)->nullable()->comment('后缀');
             $table->integer('length')->default(0)->comment('长度');
             $table->integer('age')->default(0)->comment('年龄');

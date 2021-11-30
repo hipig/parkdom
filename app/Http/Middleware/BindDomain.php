@@ -28,7 +28,7 @@ class BindDomain
 
             event(new DomainCreated($domain));
         }
-        $request->route()->setParameter('hostDomain', $domain);
+        $request->route()->setParameter('bindDomain', $domain);
 
         $this->setTheme($domain);
 

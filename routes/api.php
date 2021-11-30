@@ -19,4 +19,6 @@ Route::name('api.')->group(function () {
 
     Route::get('currencies', [Api\CurrenciesController::class, 'index'])->name('currencies');
 
+    Route::post('domains/{domain}/offers', [Api\OffersController::class, 'store'])->name('domains.offers.store');
+
 });

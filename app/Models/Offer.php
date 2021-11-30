@@ -21,6 +21,15 @@ class Offer extends Model
         'content'
     ];
 
+    protected static function booted()
+    {
+        static::updating(function ($offer) {
+            $location = geoip($offer->ip);
+            $offer->country_code = $location->iso_code;
+            $offer->country = $location->country;
+        });
+    }
+
     public function domain()
     {
         return $this->belongsTo(Domain::class, 'domain_id', 'id');
