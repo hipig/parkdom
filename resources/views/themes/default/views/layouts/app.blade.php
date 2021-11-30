@@ -25,7 +25,7 @@
 <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
-<body class="font-sans bg-gray-50 text-gray-700 leading-normal antialiased">
+<body class="font-sans leading-normal antialiased">
 
 @include('partials.header')
 
