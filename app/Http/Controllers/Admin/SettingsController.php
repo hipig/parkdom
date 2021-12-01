@@ -41,6 +41,7 @@ class SettingsController extends Controller
 
     public function updateDomain(Request $request, DomainSetting $setting)
     {
+        dd($request->all());
         $setting->fill($request->only([
             'currency',
             'allow_offer',

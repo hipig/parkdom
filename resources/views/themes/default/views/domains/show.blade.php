@@ -61,7 +61,7 @@
                             <h3 class="text-4xl text-gray-900">Make Your offer</h3>
                             <p class="text-lg text-gray-500">Please complete the form below and the seller will receive your message.</p>
                         </div>
-                        <div class="space-y-6" x-data="offerContainer">
+                        <div class="space-y-6" x-data="offerContainer" x-ref="offer-form">
                             <div class="space-y-4">
                                 <div class="space-y-1">
                                     <div class="relative">
@@ -124,7 +124,7 @@
                                 </div>
                             </div>
                             <div class="space-y-6">
-                                <button type="button" @click="submitOffer" class="w-full inline-flex justify-center items-center space-x-2 rounded border text-lg font-semibold focus:outline-none px-4 py-3 leading-6 border-indigo-600 bg-indigo-600 text-white hover:text-white hover:bg-indigo-700 hover:border-indigo-700 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 active:bg-indigo-600 active:border-indigo-600 active:shadow-none">
+                                <button type="button" @click="submitOffer($dispatch)" class="w-full inline-flex justify-center items-center space-x-2 rounded border text-lg font-semibold focus:outline-none px-4 py-3 leading-6 border-indigo-600 bg-indigo-600 text-white hover:text-white hover:bg-indigo-700 hover:border-indigo-700 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 active:bg-indigo-600 active:border-indigo-600 active:shadow-none">
                                     Submit Offer
                                 </button>
                                 <div class="flex items-center">
@@ -150,6 +150,24 @@
             </div>
         </div>
     </main>
+    <div
+        x-data="dialogContainer"
+        x-show="show"
+        @dialog-show.window="showDialog($event.detail)"
+        x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="transform translate-x-full"
+        x-transition:enter-end="transform translate-x-0"
+        x-transition:leave="transition ease-in duration-300"
+        x-transition:leave-start="transform translate-x-0"
+        x-transition:leave-end="transform translate-x-full"
+        class="fixed top-24 right-8">
+        <div class="p-4 rounded-md text-green-700 bg-green-100 shadow-md">
+            <div class="flex items-center">
+                <svg class="hi-solid hi-check-circle inline-block w-5 h-5 mr-3 flex-none text-green-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                <h3 class="font-semibold" x-text="message"></h3>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('scripts')
@@ -165,10 +183,17 @@
                 },
                 errors: {},
 
-                submitOffer() {
+                submitOffer(dispatcher) {
                     axios.post('{{ route('api.domains.offers.store', $domain) }}', this.form)
-                        .then(res => {
-                            console.log(res)
+                        .then(() => {
+                            dispatcher('dialog-show', {show: true, message: 'Offer was submitted successfully!'})
+                            this.form = {
+                                name: '',
+                                email: '',
+                                phone: '',
+                                offer_price: '',
+                                content: ''
+                            }
                         })
                         .catch((err) => {
                             let res = err.response
@@ -177,6 +202,27 @@
                             }
                         })
                 }
+            }))
+
+            Alpine.data('dialogContainer', () => ({
+               show: false,
+                message: '',
+
+               init() {
+                   this.$watch('show', show => {
+                       if (show) {
+                           let that = this
+                           setTimeout(() => {
+                               that.show = false
+                           }, 3000)
+                       }
+                   })
+               },
+
+               showDialog(detail) {
+                   this.show = !!detail.show
+                   this.message = detail.message || ''
+               }
             }))
         })
     </script>
