@@ -4,7 +4,7 @@ namespace App\Listeners;
 
 use App\Events\DomainVisited;
 
-class recordDomainVisit
+class RecordDomainVisit
 {
     /**
      * Create the event listener.

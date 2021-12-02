@@ -2,13 +2,13 @@
 @section('title', $domain->seo_title ?? "{$domain->domain} is on sale")
 
 @section('content')
-    <main class="min-h-screen flex bg-gray-50 text-gray-700">
-        <div class="w-7/12 flex flex-col justify-between">
-            <div class="flex-1 min-h-0 flex items-center py-5 px-4 lg:px-12">
+    <main class="min-h-screen flex flex-col xl:flex-row space-y-12 xl:space-y-0 bg-gray-100 text-gray-700">
+        <div class="w-full xl:w-7/12 flex flex-col justify-between bg-gray-50">
+            <div class="flex-1 min-h-0 flex items-center justify-center py-5 px-4 lg:px-8 xl:px-12">
                 <div class="space-y-20">
                     <div class="flex flex-col items-center space-y-8">
-                        <h1 class="text-6xl font-bold bg-indigo-600 text-white px-4 py-1 rounded-md">For Sale!</h1>
-                        <h3 class="text-8xl font-bold text-gray-900">{{ $domain->domain }}</h3>
+                        <h1 class="text-5xl md:text-6xl font-bold bg-indigo-600 text-white px-4 py-1 rounded-md">For Sale!</h1>
+                        <h3 class="text-6xl sm:text-7xl md:text-8xl font-bold text-gray-900">{{ $domain->domain }}</h3>
                         @if($domain->price)
                             <div class="flex items-center text-4xl space-x-4"><span>Estimated value</span> <span class="text-3xl px-4 py-1 bg-red-500 text-white font-semibold rounded">{{ $domain->format_price }}</span></div>
                         @endif
@@ -53,12 +53,12 @@
                 </div>
             </div>
         </div>
-        <div class="w-5/12 flex flex-col justify-between bg-gray-100">
-            <div class="flex-1 min-h-0 flex items-center py-4 px-6 lg:px-20">
+        <div class="w-full xl:w-5/12 flex flex-col justify-between">
+            <div class="flex-1 min-h-0 flex items-center justify-center py-4 px-6 lg:px-10 xl:px-20">
                 <div>
                     <div class="space-y-6">
                         <div class="space-y-4 text-center">
-                            <h3 class="text-4xl text-gray-900">Make Your offer</h3>
+                            <h3 class="text-4xl text-gray-900 font-semibold">Make Your offer</h3>
                             <p class="text-lg text-gray-500">Please complete the form below and the seller will receive your message.</p>
                         </div>
                         <div class="space-y-6" x-data="offerContainer" x-ref="offer-form">
@@ -127,16 +127,21 @@
                                 <button type="button" @click="submitOffer($dispatch)" class="w-full inline-flex justify-center items-center space-x-2 rounded border text-lg font-semibold focus:outline-none px-4 py-3 leading-6 border-indigo-600 bg-indigo-600 text-white hover:text-white hover:bg-indigo-700 hover:border-indigo-700 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 active:bg-indigo-600 active:border-indigo-600 active:shadow-none">
                                     Submit Offer
                                 </button>
-                                <div class="flex items-center">
-                                    <span aria-hidden="true" class="flex-grow bg-gray-200 rounded h-px"></span>
-                                    <span class="text-sm font-medium mx-3 text-gray-400">OTHER</span>
-                                    <span aria-hidden="true" class="flex-grow bg-gray-200 rounded h-px"></span>
-                                </div>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <button type="button" class="w-full inline-flex justify-center items-center space-x-2 rounded border text-lg  focus:outline-none px-4 py-3 leading-6 border-gray-300 bg-white text-gray-800 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:ring focus:ring-gray-500 focus:ring-opacity-50 active:bg-white active:white active:shadow-none">
-                                        <span class="text-gray-400">Buy with</span>
-                                        <span class="font-semibold">Dan.com</span>
-                                    </button>
+                                @if($domainSetting->getBuyLinks() || $domain->allow_offer == \App\Models\Domain::STATUS_ENABLE)
+                                    <div class="flex items-center">
+                                        <span aria-hidden="true" class="flex-grow bg-gray-200 rounded h-px"></span>
+                                        <span class="text-sm font-medium mx-3 text-gray-400">OTHER</span>
+                                        <span aria-hidden="true" class="flex-grow bg-gray-200 rounded h-px"></span>
+                                    </div>
+                                @endif
+
+                                <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
+                                    @foreach($domainSetting->getBuyLinks() as $link)
+                                        <a href="{{ \Illuminate\Support\Str::replace('{domain}', $domain->domain, $link['value']) }}" target="_blank" class="w-full inline-flex justify-center items-center rounded border text-lg  focus:outline-none px-4 py-3 leading-6 border-gray-300 bg-white text-gray-800 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:ring focus:ring-gray-500 focus:ring-opacity-50 active:bg-white active:white active:shadow-none">
+                                            <span class="text-gray-400 mr-2">{{ $link['label_prefix'] ?? '' }}</span>
+                                            <span class="font-semibold">{{ $link['label'] }}</span>
+                                        </a>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -160,7 +165,8 @@
         x-transition:leave="transition ease-in duration-300"
         x-transition:leave-start="transform translate-x-0"
         x-transition:leave-end="transform translate-x-full"
-        class="fixed top-24 right-8">
+        class="fixed top-24 right-8"
+        x-cloak>
         <div class="p-4 rounded-md text-green-700 bg-green-100 shadow-md">
             <div class="flex items-center">
                 <svg class="hi-solid hi-check-circle inline-block w-5 h-5 mr-3 flex-none text-green-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>

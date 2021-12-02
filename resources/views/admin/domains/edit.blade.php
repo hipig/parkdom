@@ -45,24 +45,8 @@
                             <div class="py-2 leading-6">{{ $domain->length }}</div>
                         </div>
                         <div class="space-y-1">
-                            <label class="text-gray-900 font-semibold">时长</label>
+                            <label class="text-gray-900 font-semibold">持有时长</label>
                             <div class="py-2 leading-6">{{ $domain->age }} 年</div>
-                        </div>
-                        <div class="space-y-1">
-                            <label class="text-gray-900 font-semibold">注册商</label>
-                            <div class="py-2 leading-6">易名</div>
-                        </div>
-                        <div class="space-y-1">
-                            <label class="text-gray-900 font-semibold">域名服务器</label>
-                            <div class="py-2 leading-6">b.iana-servers.net</div>
-                        </div>
-                        <div class="space-y-1">
-                            <label class="text-gray-900 font-semibold">注册时间</label>
-                            <div class="py-2 leading-6">2021-01-24</div>
-                        </div>
-                        <div class="space-y-1">
-                            <label class="text-gray-900 font-semibold">过期时间</label>
-                            <div class="py-2 leading-6">2023-10-03</div>
                         </div>
                     </div>
                     <div class="space-y-1">

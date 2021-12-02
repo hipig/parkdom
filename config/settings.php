@@ -8,6 +8,10 @@ return [
      */
     'settings' => [
         \App\Settings\GeneralSetting::class,
+        \App\Settings\DomainSetting::class,
+        \App\Settings\OfferSetting::class,
+        \App\Settings\MailSetting::class,
+        \App\Settings\ContactSetting::class,
     ],
 
     /*

@@ -53,7 +53,7 @@
                         <div class="border border-gray-200 rounded divide-y divide-gray-200" @drop.prevent="drop" @dragover.prevent="dragover($event)">
                             <template x-for="(link, i) in linkList" hidden>
                                 <div class="flex p-4 hover:bg-gray-50 relative" :class="{ 'opacity-50': dragging === i }" draggable="true" @dragstart="dragstart(i)" @dragend="dragend">
-                                    <div class="flex-shrink-0 cursor-move">
+                                    <div class="flex-shrink-0 cursor-move" @mousedown="dragstart(i)" @mouseup="dragend">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
                                             <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 01-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 110-2h4a1 1 0 011 1v4a1 1 0 11-2 0V6.414l-2.293 2.293a1 1 0 11-1.414-1.414L13.586 5H12zm-9 7a1 1 0 112 0v1.586l2.293-2.293a1 1 0 011.414 1.414L6.414 15H8a1 1 0 110 2H4a1 1 0 01-1-1v-4zm13-1a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 110-2h1.586l-2.293-2.293a1 1 0 011.414-1.414L15 13.586V12a1 1 0 011-1z" clip-rule="evenodd" />
                                         </svg>
@@ -61,11 +61,11 @@
                                     <div class="flex-grow ml-4">
                                         <div class="space-y-1">
                                             <div class="text-gray-700 font-semibold" x-text="link.title"></div>
-                                            <input type="hidden" :name="'links['+i+'][title]'" x-model="link.title" hidden>
+                                            <input type="hidden" :name="'buy_links['+i+'][title]'" x-model="link.title" hidden>
                                             <div class="grid grid-cols-3 gap-4">
                                                 <div class="space-y-1">
                                                     <label for="" class="text-sm font-semibold">按钮名称</label>
-                                                    <input type="text" :name="'links['+i+'][label]'" x-model="link.label" class="block border border-gray-200 rounded px-3 py-2 leading-5 text-sm w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="Buy with paypal">
+                                                    <input type="text" :name="'buy_links['+i+'][label]'" x-model="link.label" class="block border border-gray-200 rounded px-3 py-2 leading-5 text-sm w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="Buy with paypal">
                                                 </div>
                                                 <div class="col-span-2">
                                                     <div class="space-y-1">
@@ -74,14 +74,14 @@
                                                             <div class="absolute inset-y-0 left-0 w-11 my-px ml-px flex items-center justify-center pointer-events-none rounded-l bg-gray-100 border-r border-gray-200">
                                                                 <span class="text-sm text-gray-500">URL</span>
                                                             </div>
-                                                            <input type="text" :name="'links['+i+'][value]'" x-model="link.value" class="block border border-gray-200 rounded pl-14 pr-3 py-2 leading-5 text-sm w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="https://paypal.com/{domain}">
+                                                            <input type="text" :name="'buy_links['+i+'][value]'" x-model="link.value" class="block border border-gray-200 rounded pl-14 pr-3 py-2 leading-5 text-sm w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="https://paypal.com/{domain}">
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="absolute top-0 right-0 p-2 cursor-pointer" title="删除" @click="removeItem(i)">
+                                    <div class="absolute top-0 right-0 p-3 cursor-pointer" title="删除" @click="removeItem(i)">
                                         <x-heroicon-s-trash class="w-6 h-6 text-red-500"/>
                                     </div>
                                     <div class="absolute inset-0 opacity-50" x-show.transition="dragging !== null" :class="{ 'bg-indigo-200': dropping === i }" @dragenter.prevent="dragenter(i)" @dragleave="dragleave(i)"></div>
@@ -130,7 +130,7 @@
             }))
 
             Alpine.data('buyLinkContainer', () => ({
-                linkList: @json([['title' => 'Dan.com', 'label' => 'Buy with Dan.com', 'value' => 'https://www.dan.com/{domain}']]),
+                linkList: @json(json_decode($setting->buy_links)),
                 dragging: null,
                 dropping: null,
 

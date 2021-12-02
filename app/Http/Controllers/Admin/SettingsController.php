@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\DomainSettingRequest;
 use App\Http\Requests\Admin\MailSettingRequest;
 use App\Http\Requests\Admin\MailTestSendRequest;
 use App\Http\Requests\Admin\OfferSettingRequest;
@@ -39,13 +40,13 @@ class SettingsController extends Controller
         return view('admin.settings.domain', compact('setting'));
     }
 
-    public function updateDomain(Request $request, DomainSetting $setting)
+    public function updateDomain(DomainSettingRequest $request, DomainSetting $setting)
     {
-        dd($request->all());
         $setting->fill($request->only([
             'currency',
             'allow_offer',
-            'min_price'
+            'min_price',
+            'buy_links',
         ]));
         $setting->save();
 
