@@ -4,25 +4,25 @@
 namespace App\Http\ViewComposers;
 
 
-use App\Settings\DomainSetting;
+use App\Settings\OfferSetting;
 use Illuminate\View\View;
 
-class DomainSettingComposer
+class OfferSettingComposer
 {
     /**
      * The user repository implementation.
      *
-     * @var DomainSetting
+     * @var OfferSetting
      */
     protected $setting;
 
     /**
      * Create a new profile composer.
      *
-     * @param  DomainSetting  $setting
+     * @param  OfferSetting  $setting
      * @return void
      */
-    public function __construct(DomainSetting $setting)
+    public function __construct(OfferSetting $setting)
     {
         // Dependencies automatically resolved by service container...
         $this->setting = $setting;
@@ -36,6 +36,6 @@ class DomainSettingComposer
      */
     public function compose(View $view)
     {
-        $view->with('domainSetting', $this->setting);
+        $view->with('offerSetting', $this->setting);
     }
 }

@@ -15,6 +15,8 @@
         "laravel/framework": "^8.65",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
+        "maatwebsite/excel": "^3.1",
+        "mews/captcha": "^3.2",
         "shipu/themevel": "^3.0",
         "spatie/laravel-settings": "^2.2",
         "torann/geoip": "^3.0",

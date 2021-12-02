@@ -52,8 +52,8 @@
                         </label>
                         <div class="border border-gray-200 rounded divide-y divide-gray-200" @drop.prevent="drop" @dragover.prevent="dragover($event)">
                             <template x-for="(link, i) in linkList" hidden>
-                                <div class="flex p-4 hover:bg-gray-50 relative" :class="{ 'opacity-50': dragging === i }" draggable="true" @dragstart="dragstart(i)" @dragend="dragend">
-                                    <div class="flex-shrink-0 cursor-move" @mousedown="dragstart(i)" @mouseup="dragend">
+                                <div class="flex p-4 hover:bg-gray-50 relative" :class="{ 'opacity-50': dragging === i }" :draggable="dragging === i">
+                                    <div class="flex-shrink-0 cursor-move" @mousedown="mousedown(i)" @mouseup="mouseup">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
                                             <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 01-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 110-2h4a1 1 0 011 1v4a1 1 0 11-2 0V6.414l-2.293 2.293a1 1 0 11-1.414-1.414L13.586 5H12zm-9 7a1 1 0 112 0v1.586l2.293-2.293a1 1 0 011.414 1.414L6.414 15H8a1 1 0 110 2H4a1 1 0 01-1-1v-4zm13-1a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 110-2h1.586l-2.293-2.293a1 1 0 011.414-1.414L15 13.586V12a1 1 0 011-1z" clip-rule="evenodd" />
                                         </svg>
@@ -134,6 +134,15 @@
                 dragging: null,
                 dropping: null,
 
+                init() {
+                    this.$watch('dragging', value => {
+                        console.log('dragging:', value)
+                    })
+                    this.$watch('dropping', value => {
+                        console.log('dropping:', value)
+                    })
+                },
+
                 addItem() {
                     this.linkList = this.linkList.concat({
                         title: '自定义按钮',
@@ -154,19 +163,18 @@
                         else
                             linkList = [...linkList.slice(0, dropping), linkList[dragging], ...linkList.slice(dropping, dragging), ...linkList.slice(dragging + 1)]
                     }
-                    dropping = null
                     this.linkList = linkList
-                    this.dragging = dragging
-                    this.dropping = dropping
+                    this.dragging = null
+                    this.dropping = null
                 },
                 dragover(e) {
                     e.dataTransfer.dropEffect = 'move'
                 },
 
-                dragstart(index) {
+                mousedown(index) {
                     this.dragging = index
                 },
-                dragend() {
+                mouseup() {
                     this.dragging = null
                 },
                 dragenter(index) {

@@ -12,9 +12,9 @@
                 <div class="space-y-6 md:w-2/3">
                     <div class="space-y-1">
                         <label for="captcha" class="text-gray-900 font-semibold">验证码</label>
-                        <select id="captcha" name="captcha" value="{{ old('captcha', $setting->captcha) }}" class="w-full block border border-gray-200 rounded px-3 py-2 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
-                            <option value="disable">禁用</option>
-                            <option value="mews/captcha">图形验证码</option>
+                        <select id="captcha" name="captcha" class="w-full block border border-gray-200 rounded px-3 py-2 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+                            <option value="disable" {{ old('captcha', $setting->captcha) === 'disable' ? 'selected' : '' }}>禁用</option>
+                            <option value="mews/captcha"{{ old('captcha', $setting->captcha) === 'mews/captcha' ? 'selected' : '' }}>图形验证码</option>
                         </select>
                         <p class="text-sm text-gray-500">提交报价时，启用验证码</p>
                     </div>

@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Http;
 
-class queryDomainWhois
+class QueryDomainWhois
 {
     /**
      * Create the event listener.

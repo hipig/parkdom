@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Settings\OfferSetting;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Agent\Agent;
@@ -100,5 +101,10 @@ class Domain extends Model
         ]);
         $visit->domain()->associate($this);
         $visit->save();
+    }
+
+    public function isAllowOffer()
+    {
+        return $this->allow_offer == self::STATUS_ENABLE;
     }
 }

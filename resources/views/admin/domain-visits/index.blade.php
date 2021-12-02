@@ -16,7 +16,7 @@
             <div class="flex items-center justify-between">
                 <span class="text-gray-900">访问记录</span>
                 <div class="space-x-2">
-                    <a href="#" class="inline-flex justify-center items-center space-x-1 rounded border font-semibold focus:outline-none px-4 py-2 leading-5 text-sm border-green-700 bg-green-700 text-white hover:text-white hover:bg-green-800 hover:border-green-800 focus:ring focus:ring-green-500 focus:ring-opacity-50 active:bg-green-700 active:border-green-700">
+                    <a href="{{ route('admin.domainVisits.export') }}" class="inline-flex justify-center items-center space-x-1 rounded border font-semibold focus:outline-none px-4 py-2 leading-5 text-sm border-green-700 bg-green-700 text-white hover:text-white hover:bg-green-800 hover:border-green-800 focus:ring focus:ring-green-500 focus:ring-opacity-50 active:bg-green-700 active:border-green-700">
                         <x-heroicon-s-download class="w-5 h-5"></x-heroicon-s-download>
                         <span>导出</span>
                     </a>

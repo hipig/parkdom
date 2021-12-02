@@ -35,4 +35,9 @@ class OfferSetting extends Settings
     {
         return  'offer';
     }
+
+    public function enableMewsCaptcha()
+    {
+        return $this->captcha === 'mews/captcha';
+    }
 }

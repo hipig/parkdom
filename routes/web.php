@@ -24,7 +24,6 @@ Route::middleware('bind.domain')->group(function () {
 
 });
 
-
 Route::middleware('guest')->group(function () {
 
     Route::get('login', [Auth\AuthenticatedSessionController::class, 'create'])->name('login');
@@ -67,11 +66,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
 
     Route::resource('offers', Admin\OffersController::class)->only('index', 'show');
 
-    Route::prefix('statistics')->name('statistics.')->group(function () {
-
-    });
-
     Route::get('domain-visits', [Admin\DomainVisitsController::class, 'index'])->name('domainVisits.index');
+    Route::get('domain-visits/export', [Admin\DomainVisitsController::class, 'export'])->name('domainVisits.export');
 
     Route::prefix('statistics')->name('statistics.')->group(function () {
         Route::get('domain-visit', [Admin\DomainVisitStatisticsController::class, 'index'])->name('visit');
@@ -80,7 +76,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
 
         Route::get('domain', [Admin\DomainStatisticsController::class, 'index'])->name('domain');
         Route::get('domain/visit', [Admin\DomainStatisticsController::class, 'countVisit'])->name('domain.visit');
+        Route::get('domain/visit/export', [Admin\DomainStatisticsController::class, 'countVisitExport'])->name('domain.visit.export');
         Route::get('domain/hit', [Admin\DomainStatisticsController::class, 'countHit'])->name('domain.hit');
+        Route::get('domain/hit/export', [Admin\DomainStatisticsController::class, 'countHitExport'])->name('domain.hit.export');
 
     });
 });

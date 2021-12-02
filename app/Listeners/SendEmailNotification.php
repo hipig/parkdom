@@ -36,5 +36,7 @@ class SendEmailNotification
             Mail::to($offerSetting->notify_email)->send(new OfferNotification($offer));
         }
 
+        $offer->is_noticed = true;
+        $offer->save();
     }
 }
