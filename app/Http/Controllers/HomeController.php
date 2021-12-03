@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\DomainCreated;
 use App\Events\DomainVisited;
 use App\Models\Domain;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller

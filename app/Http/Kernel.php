@@ -64,8 +64,8 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
-        'theme.set' => \App\Http\Middleware\ThemeSet::class,
         'bind.domain' => \App\Http\Middleware\BindDomain::class,
         'cover.config.mail' => \App\Http\Middleware\CoverConfigOfMail::class,
+        'choose.language' => \App\Http\Middleware\ChooseLanguage::class,
     ];
 }

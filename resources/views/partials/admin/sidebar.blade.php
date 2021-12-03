@@ -38,7 +38,6 @@
                     <x-admin.sidebar.subitem label="报价" href="{{ route('admin.settings.offer') }}" :active="if_route('admin.settings.offer')"></x-admin.sidebar.subitem>
                     <x-admin.sidebar.subitem label="邮箱服务" href="{{ route('admin.settings.mail') }}" :active="if_route('admin.settings.mail')"></x-admin.sidebar.subitem>
                     <x-admin.sidebar.subitem label="联系方式"  href="{{ route('admin.settings.contact') }}" :active="if_route('admin.settings.contact')"></x-admin.sidebar.subitem>
-                    <x-admin.sidebar.subitem label="验证码" href="#"></x-admin.sidebar.subitem>
                     <x-admin.sidebar.subitem label="币种" href="{{ route('admin.settings.currencies.index') }}" :active="if_route_pattern('admin.settings.currencies.*')"></x-admin.sidebar.subitem>
                 </x-admin.sidebar.item>
                 <x-admin.sidebar.item label="域名" icon="heroicon-s-globe-alt" :active="if_route_pattern(['admin.domains.*', 'admin.domainCategories.*'])">
@@ -60,7 +59,7 @@
                         <span class="px-2.5 py-1 rounded-full text-xs font-medium leading-4 text-yellow-800 bg-yellow-300">Coming</span>
                     </x-slot>
                 </x-admin.sidebar.item>
-                <x-admin.sidebar.item label="联系我们" icon="heroicon-s-annotation"></x-admin.sidebar.item>
+                <x-admin.sidebar.item label="联系我们" icon="heroicon-s-annotation" href="{{ route('admin.contacts.index') }}" :active="if_route_pattern('admin.contacts.*')"></x-admin.sidebar.item>
             </x-admin.sidebar.group>
         </x-admin.sidebar.menu>
     </div>

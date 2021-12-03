@@ -19,6 +19,11 @@ Route::name('api.')->group(function () {
 
     Route::get('currencies', [Api\CurrenciesController::class, 'index'])->name('currencies');
 
-    Route::post('domains/{domain}/offers', [Api\OffersController::class, 'store'])->middleware('cover.config.mail')->name('domains.offers.store');
+    Route::middleware('bind.domain')->group(function () {
 
+        Route::post('domains/{domain}/offers', [Api\OffersController::class, 'store'])->middleware('cover.config.mail')->name('domains.offers.store');
+
+        Route::post('contacts', [Api\ContactsController::class, 'store'])->name('contacts.store');
+
+    });
 });

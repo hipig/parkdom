@@ -16,7 +16,7 @@ use App\Http\Controllers\Auth;
 |
 */
 
-Route::middleware('bind.domain')->group(function () {
+Route::middleware(['bind.domain', 'choose.language'])->group(function () {
 
     Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
 
@@ -65,6 +65,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::resource('domains', Admin\DomainsController::class);
 
     Route::resource('offers', Admin\OffersController::class)->only('index', 'show');
+
+    Route::resource('contacts', Admin\ContactsController::class)->only('index', 'show');
 
     Route::get('domain-visits', [Admin\DomainVisitsController::class, 'index'])->name('domainVisits.index');
     Route::get('domain-visits/export', [Admin\DomainVisitsController::class, 'export'])->name('domainVisits.export');

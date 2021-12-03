@@ -19,8 +19,18 @@ class OfferRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required|email',
-            'offer_price' => 'required|numeric|min:' . ($domain->min_price ?? 0),
+            'offer_price' => 'required|numeric|min:' . $domain->getMinPrice(),
             'captcha_code' => app(OfferSetting::class)->enableMewsCaptcha() ? 'required|captcha' : '',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'name' => lang('domain.offer_name'),
+            'email' => lang('domain.offer_email'),
+            'offer_price' => lang('domain.offer_price'),
+            'captcha_code' => lang('domain.offer_captcha'),
         ];
     }
 }

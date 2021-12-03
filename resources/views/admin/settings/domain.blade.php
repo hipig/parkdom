@@ -40,7 +40,7 @@
                                 <div class="absolute inset-y-0 left-0 w-8 my-px ml-px flex items-center justify-center pointer-events-none rounded-l">
                                     <span class="text-gray-500" x-text="currencyPrefix"></span>
                                 </div>
-                                <input type="text" id="min_price" name="min_price" value="{{ old('min_price') }}" class="block border border-gray-200 rounded pl-8 pr-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入最低价格">
+                                <input type="text" id="min_price" name="min_price" value="{{ old('min_price', $setting->min_price) }}" class="block border border-gray-200 rounded pl-8 pr-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入最低价格">
                             </div>
                         </div>
                         <p class="text-sm text-gray-500">仅适用于启用了“允许报价”的域名</p>

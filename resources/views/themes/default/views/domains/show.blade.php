@@ -4,16 +4,16 @@
 @section('content')
     <main class="min-h-screen flex flex-col xl:flex-row space-y-12 xl:space-y-0 bg-gray-50 text-gray-700">
         <div class="w-full xl:w-7/12 flex flex-col justify-between bg-white relative">
-            <div class="fixed bottom-0 xl:absolute md:bottom-auto md:top-0 right-0 p-4 z-50">
-                <a href="javascript:void(0)" class="inline-flex justify-center items-center space-x-2 border font-semibold focus:outline-none px-3 py-2 leading-6 rounded border-gray-300 bg-white text-gray-800 shadow-sm hover:text-gray-800 hover:bg-gray-100 hover:border-gray-300 hover:shadow focus:ring focus:ring-gray-500 focus:ring-opacity-25 active:bg-white active:border-white active:shadow-none">
-                    <span>More Domains</span>
+            <div class="fixed bottom-0 xl:absolute md:bottom-auto md:top-0 right-0 p-4 z-50" x-data>
+                <a href="#" class="inline-flex justify-center items-center space-x-2 border font-semibold focus:outline-none px-3 py-2 leading-6 rounded border-gray-300 bg-white text-gray-800 shadow-sm hover:text-gray-800 hover:bg-gray-100 hover:border-gray-300 hover:shadow focus:ring focus:ring-gray-500 focus:ring-opacity-25 active:bg-white active:border-white active:shadow-none">
+                    <span>{{ lang('domain.more_domains') }}</span>
                     <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="opacity-50 w-5 h-5"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                 </a>
             </div>
             <div class="flex-1 min-h-0 flex items-center justify-center py-5 px-4 lg:px-8 xl:px-12">
                 <div class="space-y-20">
                     <div class="flex flex-col items-center space-y-8">
-                        <h1 class="text-5xl md:text-6xl font-bold bg-indigo-600 text-white px-4 py-1 rounded-md">For Sale!</h1>
+                        <h1 class="text-5xl md:text-6xl font-bold bg-indigo-600 text-white px-4 py-1 rounded-md">{{ lang('domain.for_sale') }}</h1>
                         <h3 class="text-6xl sm:text-7xl md:text-8xl font-bold text-gray-900">{{ $domain->domain }}</h3>
                         @if($domain->price)
                             <div class="flex items-center text-4xl space-x-4"><span>Estimated value</span> <span class="text-3xl px-4 py-1 bg-red-500 text-white font-semibold rounded">{{ $domain->format_price }}</span></div>
@@ -26,7 +26,7 @@
                                 3500+
                             </dt>
                             <dd class="text-sm uppercase tracking-wide font-semibold text-gray-600">
-                                Alexa Rank
+                                {{ lang('domain.alexa_rank') }}
                             </dd>
                         </dl>
                         <dl class="space-y-1 p-5">
@@ -34,7 +34,7 @@
                                 260+
                             </dt>
                             <dd class="text-sm uppercase tracking-wide font-semibold text-gray-600">
-                                Total Back Links
+                                {{ lang('domain.total_back_links') }}
                             </dd>
                         </dl>
                         <dl class="space-y-1 p-5">
@@ -42,7 +42,7 @@
                                 175k+
                             </dt>
                             <dd class="text-sm uppercase tracking-wide font-semibold text-gray-600">
-                                Page Views
+                                {{ lang('domain.page_views') }}
                             </dd>
                         </dl>
                     </div>
@@ -66,7 +66,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M18 13V5a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2h3l3 3 3-3h3a2 2 0 002-2zM5 7a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h3a1 1 0 100-2H6z" clip-rule="evenodd" />
                         </svg>
-                        <a href="javascript:;" @click="$dispatch('dialog-show', {show: true})" class="hover:text-indigo-500 hover:opacity-90">Contact Us</a>
+                        <a href="javascript:;" @click="$dispatch('dialog-show', {show: true})" class="hover:text-indigo-500 hover:opacity-90">{{ lang('domain.contact_us') }}</a>
                     </div>
                 </div>
             </div>
@@ -77,14 +77,14 @@
                     <div class="space-y-6">
                         @if($domain->isAllowOffer())
                             <div class="space-y-4 text-center">
-                                <h3 class="text-4xl text-gray-900 font-semibold">Make Your offer</h3>
-                                <p class="text-lg text-gray-500">Please complete the form below and the seller will receive your message.</p>
+                                <h3 class="text-4xl text-gray-900 font-semibold">{{ lang('domain.offer_make_title') }}</h3>
+                                <p class="text-lg text-gray-500">{{ lang('domain.offer_make_description') }}</p>
                             </div>
                             <div class="space-y-6" x-data="offerContainer" x-ref="offer-form">
                                 <div class="space-y-4">
                                     <div class="space-y-1">
                                         <div class="relative">
-                                            <input type="text" x-model="form.name" class="w-full block placeholder-gray-400 border border-gray-200 rounded pl-12 pr-10 py-3 leading-6 text-lg focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="Your name">
+                                            <input type="text" x-model="form.name" class="w-full block placeholder-gray-400 border border-gray-200 rounded pl-12 pr-10 py-3 leading-6 text-lg focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="{{ lang('domain.offer_name_placeholder') }}">
                                             <div class="absolute left-0 inset-y-0 w-12 my-px ml-px flex items-center justify-center text-gray-500">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
                                                     <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
@@ -101,7 +101,7 @@
                                     <div class="grid grid-cols-2 gap-4">
                                         <div class="space-y-1">
                                             <div class="relative">
-                                                <input type="text" x-model="form.email" class="w-full block placeholder-gray-400 border border-gray-200 rounded pl-12 pr-10 py-3 leading-6 text-lg focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="email@example.com">
+                                                <input type="text" x-model="form.email" class="w-full block placeholder-gray-400 border border-gray-200 rounded pl-12 pr-10 py-3 leading-6 text-lg focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="{{ lang('domain.offer_email_placeholder') }}">
                                                 <div class="absolute left-0 inset-y-0 w-12 my-px ml-px flex items-center justify-center text-gray-500">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
                                                         <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
@@ -118,7 +118,7 @@
                                         </div>
                                         <div class="space-y-1">
                                             <div class="relative">
-                                                <input type="text" x-model="form.phone" class="w-full block placeholder-gray-400 border border-gray-200 rounded pl-12 pr-5 py-3 leading-6 text-lg focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="123 000 0000">
+                                                <input type="text" x-model="form.phone" class="w-full block placeholder-gray-400 border border-gray-200 rounded pl-12 pr-5 py-3 leading-6 text-lg focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="{{ lang('domain.offer_phone_placeholder') }}">
                                                 <div class="absolute left-0 inset-y-0 w-12 my-px ml-px flex items-center justify-center text-gray-500">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
                                                         <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
@@ -129,12 +129,12 @@
                                     </div>
                                     <div class="space-y-1">
                                         <div class="relative">
-                                            <input type="text" x-model="form.offer_price" class="w-full block placeholder-gray-400 border border-gray-200 rounded pl-12 pr-24 py-3 leading-6 text-lg focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="0.00">
+                                            <input type="text" x-model="form.offer_price" class="w-full block placeholder-gray-400 border border-gray-200 rounded pl-12 pr-24 py-3 leading-6 text-lg focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="{{ lang('domain.offer_price_placeholder') }}">
                                             <div class="absolute left-0 inset-y-0 w-12 my-px ml-px flex items-center justify-center text-2xl font-semibold text-gray-500">
-                                                <span>$</span>
+                                                <span x-text="currencyPrefix"></span>
                                             </div>
                                             <div class="absolute inset-y-0 right-0 w-16 my-px mr-px flex items-center justify-center pointer-events-none rounded-r font-semibold text-gray-500 bg-gray-50 border-l border-gray-200">
-                                                <span>USD</span>
+                                                <span x-text="currency"></span>
                                             </div>
                                             <div class="absolute right-0 inset-y-0 w-10 my-px mr-16 pt-2 flex items-center justify-center text-2xl font-semibold text-red-500">
                                                 <span>*</span>
@@ -148,7 +148,7 @@
                                         <div class="space-y-1">
                                             <div class="flex items-center space-x-4">
                                                 <div class="relative flex-grow">
-                                                    <input type="text" x-model="form.captcha_code" class="w-full block placeholder-gray-400 border border-gray-200 rounded pl-12 pr-10 py-3 leading-6 text-lg focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="Captcha code">
+                                                    <input type="text" x-model="form.captcha_code" class="w-full block placeholder-gray-400 border border-gray-200 rounded pl-12 pr-10 py-3 leading-6 text-lg focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="{{ lang('domain.offer_captcha_placeholder') }}">
                                                     <div class="absolute left-0 inset-y-0 w-12 my-px ml-px flex items-center justify-center text-gray-500">
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
                                                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-.464 5.535a1 1 0 10-1.415-1.414 3 3 0 01-4.242 0 1 1 0 00-1.415 1.414 5 5 0 007.072 0z" clip-rule="evenodd" />
@@ -159,7 +159,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="flex-shrink-0">
-                                                    <img class="cursor-pointer border border-gray-200 rounded" :src="captchaSrc" @click="refreshCaptcha" title="点击图片重新获取验证码">
+                                                    <img class="cursor-pointer border border-gray-200 rounded" :src="captchaSrc" @click="refreshCaptcha" title="{{ lang('domain.offer_captcha_refresh') }}">
                                                 </div>
                                             </div>
                                             <template x-if="errors.captcha_code && errors.captcha_code.length > 0" hidden>
@@ -168,12 +168,12 @@
                                         </div>
                                     @endif
                                     <div class="space-y-1">
-                                        <textarea x-model="form.content" class="w-full block placeholder-gray-400 border border-gray-200 rounded px-5 py-3 leading-6 text-lg focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" rows="4" placeholder="Your message or offer details."></textarea>
+                                        <textarea x-model="form.content" class="w-full block placeholder-gray-400 border border-gray-200 rounded px-5 py-3 leading-6 text-lg focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" rows="4" placeholder="{{ lang('domain.offer_content_placeholder') }}"></textarea>
                                     </div>
                                 </div>
                                 <div>
                                     <button type="button" @click="submitOffer($dispatch)" class="w-full inline-flex justify-center items-center space-x-2 rounded border text-lg font-semibold focus:outline-none px-4 py-3 leading-6 border-indigo-600 bg-indigo-600 text-white hover:text-white hover:bg-indigo-700 hover:border-indigo-700 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 active:bg-indigo-600 active:border-indigo-600 active:shadow-none">
-                                        Submit Offer
+                                        {{ lang('domain.offer_submit') }}
                                     </button>
                                 </div>
                             </div>
@@ -182,7 +182,7 @@
                             @if($domainSetting->getBuyLinks())
                                 <div class="flex items-center">
                                     <span aria-hidden="true" class="flex-grow bg-gray-200 rounded h-px"></span>
-                                    <span class="text-sm font-medium mx-3 text-gray-400 uppercase">Buy Links</span>
+                                    <span class="text-sm font-medium mx-3 text-gray-400 uppercase">{{ lang('domain.offer_buy_links') }}</span>
                                     <span aria-hidden="true" class="flex-grow bg-gray-200 rounded h-px"></span>
                                 </div>
                             @endif
@@ -202,7 +202,7 @@
             <div class="py-2 text-gray-500 text-center">
                 © 2021
                 <a href="/" class="text-indigo-500 hover:opacity-90">{{ $domain->domain }}</a>
-                . All Rights Reserved.
+                {{ lang('domain.all_rights_reserved') }}
             </div>
         </div>
     </main>
@@ -250,7 +250,7 @@
             x-cloak
         >
             <div class="py-4 px-5 lg:px-6 w-full bg-gray-50 flex justify-between items-center">
-                <h3 class="font-medium">Contact Us</h3>
+                <h3 class="font-medium">{{ lang('domain.contact_us') }}</h3>
                 <div class="-my-4">
                     <button
                         type="button"
@@ -264,20 +264,29 @@
             <div class="p-5 lg:p-6 flex-grow w-full">
                 <div class="space-y-6">
                     <div class="space-y-1">
-                        <label for="contact_name" class="font-medium text-gray-900">Name</label>
-                        <input id="contact_name" class="w-full block border border-gray-200 rounded px-3 py-2 leading-6 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" type="text" placeholder="Tom" />
+                        <label for="contact_name" class="font-medium text-gray-900">{{ lang('domain.contact_name') }}</label>
+                        <input id="contact_name" class="w-full block border border-gray-200 rounded px-3 py-2 leading-6 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" type="text" placeholder="{{ lang('domain.contact_name_placeholder') }}" />
+                        <template x-if="errors.name && errors.name.length > 0" hidden>
+                            <p class="text-sm text-red-500" x-text-="errors.name[0]"></p>
+                        </template>
                     </div>
                     <div class="space-y-1">
-                        <label for="contact_email" class="font-medium text-gray-900">Email</label>
-                        <input id="contact_email" class="w-full block border border-gray-200 rounded px-3 py-2 leading-6 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" type="text" placeholder="email@example.com" />
+                        <label for="contact_email" class="font-medium text-gray-900">{{ lang('domain.contact_email') }}</label>
+                        <input id="contact_email" class="w-full block border border-gray-200 rounded px-3 py-2 leading-6 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" type="text" placeholder="{{ lang('domain.contact_email_placeholder') }}" />
+                        <template x-if="errors.email && errors.email.length > 0" hidden>
+                            <p class="text-sm text-red-500" x-text-="errors.email[0]"></p>
+                        </template>
                     </div>
                     <div class="space-y-1">
-                        <label for="contact_content" class="font-medium text-gray-900">Content</label>
-                        <textarea id="contact_content" class="w-full block border border-gray-200 rounded px-3 py-2 leading-6 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" rows="4" placeholder="Leave a message"></textarea>
+                        <label for="contact_content" class="font-medium text-gray-900">{{ lang('domain.contact_content') }}</label>
+                        <textarea id="contact_content" class="w-full block border border-gray-200 rounded px-3 py-2 leading-6 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" rows="4" placeholder="{{ lang('domain.contact_content_placeholder') }}"></textarea>
+                        <template x-if="errors.content && errors.content.length > 0" hidden>
+                            <p class="text-sm text-red-500" x-text-="errors.content[0]"></p>
+                        </template>
                     </div>
                     <div>
-                        <button type="button" class="w-full inline-flex justify-center items-center space-x-2 rounded border font-semibold focus:outline-none px-3 py-2 leading-6 border-indigo-700 bg-indigo-700 text-white hover:text-white hover:bg-indigo-800 hover:border-indigo-800 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 active:bg-indigo-700 active:border-indigo-700">
-                            Submit
+                        <button type="button" @click="submitContact" class="w-full inline-flex justify-center items-center space-x-2 rounded border font-semibold focus:outline-none px-3 py-2 leading-6 border-indigo-700 bg-indigo-700 text-white hover:text-white hover:bg-indigo-800 hover:border-indigo-800 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 active:bg-indigo-700 active:border-indigo-700">
+                            {{ lang('domain.contact_submit') }}
                         </button>
                     </div>
                 </div>
@@ -300,6 +309,26 @@
                 },
                 captchaSrc: '{{ captcha_src('offer') }}',
                 errors: {},
+                currencyList: [],
+                currency: '',
+                currencyPrefix: '',
+
+                init() {
+                    this.getCurrencyList()
+
+                    this.$watch('currency', (currency) => {
+                        let index = _.findKey(this.currencyList, { code: currency })
+                        this.currencyPrefix = this.currencyList[index || 0].prefix
+                    })
+                },
+
+                getCurrencyList() {
+                    axios.get(`{{ route('api.currencies') }}`)
+                        .then(res => {
+                            this.currencyList = res.data
+                            this.currency = '{{ $domain->currency }}'
+                        })
+                },
 
                 refreshCaptcha() {
                     this.captchaSrc='/captcha/offer?'+Math.random()
@@ -308,7 +337,7 @@
                 submitOffer(dispatcher) {
                     axios.post('{{ route('api.domains.offers.store', $domain) }}', this.form)
                         .then(() => {
-                            dispatcher('alert-show', {show: true, message: 'Offer was submitted successfully!'})
+                            dispatcher('alert-show', {show: true, message: '{{ lang('domain.offer_submit_success_tips') }}'})
                             this.form = {
                                 name: '',
                                 email: '',
@@ -353,14 +382,43 @@
 
             Alpine.data('contactDialogContainer', () => ({
                 show: false,
+                form: {
+                    name: '',
+                    email: '',
+                    content: ''
+                },
+                errors: {},
 
                 showDialog(detail) {
                     this.show = !!detail.show
                 },
                 closeDialog() {
                     this.show = false
+                    this.errors = {}
+                },
+
+                submitContact(dispatcher) {
+                    this.errors = {}
+                    axios.post('{{ route('api.contacts.store') }}', this.form)
+                        .then(() => {
+                            this.show = false
+                            dispatcher('alert-show', {show: true, message: '{{ lang('domain.contact_submit_success_tips') }}'})
+                            this.form = {
+                                name: '',
+                                email: '',
+                                content: ''
+                            }
+                        })
+                        .catch((err) => {
+                            let res = err.response
+                            if(res.status == 422) {
+                                this.errors = res.data.errors
+                            }
+                            this.refreshCaptcha()
+                        })
                 }
             }))
+
         })
     </script>
 @endpush

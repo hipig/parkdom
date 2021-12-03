@@ -17,6 +17,7 @@
         "laravel/tinker": "^2.5",
         "maatwebsite/excel": "^3.1",
         "mews/captcha": "^3.2",
+        "overtrue/laravel-lang": "~5.0",
         "shipu/themevel": "^3.0",
         "spatie/laravel-settings": "^2.2",
         "torann/geoip": "^3.0",

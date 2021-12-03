@@ -4,8 +4,10 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Jenssegers\Agent\Agent;
 
-class ThemeSet
+class ChooseLanguage
 {
     /**
      * Handle an incoming request.
@@ -16,8 +18,8 @@ class ThemeSet
      */
     public function handle(Request $request, Closure $next)
     {
-        \Theme::set(config('theme.active', 'default'));
-
+        $languages = app('agent')->languages();
+        app()->setLocale(Str::replace('-', '_', $languages[0]) ?? 'en');
         return $next($request);
     }
 }

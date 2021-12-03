@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Settings\DomainSetting;
 use App\Settings\OfferSetting;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -82,7 +83,7 @@ class Domain extends Model
 
     public function createVisit($host, $ip)
     {
-        $agent = new Agent();
+        $agent = app('agent');
         $platform = $agent->platform();
         $platformVersion = $agent->version($platform);
         $browser = $agent->browser();
@@ -106,5 +107,10 @@ class Domain extends Model
     public function isAllowOffer()
     {
         return $this->allow_offer == self::STATUS_ENABLE;
+    }
+
+    public function getMinPrice()
+    {
+        return $this->min_price ?? app(DomainSetting::class)->min_price ?? 0;
     }
 }
