@@ -60,7 +60,22 @@
                     </div>
                     <div class="space-y-1">
                         <label for="description" class="text-gray-900 font-semibold">域名备注</label>
-                        <textarea id="description" name="description" class="w-full block border border-gray-200 rounded px-3 py-2 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" rows="4" placeholder="请输入域名备注">{{ old('description', $domain->description) }}</textarea>
+                        <div class="">
+                            <nav class="flex items-center pl-2">
+                                <a href="javascript:void(0)" class="px-3 md:px-5 text-sm font-medium -mb-px flex items-center space-x-2 py-1.5 border border-b-0 bg-white text-indigo-500 border-gray-200 rounded-t">
+                                    en
+                                </a>
+                                <a href="javascript:void(0)" class="px-3 md:px-5 text-sm font-medium -mb-px flex items-center space-x-2 py-1.5 border-b-2 text-gray-500 border-transparent hover:text-indigo-500 active:text-gray-500">
+                                    zh_CN
+                                </a>
+                                <a href="javascript:void(0)" class="px-3 md:px-5 text-sm font-medium -mb-px flex items-center space-x-2 py-1.5 border-b-2 text-gray-500 border-transparent hover:text-indigo-500 active:text-gray-500">
+                                    Settings
+                                </a>
+                            </nav>
+                            <div class="border border-gray-200 p-2 rounded">
+                                <textarea id="description" name="description" class="w-full block border border-gray-200 rounded px-3 py-2 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" rows="4" placeholder="请输入域名备注">{{ old('description', $domain->description) }}</textarea>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

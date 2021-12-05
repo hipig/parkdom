@@ -3,14 +3,13 @@
 namespace App\Models;
 
 use App\Settings\DomainSetting;
-use App\Settings\OfferSetting;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Jenssegers\Agent\Agent;
+use Spatie\Translatable\HasTranslations;
 
 class Domain extends Model
 {
-    use HasFactory, Filterable;
+    use HasFactory, Filterable, HasTranslations;
 
     protected $fillable = [
         'domain',
@@ -35,6 +34,10 @@ class Domain extends Model
 
     protected $with = [
         'priceCurrency'
+    ];
+
+    protected $translatable = [
+        'description',
     ];
 
     protected static function booted()

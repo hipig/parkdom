@@ -4,7 +4,7 @@ namespace App\ModelFilters\Admin;
 
 use EloquentFilter\ModelFilter;
 
-class DomainFilter extends ModelFilter
+class ContactFilter extends ModelFilter
 {
     /**
     * Related Models that have ModelFilters as well as the method on the ModelFilter
@@ -14,13 +14,9 @@ class DomainFilter extends ModelFilter
     */
     public $relations = [];
 
-    public function domain($domain)
+    public function keyword($keyword)
     {
-        $this->where('domain', 'like', "%$domain%");
-    }
-
-    public function category($category)
-    {
-        $this->where('category_id', $category);
+        $this->where('name', 'like', "%$keyword%")
+            ->orWhere('email', 'like', "%$keyword%");
     }
 }

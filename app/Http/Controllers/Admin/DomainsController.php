@@ -15,8 +15,9 @@ class DomainsController extends Controller
 {
     public function index(Request $request)
     {
+        $categories = DomainCategory::query()->orderByDesc('sort')->latest()->get();
         $domains = Domain::filter($request->all(), DomainFilter::class)->latest()->paginate();
-        return view('admin.domains.index', compact('domains'));
+        return view('admin.domains.index', compact('domains', 'categories'));
     }
 
     public function create(Request $request, DomainSetting $setting)

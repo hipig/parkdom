@@ -20,6 +20,7 @@
         "overtrue/laravel-lang": "~5.0",
         "shipu/themevel": "^3.0",
         "spatie/laravel-settings": "^2.2",
+        "spatie/laravel-translatable": "^4.6",
         "torann/geoip": "^3.0",
         "tucker-eric/eloquentfilter": "^3.0"
     },

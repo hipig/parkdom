@@ -16,6 +16,6 @@ class DomainCategoryFilter extends ModelFilter
 
     public function name($name)
     {
-        $this->where('name', $name);
+        $this->where('name', 'like', "%$name%");
     }
 }

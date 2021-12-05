@@ -4,16 +4,22 @@ namespace App\Http\Controllers\Admin;
 
 use App\Exports\DomainVisitExport;
 use App\Http\Controllers\Controller;
+use App\ModelFilters\Admin\DomainVisitFilter;
+use App\Models\Domain;
 use App\Models\DomainVisit;
 use Illuminate\Http\Request;
 
 class DomainVisitsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $visits = DomainVisit::query()->latest()->paginate();
+        $domains = Domain::query()->latest()->get();
+        $devices = DomainVisit::query()->distinct()->pluck('device');
+        $platforms = DomainVisit::query()->distinct()->pluck('platform');
+        $browsers = DomainVisit::query()->distinct()->pluck('browser');
 
-        return view('admin.domain-visits.index', compact('visits'));
+        $visits = DomainVisit::filter($request->all(), DomainVisitFilter::class)->latest()->paginate();
+        return view('admin.domain-visits.index', compact('visits', 'domains', 'devices', 'platforms', 'browsers'));
     }
 
     public function export()
