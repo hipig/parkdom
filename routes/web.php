@@ -37,6 +37,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
 
     Route::get('/', [Admin\DashboardController::class, 'index'])->name('dashboard');
 
+    Route::get('profile', [Admin\ProfileController::class, 'index'])->name('profile');
+    Route::post('profile', [Admin\ProfileController::class, 'updateProfile'])->name('profile.update');
+
     Route::prefix('settings')->name('settings.')->group(function () {
 
         Route::get('general', [Admin\SettingsController::class, 'editGeneral'])->name('general');

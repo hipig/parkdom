@@ -47,7 +47,7 @@
                     <x-admin.dropdown.menu>
                         <div class="p-2 space-y-1">
                             <x-admin.dropdown.item label="个人资料" icon="heroicon-s-user-circle"
-                                                   href="#"></x-admin.dropdown.item>
+                                                   href="{{ route('admin.profile.update') }}"></x-admin.dropdown.item>
                             <x-admin.dropdown.item label="系统设置" icon="heroicon-s-cog" href="#"></x-admin.dropdown.item>
                         </div>
                         <div class="p-2 space-y-1">
