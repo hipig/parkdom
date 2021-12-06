@@ -11,7 +11,7 @@
                 </a>
             </div>
             <div class="flex-1 min-h-0 flex items-center justify-center py-5 px-4 lg:px-8 xl:px-12">
-                <div class="space-y-20">
+                <div class="space-y-20 w-full">
                     <div class="flex flex-col items-center space-y-8">
                         <h1 class="text-5xl md:text-6xl font-bold bg-indigo-600 text-white px-4 py-1 rounded-md">{{ lang('domain.for_sale') }}</h1>
                         <h3 class="text-6xl sm:text-7xl md:text-8xl font-bold text-gray-900">{{ $domain->domain }}</h3>
@@ -20,31 +20,33 @@
                         @endif
                         <p class="text-2xl text-gray-500 text-center">{{ $domain->description }}</p>
                     </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 text-gray-900 text-center divide-y sm:divide-y-0 sm:divide-x">
-                        <dl class="space-y-1 p-5">
-                            <dt class="text-4xl font-extrabold">
-                                3500+
-                            </dt>
-                            <dd class="text-sm uppercase tracking-wide font-semibold text-gray-600">
-                                {{ lang('domain.alexa_rank') }}
-                            </dd>
-                        </dl>
-                        <dl class="space-y-1 p-5">
-                            <dt class="text-4xl font-extrabold">
-                                260+
-                            </dt>
-                            <dd class="text-sm uppercase tracking-wide font-semibold text-gray-600">
-                                {{ lang('domain.total_back_links') }}
-                            </dd>
-                        </dl>
-                        <dl class="space-y-1 p-5">
-                            <dt class="text-4xl font-extrabold">
-                                175k+
-                            </dt>
-                            <dd class="text-sm uppercase tracking-wide font-semibold text-gray-600">
-                                {{ lang('domain.page_views') }}
-                            </dd>
-                        </dl>
+                    <div class="md:px-10 lg:px-20 xl:px-28">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 text-gray-900 text-center divide-y sm:divide-y-0 sm:divide-x">
+                            <dl class="space-y-1 p-5">
+                                <dt class="text-4xl font-extrabold">
+                                    3500+
+                                </dt>
+                                <dd class="text-sm uppercase tracking-wide font-semibold text-gray-600">
+                                    {{ lang('domain.alexa_rank') }}
+                                </dd>
+                            </dl>
+                            <dl class="space-y-1 p-5">
+                                <dt class="text-4xl font-extrabold">
+                                    260+
+                                </dt>
+                                <dd class="text-sm uppercase tracking-wide font-semibold text-gray-600">
+                                    {{ lang('domain.total_back_links') }}
+                                </dd>
+                            </dl>
+                            <dl class="space-y-1 p-5">
+                                <dt class="text-4xl font-extrabold">
+                                    175k+
+                                </dt>
+                                <dd class="text-sm uppercase tracking-wide font-semibold text-gray-600">
+                                    {{ lang('domain.page_views') }}
+                                </dd>
+                            </dl>
+                        </div>
                     </div>
                 </div>
             </div>
