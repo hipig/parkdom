@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\ViewComposers\ContactSettingComposer;
 use App\Http\ViewComposers\DomainSettingComposer;
 use App\Http\ViewComposers\GeneralSettingComposer;
 use App\Http\ViewComposers\OfferSettingComposer;
@@ -31,5 +32,6 @@ class ViewServiceProvider extends ServiceProvider
 
         View::composer('domains.show', DomainSettingComposer::class);
         View::composer('domains.show', OfferSettingComposer::class);
+        View::composer('domains.show', ContactSettingComposer::class);
     }
 }
