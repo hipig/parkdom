@@ -1,5 +1,7 @@
 @extends('layouts.app')
 @section('title', $domain->seo_title ?? "{$domain->domain} is on sale")
+@section('keywords', $domain->seo_keywords)
+@section('description', $domain->site_description)
 
 @section('content')
     <main class="min-h-screen flex flex-col xl:flex-row space-y-12 xl:space-y-0 bg-gray-50 text-gray-700">

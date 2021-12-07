@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class DomainsController extends Controller
 {
+    public function index(Request $request)
+    {
+        $domains = Domain::query()->paginate();
+
+        return view('domains.index', compact('domains'));
+    }
+
     public function show(Domain $domain)
     {
         return view('domains.show', compact('domain'));

@@ -54,6 +54,7 @@
 
             </x-admin.sidebar.group>
             <x-admin.sidebar.group label="其他">
+                <x-admin.sidebar.item label="多语言" icon="heroicon-s-translate" href="{{ route('admin.languages.index') }}" :active="if_route_pattern('admin.languages.*')"></x-admin.sidebar.item>
                 <x-admin.sidebar.item label="模板主题" icon="heroicon-s-cube" href="#">
                     <x-slot name="badge">
                         <span class="px-2.5 py-1 rounded-full text-xs font-medium leading-4 text-yellow-800 bg-yellow-300">Coming</span>

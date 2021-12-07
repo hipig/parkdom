@@ -16,24 +16,20 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-@stack('styles')
+    @stack('styles')
 
-<!-- Scripts -->
+    <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
-@stack('beforeScripts')
+    @stack('beforeScripts')
 
-<!-- CSRF Token -->
+    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body class="font-sans leading-normal antialiased">
 
-@include('partials.header')
+    @yield('content')
 
-@yield('content')
-
-@include('partials.footer')
-
-@stack('scripts')
+    @stack('scripts')
 
 </body>
 </html>

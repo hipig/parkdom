@@ -20,6 +20,7 @@ Route::middleware(['bind.domain', 'choose.language'])->group(function () {
 
     Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
 
+    Route::get('domains', [Controllers\DomainsController::class, 'index'])->name('domains.index');
     Route::get('domains/{domain}', [Controllers\DomainsController::class, 'show'])->name('domains.show');
 
 });
@@ -70,6 +71,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::resource('offers', Admin\OffersController::class)->only('index', 'show');
 
     Route::resource('contacts', Admin\ContactsController::class)->only('index', 'show');
+
+    Route::resource('languages', Admin\LanguagesController::class);
 
     Route::get('domain-visits', [Admin\DomainVisitsController::class, 'index'])->name('domainVisits.index');
     Route::get('domain-visits/export', [Admin\DomainVisitsController::class, 'export'])->name('domainVisits.export');
