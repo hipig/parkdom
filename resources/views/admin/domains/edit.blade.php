@@ -133,8 +133,8 @@
                     <div class="space-y-1">
                         <label for="template" class="text-gray-900 font-semibold">模板</label>
                         <select id="template" class="w-full block border border-gray-200 rounded px-3 py-2 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
-                            @foreach($themes as $key => $theme)
-                                <option>{{ $key }}</option>
+                            @foreach($themes as $theme)
+                                <option>{{ $theme }}</option>
                             @endforeach
                         </select>
                     </div>

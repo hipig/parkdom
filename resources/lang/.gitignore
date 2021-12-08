@@ -1,0 +1,3 @@
+*.json
+!en.json
+!.gitignore

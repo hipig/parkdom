@@ -47,7 +47,7 @@ class DomainsController extends Controller
     public function edit(Request $request, Domain $domain)
     {
         $categories = DomainCategory::query()->orderByDesc('sort')->latest()->get();
-        $themes = \Theme::all();
+        $themes = ['default'];
         return view('admin.domains.edit', compact('domain', 'categories', 'themes'));
     }
 

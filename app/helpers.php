@@ -26,6 +26,7 @@ if (!function_exists('parseHost')) {
             'ir', 'il', 'it', 'in', 'id', 'uk', 'vg', 'io', 'jo', 'vn', 'zm', 'je', 'td', 'gi', 'cl', 'cf', 'cn', 'yr', 'com',
             'arpa', 'edu', 'gov', 'int', 'mil', 'net', 'org', 'biz', 'info', 'pro', 'name', 'museum', 'coop', 'aero', 'xxx',
             'idv', 'me', 'mobi', 'asia', 'ax', 'bl', 'bq', 'cat', 'cw', 'gb', 'jobs', 'mf', 'rs', 'su', 'sx', 'tel', 'travel',
+            'one',
         ];
 
         $hostArr = explode('.', $host);
@@ -63,4 +64,9 @@ if (!function_exists('parseHost')) {
         return is_null($type) ? collect($hostInfo) : $hostInfo[$type] ?? '';
     }
 
+    if (!function_exists('joinTitle')) {
+        function joinTitle($value, $split = ' - ') {
+            return join($split, $value);
+        }
+    }
 }

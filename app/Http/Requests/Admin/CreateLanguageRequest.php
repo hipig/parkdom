@@ -4,8 +4,9 @@ namespace App\Http\Requests\Admin;
 
 
 use App\Http\Requests\FormRequest;
+use App\Rules\UploadLanguageRule;
 
-class LanguageRequest extends FormRequest
+class CreateLanguageRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -15,8 +16,11 @@ class LanguageRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'code' => 'required',
+            'language' => [
+                'required',
+                'mimes:json',
+                new UploadLanguageRule(),
+            ],
         ];
     }
 }

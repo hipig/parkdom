@@ -14,13 +14,9 @@ class LanguageFilter extends ModelFilter
     */
     public $relations = [];
 
-    public function code($code)
+    public function keyword($keyword)
     {
-        $this->where('code', $code);
-    }
-
-    public function name($name)
-    {
-        $this->where('name', 'like', "%$name%");
+        $this->where('code', $keyword)
+            ->orWhere('name', $keyword);
     }
 }

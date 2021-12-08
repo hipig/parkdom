@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "ext-json": "*",
         "appstract/laravel-opcache": "^4.0",
         "blade-ui-kit/blade-heroicons": "^1.2",
         "fruitcake/laravel-cors": "^2.0",
@@ -19,7 +20,6 @@
         "maatwebsite/excel": "^3.1",
         "mews/captcha": "^3.2",
         "overtrue/laravel-lang": "~5.0",
-        "shipu/themevel": "^3.0",
         "spatie/laravel-settings": "^2.2",
         "spatie/laravel-translatable": "^4.6",
         "torann/geoip": "^3.0",

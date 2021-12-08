@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\ModelTraits\StatusScope;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Language extends Model
 {
-    use HasFactory, Filterable;
+    use HasFactory, Filterable, StatusScope;
 
     protected $fillable = [
         'code',
@@ -25,7 +26,7 @@ class Language extends Model
     public function setDefault($default)
     {
         if ($default) {
-            self::update(['default' => false]);
+            self::query()->update(['default' => false]);
             $this->default = true;
             $this->save();
         }

@@ -53,4 +53,10 @@ class User extends Authenticatable
     {
         return $date->format($this->dateFormat ?: 'Y-m-d H:i:s');
     }
+
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
+        $this->save();
+    }
 }

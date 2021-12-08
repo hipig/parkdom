@@ -16,7 +16,9 @@ use App\Http\Controllers\Auth;
 |
 */
 
-Route::middleware(['bind.domain', 'choose.language'])->group(function () {
+Route::post('locale', [Controllers\LocaleController::class, 'update'])->name('locale.update');
+
+Route::middleware([])->group(function () {
 
     Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
 

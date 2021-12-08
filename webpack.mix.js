@@ -18,3 +18,9 @@ mix.js('resources/js/app.js', 'public/js')
 
 // echarts
 mix.js('resources/vendor/echarts/echarts.js', 'public/vendor/echarts');
+
+// filepond
+mix.js('resources/vendor/filepond/filepond.js', 'public/vendor/filepond')
+  .postCss('resources/vendor/filepond/filepond.css', 'public/vendor/filepond', [
+    require("tailwindcss"),
+  ]);

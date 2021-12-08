@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\LanguageRequest;
+use App\Http\Requests\Admin\CreateLanguageRequest;
 use App\ModelFilters\Admin\LanguageFilter;
 use App\Models\Language;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class LanguagesController extends Controller
 {
@@ -21,21 +23,25 @@ class LanguagesController extends Controller
         return view('admin.languages.create');
     }
 
-    public function store(LanguageRequest $request)
+    public function store(CreateLanguageRequest $request)
     {
+        $file = File::get($request->file('language'));
+        $languageData = json_decode($file);
+
         try {
-            $language = Language::create($request->only([
-                'name',
-                'code',
-                'direction',
-            ]));
+            $language = Language::updateOrCreate(['code' => $languageData->lang_code], ['name' => $languageData->lang_name, 'direction' => $languageData->lang_direction ?? 'ltr']);
             $language->setDefault($request->filled('default'));
 
-
+            Storage::disk('languages')->put($languageData->lang_code . '.json', $file);
         } catch (\Exception $e) {
 
         }
 
-        return redirect()->route('admin.languages.index')->with('success', '语言添加成功！');
+        return redirect()->route('admin.languages.index')->with('success', __(':name language uploaded.', ['name' => $languageData->lang_name]));
+    }
+
+    public function edit(Language $language)
+    {
+        return view('admin.languages.edit', compact('language'));
     }
 }
