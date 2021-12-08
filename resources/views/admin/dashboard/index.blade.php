@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', '仪表盘')
+@section('title', __('Dashboard'))
 
 @section('content')
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
@@ -10,7 +10,7 @@
                         {{ $count['latest_visit'] }}
                     </dt>
                     <dd class="uppercase font-medium text-sm text-gray-500 tracking-wider">
-                        新增访问记录
+                        {{ __('New Visits') }}
                     </dd>
                 </dl>
                 <div class="flex justify-center items-center rounded-xl w-12 h-12 bg-indigo-50">
@@ -18,7 +18,7 @@
                 </div>
             </div>
             <a href="{{ route('admin.domainVisits.index') }}" class="block p-3 font-medium text-sm text-center bg-gray-50 hover:bg-gray-100 hover:bg-opacity-75 active:bg-gray-50 text-indigo-600 hover:text-indigo-500">
-                查看访问记录
+                {{ __('Domain Visits') }}
             </a>
         </div>
         <div class="flex flex-col rounded shadow-sm bg-white overflow-hidden">
@@ -28,7 +28,7 @@
                         {{ $count['latest_offer'] }}
                     </dt>
                     <dd class="uppercase font-medium text-sm text-gray-500 tracking-wider">
-                        新增报价
+                        {{ __('New Offers') }}
                     </dd>
                 </dl>
                 <div class="flex justify-center items-center rounded-xl w-12 h-12 bg-indigo-50">
@@ -36,7 +36,7 @@
                 </div>
             </div>
             <a href="{{ route('admin.offers.index') }}" class="block p-3 font-medium text-sm text-center bg-gray-50 hover:bg-gray-100 hover:bg-opacity-75 active:bg-gray-50 text-indigo-600 hover:text-indigo-500">
-                查看报价
+                {{ __('Offers') }}
             </a>
         </div>
         <div class="flex flex-col rounded shadow-sm bg-white overflow-hidden">
@@ -46,7 +46,7 @@
                         {{ $count['domain_category'] }}
                     </dt>
                     <dd class="uppercase font-medium text-sm text-gray-500 tracking-wider">
-                        新增域名分类
+                        {{ __('Domain Categories') }}
                     </dd>
                 </dl>
                 <div class="flex justify-center items-center rounded-xl w-12 h-12 bg-indigo-50">
@@ -54,7 +54,7 @@
                 </div>
             </div>
             <a href="{{ route('admin.domainCategories.index') }}" class="block p-3 font-medium text-sm text-center bg-gray-50 hover:bg-gray-100 hover:bg-opacity-75 active:bg-gray-50 text-indigo-600 hover:text-indigo-500">
-                查看域名分类
+                {{ __('Domain Categories') }}
             </a>
         </div>
         <div class="flex flex-col rounded shadow-sm bg-white overflow-hidden">
@@ -64,7 +64,7 @@
                         {{ $count['domain'] }}
                     </dt>
                     <dd class="uppercase font-medium text-sm text-gray-500 tracking-wider">
-                        所有域名
+                        {{ __('Domains') }}
                     </dd>
                 </dl>
                 <div class="flex justify-center items-center rounded-xl w-12 h-12 bg-indigo-50">
@@ -72,7 +72,7 @@
                 </div>
             </div>
             <a href="{{ route('admin.domains.index') }}" class="block p-3 font-medium text-sm text-center bg-gray-50 hover:bg-gray-100 hover:bg-opacity-75 active:bg-gray-50 text-indigo-600 hover:text-indigo-500">
-                查看域名
+                {{ __('Domains') }}
             </a>
         </div>
     </div>
@@ -81,7 +81,7 @@
             <div class="flex flex-col rounded shadow-sm bg-white overflow-hidden">
                 <div class="py-4 px-5 lg:px-6 flex-grow w-full">
                     <div class="flex items-center justify-between">
-                        <span class="text-gray-900 font-semibold">最近访问</span>
+                        <span class="text-gray-900 font-semibold">{{ __('New Visits') }}</span>
                     </div>
                 </div>
                 <div class="flex-grow w-full -mb-px">
@@ -89,10 +89,10 @@
                         <table class="min-w-full text-sm align-middle whitespace-nowrap">
                             <thead>
                             <tr class="text-gray-700 text-left bg-gray-50 font-semibold text-left">
-                                <th class="py-2 px-6">域名</th>
-                                <th class="py-2 px-6">IP</th>
-                                <th class="py-2 px-6">平台</th>
-                                <th class="py-2 px-6">创建时间</th>
+                                <th class="py-2 px-6">{{ __('Domain') }}</th>
+                                <th class="py-2 px-6">{{ __('IP') }}</th>
+                                <th class="py-2 px-6">{{ __('Platform') }}</th>
+                                <th class="py-2 px-6">{{ __('Created at') }}</th>
                             </tr>
                             </thead>
 
@@ -117,7 +117,7 @@
                                 </tr>
                             @empty
                                 <tr class="border-t border-gray-100">
-                                    <td class="py-6 px-6 text-center text-gray-500" colspan="4">暂无数据。</td>
+                                    <td class="py-6 px-6 text-center text-gray-500" colspan="4">{{ __('Empty Data.') }}</td>
                                 </tr>
                             @endforelse
                             </tbody>
@@ -130,7 +130,7 @@
             <div class="flex flex-col rounded shadow-sm bg-white overflow-hidden">
                 <div class="py-4 px-5 lg:px-6 flex-grow w-full">
                     <div class="flex items-center justify-between">
-                        <span class="text-gray-900 font-semibold">最近报价</span>
+                        <span class="text-gray-900 font-semibold">{{ __('New Offers') }}</span>
                     </div>
                 </div>
                 <div class="flex-grow w-full -mb-px">
@@ -138,9 +138,9 @@
                         <table class="min-w-full text-sm align-middle whitespace-nowrap">
                             <thead>
                             <tr class="text-gray-700 text-left bg-gray-50 font-semibold text-left">
-                                <th class="py-2 px-6">域名</th>
-                                <th class="py-2 px-6">姓名</th>
-                                <th class="py-2 px-6">创建时间</th>
+                                <th class="py-2 px-6">{{ __('Domains') }}</th>
+                                <th class="py-2 px-6">{{ __('Name') }}</th>
+                                <th class="py-2 px-6">{{ __('Created at') }}</th>
                             </tr>
                             </thead>
 
@@ -161,7 +161,7 @@
                                 </tr>
                             @empty
                                 <tr class="border-t border-gray-100">
-                                    <td class="py-6 px-6 text-center text-gray-500" colspan="4">暂无数据。</td>
+                                    <td class="py-6 px-6 text-center text-gray-500" colspan="4">{{ __('Empty Data.') }}</td>
                                 </tr>
                             @endforelse
                             </tbody>

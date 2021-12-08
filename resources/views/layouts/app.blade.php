@@ -1,47 +1,39 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+@extends('layouts.master')
 
+@section('meta')
     @hasSection('title')
-        <title>@yield('title') - {{ $generalSetting->site_name }}</title>
+        <title>@yield('title') - {{ config('app.name') }}</title>
     @else
         <title>{{ config('app.name') }}</title>
     @endif
+@endsection
 
-    <meta name="keywords" content="@yield('keywords', $generalSetting->site_keywords ?? '')">
-    <meta name="description" content="@yield('description', $generalSetting->site_description ?? '')">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    @stack('styles')
-
-    <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}" defer></script>
-    @stack('beforeScripts')
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-</head>
-<body class="bg-gray-100 text-gray-700 font-sans leading-normal antialiased">
-
-    @hasSection('header')
-        @yield('header')
-    @else
+@section('body')
+    <div id="app" x-data="pageContainer" class="flex flex-col mx-auto w-full min-h-screen bg-gray-100" :class="{'lg:pl-64': desktopSidebarOpen}">
+        @include('partials.sidebar')
         @include('partials.header')
-    @endif
+        <main id="page-content" class="flex flex-auto flex-col max-w-full pt-16">
+            <div class="max-w-8xl mx-auto p-4 lg:p-8 w-full space-y-6">
 
-    @yield('content')
+                @yield('breadcrumb')
 
-    @hasSection('footer')
-        @yield('footer')
-    @else
+                @include('partials.message')
+
+                @yield('content')
+
+            </div>
+        </main>
         @include('partials.footer')
-    @endif
+    </div>
+@endsection
 
-    @stack('scripts')
-
-</body>
-</html>
+@push('scripts')
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('pageContainer', () => ({
+                desktopSidebarOpen: true,
+                mobileSidebarOpen: false
+            }))
+        })
+    </script>
+@endpush

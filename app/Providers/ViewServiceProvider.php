@@ -28,7 +28,7 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('layouts.app', GeneralSettingComposer::class);
+        View::composer('layouts.home', GeneralSettingComposer::class);
 
         View::composer('domains.show', DomainSettingComposer::class);
         View::composer('domains.show', OfferSettingComposer::class);

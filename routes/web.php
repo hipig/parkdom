@@ -74,6 +74,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
 
     Route::resource('contacts', Admin\ContactsController::class)->only('index', 'show');
 
+    Route::get('languages/download', [Admin\LanguagesController::class, 'download'])->name('languages.download');
     Route::resource('languages', Admin\LanguagesController::class);
 
     Route::get('domain-visits', [Admin\DomainVisitsController::class, 'index'])->name('domainVisits.index');

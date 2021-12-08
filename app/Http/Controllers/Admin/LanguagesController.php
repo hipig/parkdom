@@ -44,4 +44,23 @@ class LanguagesController extends Controller
     {
         return view('admin.languages.edit', compact('language'));
     }
+
+    public function update(Request $request, Language $language)
+    {
+        $language->setDefault($request->filled('default'));
+
+        return back()->with('success', __(':name saved successfully.', ['name' => $language->name . ' language']));
+    }
+
+    public function destroy(Language $language)
+    {
+        $language->delete();
+
+        return back()->with('success', __('The :name has been deleted.', ['name' => 'language']));
+    }
+
+    public function download()
+    {
+        return response()->download(resource_path('lang/en.json'));
+    }
 }

@@ -31,7 +31,7 @@ class DomainVisitExport implements  FromCollection, WithHeadings, WithMapping
             '设备类型',
             '平台',
             '浏览器',
-            '创建时间',
+            '{{ __('Created at') }}',
         ];
     }
 

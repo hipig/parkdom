@@ -3,7 +3,7 @@
 
 @section('breadcrumb')
     <x-admin.breadcrumb.list>
-        <x-admin.breadcrumb.item href="{{ route('admin.dashboard') }}">仪表盘</x-admin.breadcrumb.item>
+        <x-admin.breadcrumb.item href="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</x-admin.breadcrumb.item>
         <x-admin.breadcrumb.item href="javascript:;">概述统计</x-admin.breadcrumb.item>
         <x-admin.breadcrumb.item>报价</x-admin.breadcrumb.item>
     </x-admin.breadcrumb.list>

@@ -13,8 +13,8 @@ class Model extends BaseModel
     const STATUS_ENABLE = 1;
     const STATUS_DISABLE = 2;
     public static $statusMap = [
-        self::STATUS_ENABLE => '启用',
-        self::STATUS_DISABLE => '禁用'
+        self::STATUS_ENABLE => 'Enable',
+        self::STATUS_DISABLE => 'Disable'
     ];
 
     protected function serializeDate(DateTimeInterface $date)

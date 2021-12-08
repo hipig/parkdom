@@ -11,8 +11,14 @@
 
 @section('content')
     <div class="flex flex-col rounded shadow-sm bg-white overflow-hidden">
-        <div class="py-4 px-5 lg:px-6 w-full bg-gray-50">
-            <h3>{{ __('New') }}</h3>
+        <div class="py-3 px-5 lg:px-6 w-full bg-gray-50">
+            <div class="flex items-center justify-between">
+                <h3>{{ __('New') }}</h3>
+                <a href="{{ route('admin.languages.download') }}" class="inline-flex justify-center items-center space-x-2 rounded border font-semibold focus:outline-none px-3 py-2 leading-5 text-sm border-gray-300 bg-white text-gray-800 shadow-sm hover:text-gray-800 hover:bg-gray-100 hover:border-gray-300 hover:shadow focus:ring focus:ring-gray-500 focus:ring-opacity-25 active:bg-white active:border-white active:shadow-none">
+                    <x-heroicon-s-download class="w-5 h-5"/>
+                    <span>{{ __('Language file') }}</span>
+                </a>
+            </div>
         </div>
         <form action="{{ route('admin.languages.store') }}" method="post" enctype="multipart/form-data">
             <div class="p-5 lg:p-6 flex-grow w-full">
@@ -23,9 +29,11 @@
                         <input type="language" id="language" name="language">
                     </div>
                     <div class="space-y-1">
-                        <label for="default" class="text-gray-900 font-semibold">{{ __('Default') }}</label>
                         <div class="flex items-center space-x-3">
-                            <input type="checkbox" id="default" name="default" class="form-switch transition-all duration-150 ease-out rounded-full h-7 w-12 text-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" />
+                            <input type="checkbox" id="default" name="default" value="on" class="form-switch transition-all duration-150 ease-out rounded-full h-7 w-12 text-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" />
+                            <label for="default" class="font-medium">
+                                {{ __('Default') }}
+                            </label>
                         </div>
                     </div>
                 </div>

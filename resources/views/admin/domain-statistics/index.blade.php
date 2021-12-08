@@ -3,7 +3,7 @@
 
 @section('breadcrumb')
     <x-admin.breadcrumb.list>
-        <x-admin.breadcrumb.item href="{{ route('admin.dashboard') }}">仪表盘</x-admin.breadcrumb.item>
+        <x-admin.breadcrumb.item href="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</x-admin.breadcrumb.item>
         <x-admin.breadcrumb.item href="javascript:;">概述统计</x-admin.breadcrumb.item>
         <x-admin.breadcrumb.item>域名</x-admin.breadcrumb.item>
     </x-admin.breadcrumb.list>
@@ -47,7 +47,7 @@
                             </template>
                             <template v-if="visitList.length === 0">
                                 <tr class="border-t border-gray-100">
-                                    <td class="py-6 px-6 text-center text-gray-500" colspan="2">暂无数据。</td>
+                                    <td class="py-6 px-6 text-center text-gray-500" colspan="2">{{ __('Empty Data.') }}</td>
                                 </tr>
                             </template>
                             </tbody>
@@ -102,7 +102,7 @@
                             </template>
                             <template v-if="hitList.length === 0">
                                 <tr class="border-t border-gray-100">
-                                    <td class="py-6 px-6 text-center text-gray-500" colspan="2">暂无数据。</td>
+                                    <td class="py-6 px-6 text-center text-gray-500" colspan="2">{{ __('Empty Data.') }}</td>
                                 </tr>
                             </template>
                             </tbody>

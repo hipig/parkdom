@@ -2,6 +2,33 @@
     "lang_code": "en",
     "lang_name": "English",
     "lang_direction": "ltr",
-	
-	"Languages": "Languages"
+
+    "Dashboard": "Dashboard",
+    "Settings": "Settings",
+    "General": "General",
+    "Domain": "Domain",
+    "Offer": "Offer",
+    "Mail": "Mail",
+    "Domains": "Domains",
+    "Domain Categories": "Domain Categories",
+    "Offers": "Offers",
+    "Statistics": "Statistics",
+    "Domain Visits": "Domain Visits",
+    "Visit Statistics": "Visit Statistics",
+    "Offer Statistics": "Offer Statistics",
+    "Domain Statistics": "Domain Statistics",
+	"Languages": "Languages",
+    "Templates": "Templates",
+    "Contacts": "Contacts",
+
+    "Name": "Name",
+    "Email": "Email",
+    "Code": "Code",
+    "Status": "Status",
+    "Created at": "Created at",
+    "Action": "Action",
+
+    "Keyword": "Keyword",
+    "Search": "Search",
+    "Clear": "Clear"
 }

@@ -18,7 +18,7 @@ class CreateContactsTable extends Migration
             $table->string('name')->comment('姓名');
             $table->string('email')->comment('邮箱');
             $table->text('content')->nullable()->comment('内容');
-            $table->tinyInteger('handle_status')->default(2)->comment('处理状态');
+            $table->tinyInteger('handle_status')->default(2)->comment('处理{{ __('Status') }}');
             $table->timestamps();
         });
     }

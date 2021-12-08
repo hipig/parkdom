@@ -14,7 +14,7 @@
             <form action="{{ route('admin.languages.index') }}" method="get" class="space-y-3 sm:space-y-0 sm:flex sm:items-center sm:space-x-4">
                 <div class="flex items-center space-x-2">
                     <label for="keyword" class="flex-shrink-0 text-sm font-semibold">{{ __('Keyword') }}</label>
-                    <input type="text" id="keyword" name="keyword" value="{{ old('keyword', request()->keyword) }}" class="block border border-gray-200 rounded px-3 py-2 leading-5 text-sm w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="{{ __('Name / Code') }}">
+                    <input type="text" id="keyword" name="keyword" value="{{ old('keyword', request()->keyword) }}" class="block border border-gray-200 rounded px-3 py-2 leading-5 text-sm w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="{{ __('Name') }} / {{ __('Code') }}">
                 </div>
                 <button type="submit" class="inline-flex justify-center items-center space-x-2 border font-semibold focus:outline-none px-3 py-2 leading-5 text-sm rounded border-indigo-700 bg-indigo-700 text-white hover:text-white hover:bg-indigo-800 hover:border-indigo-800 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 active:bg-indigo-700 active:border-indigo-700">
                     <span>{{ __('Search') }}</span>
@@ -28,7 +28,7 @@
     <div class="flex flex-col rounded shadow-sm bg-white overflow-hidden">
         <div class="py-3 px-5 lg:px-6 flex-grow w-full">
             <div class="flex items-center justify-between">
-                <span class="text-gray-900">{{ __('Languages') }}</span>
+                <span class="text-gray-900 font-medium">{{ __('Languages') }}</span>
                 <div class="space-x-2">
                     <a href="{{ route('admin.languages.create') }}" class="inline-flex justify-center items-center space-x-2 rounded border font-semibold focus:outline-none px-3 py-2 leading-5 text-sm border-indigo-700 bg-indigo-700 text-white hover:text-white hover:bg-indigo-800 hover:border-indigo-800 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 active:bg-indigo-700 active:border-indigo-700">
                         {{ __('New') }}
@@ -41,8 +41,8 @@
                 <table class="min-w-full text-sm align-middle whitespace-nowrap">
                     <thead>
                     <tr class="text-gray-700 text-left bg-gray-50 font-semibold">
-                        <th class="py-2 px-6">{{ __('Language Name') }}</th>
-                        <th class="py-2 px-6">{{ __('Language Code') }}</th>
+                        <th class="py-2 px-6">{{ __('Name') }}</th>
+                        <th class="py-2 px-6">{{ __('Code') }}</th>
                         <th class="py-2 px-6 text-center">{{ __('Status') }}</th>
                         <th class="py-2 px-6">{{ __('Created at') }}</th>
                         <th class="py-2 px-6">{{ __('Action') }}</th>
@@ -86,7 +86,7 @@
                         </tr>
                     @empty
                         <tr class="border-t border-gray-100">
-                            <td class="py-6 px-6 text-center text-gray-500" colspan="5">{{ __('Empty Data.') }}</td>
+                            <td class="py-6 px-6 font-medium text-center text-gray-500" colspan="5">{{ __('Empty Data.') }}</td>
                         </tr>
                     @endforelse
                     </tbody>
@@ -94,7 +94,7 @@
             </div>
         </div>
         <div class="py-3 px-5 lg:px-6 flex-grow w-full">
-            {{ $languages->withQueryString()->links('partials.admin.pagination') }}
+            {{ $languages->withQueryString()->links('partials.pagination') }}
         </div>
     </div>
 @endsection

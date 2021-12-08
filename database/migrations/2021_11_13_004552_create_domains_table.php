@@ -32,7 +32,7 @@ class CreateDomainsTable extends Migration
             $table->string('seo_keywords')->nullable()->comment('网站关键词');
             $table->text('seo_description')->nullable()->comment('网站描述');
             $table->timestamp('whois_updated_at')->nullable()->comment('Whois更新时间');
-            $table->boolean('park_status')->default(false)->comment('停放状态');
+            $table->boolean('park_status')->default(false)->comment('停放{{ __('Status') }}');
             $table->timestamps();
         });
     }
