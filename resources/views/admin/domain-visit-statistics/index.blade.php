@@ -1,22 +1,21 @@
 @extends('layouts.admin')
-@section('title', '访问统计')
+@section('title', __('Domain Visits'))
 
 @section('breadcrumb')
     <x-admin.breadcrumb.list>
         <x-admin.breadcrumb.item href="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</x-admin.breadcrumb.item>
-        <x-admin.breadcrumb.item href="javascript:;">概述统计</x-admin.breadcrumb.item>
-        <x-admin.breadcrumb.item>访问</x-admin.breadcrumb.item>
+        <x-admin.breadcrumb.item>{{ __('Visit Statistics') }}</x-admin.breadcrumb.item>
     </x-admin.breadcrumb.list>
 @endsection
 
 @section('content')
     <div class="space-y-6">
-        <h3 class="text-2xl text-gray-900">访问分布</h3>
+        <h3 class="text-2xl text-gray-900">{{ __('Visit distribution') }}</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
                 <div class="flex flex-col rounded shadow-sm bg-white overflow-hidden" x-data="countryCountContainer">
                     <div class="py-4 px-5 lg:px-6 w-full bg-gray-50">
-                        <h3>国家</h3>
+                        <h3 class="font-medium">{{ __('Country/Region') }}</h3>
                     </div>
                     <div class="py-6 flex-grow w-full">
                         <div class="w-full h-96" x-ref="country-count-chart"></div>
@@ -26,7 +25,7 @@
             <div>
                 <div class="flex flex-col rounded shadow-sm bg-white overflow-hidden" x-data="deviceCountContainer">
                     <div class="py-4 px-5 lg:px-6 w-full bg-gray-50">
-                        <h3>设备</h3>
+                        <h3 class="font-medium">{{ __('Device') }}</h3>
                     </div>
                     <div class="py-6 flex-grow w-full">
                         <div class="w-full h-96" x-ref="device-count-chart"></div>
@@ -36,7 +35,7 @@
             <div>
                 <div class="flex flex-col rounded shadow-sm bg-white overflow-hidden" x-data="platformCountContainer">
                     <div class="py-4 px-5 lg:px-6 w-full bg-gray-50">
-                        <h3>平台</h3>
+                        <h3 class="font-medium">{{ __('Platform') }}</h3>
                     </div>
                     <div class="py-6 flex-grow w-full">
                         <div class="w-full h-96" x-ref="platform-count-chart"></div>
@@ -46,7 +45,7 @@
             <div>
                 <div class="flex flex-col rounded shadow-sm bg-white overflow-hidden" x-data="browserCountContainer">
                     <div class="py-4 px-5 lg:px-6 w-full bg-gray-50">
-                        <h3>浏览器</h3>
+                        <h3 class="font-medium">{{ __('Browser') }}</h3>
                     </div>
                     <div class="py-6 flex-grow w-full">
                         <div class="w-full h-96" x-ref="browser-count-chart"></div>

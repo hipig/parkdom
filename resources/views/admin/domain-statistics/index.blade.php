@@ -1,11 +1,10 @@
 @extends('layouts.admin')
-@section('title', '域名统计')
+@section('title', __('Domain Statistics'))
 
 @section('breadcrumb')
     <x-admin.breadcrumb.list>
         <x-admin.breadcrumb.item href="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</x-admin.breadcrumb.item>
-        <x-admin.breadcrumb.item href="javascript:;">概述统计</x-admin.breadcrumb.item>
-        <x-admin.breadcrumb.item>域名</x-admin.breadcrumb.item>
+        <x-admin.breadcrumb.item>{{ __('Domain Statistics') }}</x-admin.breadcrumb.item>
     </x-admin.breadcrumb.list>
 @endsection
 
@@ -15,11 +14,11 @@
             <div class="flex flex-col rounded shadow-sm bg-white overflow-hidden" x-data="visitContainer">
                 <div class="py-3 px-5 lg:px-6 flex-grow w-full">
                     <div class="flex items-center justify-between">
-                        <span class="text-gray-900">访问排行</span>
+                        <span class="text-gray-900 font-medium">{{ __('Visit Ranking') }}</span>
                         <div class="space-x-2">
-                            <a href="{{ route('admin.statistics.domain.visit.export') }}" class="inline-flex justify-center items-center space-x-1 rounded border font-semibold focus:outline-none px-3 py-1.5 leading-5 text-sm border-green-700 bg-green-700 text-white hover:text-white hover:bg-green-800 hover:border-green-800 focus:ring focus:ring-green-500 focus:ring-opacity-50 active:bg-green-700 active:border-green-700">
+                            <a href="{{ route('admin.statistics.domain.visit.export') }}" class="inline-flex justify-center items-center space-x-1 rounded border font-semibold focus:outline-none px-3 py-2 leading-5 text-sm border-green-700 bg-green-700 text-white hover:text-white hover:bg-green-800 hover:border-green-800 focus:ring focus:ring-green-500 focus:ring-opacity-50 active:bg-green-700 active:border-green-700">
                                 <x-heroicon-s-download class="w-4 h-4"></x-heroicon-s-download>
-                                <span>导出</span>
+                                <span>{{ __('Export') }}</span>
                             </a>
                         </div>
                     </div>
@@ -29,8 +28,8 @@
                         <table class="min-w-full text-sm align-middle whitespace-nowrap">
                             <thead>
                             <tr class="text-gray-700 text-left bg-gray-50 font-semibold text-left">
-                                <th class="py-2 px-6">域名</th>
-                                <th class="py-2 px-6 text-center">访问次数</th>
+                                <th class="py-2 px-6">{{ __('Domain') }}</th>
+                                <th class="py-2 px-6 text-center">{{ __('Visits') }}</th>
                             </tr>
                             </thead>
 
@@ -57,11 +56,11 @@
                 <div class="py-3 px-5 lg:px-6 flex-grow w-full text-center">
                     <template x-if="!noMore">
                         <button type="button" @click="loadMore" class="font-medium text-sm text-indigo-600 hover:text-indigo-500 focus:outline-none">
-                            加载更多
+                            {{ __('Load More') }}
                         </button>
                     </template>
                     <template x-if="noMore">
-                        <span class="text-sm text-gray-500">没有更多了</span>
+                        <span class="text-sm text-gray-500">{{ __('No more.') }}</span>
                     </template>
                 </div>
             </div>
@@ -70,11 +69,11 @@
             <div class="flex flex-col rounded shadow-sm bg-white overflow-hidden" x-data="hitContainer">
                 <div class="py-3 px-5 lg:px-6 flex-grow w-full">
                     <div class="flex items-center justify-between">
-                        <span class="text-gray-900">点击排行</span>
+                        <span class="text-gray-900 font-medium">{{ __('Hit Ranking') }}</span>
                         <div class="space-x-2">
-                            <a href="{{ route('admin.statistics.domain.hit.export') }}" class="inline-flex justify-center items-center space-x-1 rounded border font-semibold focus:outline-none px-3 py-1.5 leading-5 text-sm border-green-700 bg-green-700 text-white hover:text-white hover:bg-green-800 hover:border-green-800 focus:ring focus:ring-green-500 focus:ring-opacity-50 active:bg-green-700 active:border-green-700">
+                            <a href="{{ route('admin.statistics.domain.hit.export') }}" class="inline-flex justify-center items-center space-x-1 rounded border font-semibold focus:outline-none px-3 py-2 leading-5 text-sm border-green-700 bg-green-700 text-white hover:text-white hover:bg-green-800 hover:border-green-800 focus:ring focus:ring-green-500 focus:ring-opacity-50 active:bg-green-700 active:border-green-700">
                                 <x-heroicon-s-download class="w-4 h-4"></x-heroicon-s-download>
-                                <span>导出</span>
+                                <span>{{ __('Export') }}</span>
                             </a>
                         </div>
                     </div>
@@ -84,8 +83,8 @@
                         <table class="min-w-full text-sm align-middle whitespace-nowrap">
                             <thead>
                             <tr class="text-gray-700 text-left bg-gray-50 font-semibold text-left">
-                                <th class="py-2 px-6">域名</th>
-                                <th class="py-2 px-6 text-center">点击次数</th>
+                                <th class="py-2 px-6">{{ __('Domain') }}</th>
+                                <th class="py-2 px-6 text-center">{{ __('Hits') }}</th>
                             </tr>
                             </thead>
 
@@ -112,11 +111,11 @@
                 <div class="py-3 px-5 lg:px-6 flex-grow w-full text-center">
                     <template x-if="!noMore">
                         <button type="button" @click="loadMore" class="font-medium text-sm text-indigo-600 hover:text-indigo-500 focus:outline-none">
-                            加载更多
+                            {{ __('Load More') }}
                         </button>
                     </template>
                     <template x-if="noMore">
-                        <span class="text-sm text-gray-500">没有更多了</span>
+                        <span class="text-sm text-gray-500">{{ __('No More.') }}</span>
                     </template>
                 </div>
             </div>

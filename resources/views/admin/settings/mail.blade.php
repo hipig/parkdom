@@ -1,17 +1,17 @@
 @extends('layouts.admin')
-@section('title', '系统设置-邮箱')
+@section('title', joinTitle([__('Mail'), __('Settings')]))
 
 @section('content')
     <div class="flex flex-col rounded shadow-sm bg-white overflow-hidden" x-data="settingContainer">
         <div class="py-4 px-5 lg:px-6 w-full bg-gray-50">
-            <h3>邮箱设置</h3>
+            <h3 class="font-medium">{{ __('Mail') }}</h3>
         </div>
         <form action="{{ route('admin.settings.mail') }}" method="post">
             <div class="p-5 lg:p-6 flex-grow w-full">
                 @csrf
                 <div class="space-y-6 md:w-2/3">
                     <div class="space-y-1">
-                        <label for="driver" class="text-gray-900 font-semibold">邮箱驱动</label>
+                        <label for="driver" class="text-gray-900 font-semibold">{{ __('Driver') }}</label>
                         <div class="flex items-center space-x-6">
                             <label class="flex items-center">
                                 <input type="radio" id="driver" value="smtp" class="border border-gray-200 h-4 w-4 text-indigo-500 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" checked="checked" />
@@ -20,25 +20,34 @@
                         </div>
                     </div>
                     <div class="space-y-1">
-                        <label for="host" class="text-gray-900 font-semibold">服务器</label>
-                        <input type="text" id="host" name="host" value="{{ old('host', $setting->host) }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入邮箱服务器">
+                        <label for="host" class="text-gray-900 font-semibold">{{ __('Host') }}</label>
+                        <input type="text" id="host" name="host" value="{{ old('host', $setting->host) }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="{{ __('Host') }}">
                     </div>
                     <div class="space-y-1">
-                        <label for="port" class="text-gray-900 font-semibold">端口</label>
-                        <input type="text" id="port" name="port" value="{{ old('port', $setting->port) }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入端口">
+                        <label for="port" class="text-gray-900 font-semibold">{{ __('Port') }}</label>
+                        <input type="text" id="port" name="port" value="{{ old('port', $setting->port) }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="{{ __('Port') }}">
                     </div>
                     <div class="space-y-1">
-                        <label for="encryption" class="text-gray-900 font-semibold">加密方式</label>
-                        <input type="text" id="encryption" name="encryption" value="{{ old('encryption', $setting->encryption) }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入加密方式">
+                        <label for="encryption" class="text-gray-900 font-semibold">{{ __('Encryption') }}</label>
+                        <div class="flex items-center space-x-6">
+                            <label class="flex items-center">
+                                <input type="radio" id="encryption" name="encryption" value="tls" class="border border-gray-200 h-4 w-4 text-indigo-500 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" {{ old('encryption', $setting->encryption) === 'tls' ? 'checked' : '' }} />
+                                <span class="ml-2">tls</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" id="encryption" name="encryption" value="ssl" class="border border-gray-200 h-4 w-4 text-indigo-500 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" {{ old('encryption', $setting->encryption) === 'ssl' ? 'checked' : '' }} />
+                                <span class="ml-2">ssl</span>
+                            </label>
+                        </div>
                     </div>
                     <div class="space-y-1">
-                        <label for="username" class="text-gray-900 font-semibold">账户名</label>
-                        <input type="text" id="username" name="username" value="{{ old('username', $setting->username) }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入账户名">
+                        <label for="username" class="text-gray-900 font-semibold">{{ __('Username') }}</label>
+                        <input type="text" id="username" name="username" value="{{ old('username', $setting->username) }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="{{ __('Username') }}">
                     </div>
                     <div class="space-y-1">
-                        <label for="password" class="text-gray-900 font-semibold">密码</label>
+                        <label for="password" class="text-gray-900 font-semibold">{{ __('Password') }}</label>
                         <div class="relative">
-                            <input :type="passwordType" id="password" name="password" value="{{ old('password', $setting->password) }}" class="block border border-gray-200 rounded pr-10 pl-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入密码" />
+                            <input :type="passwordType" id="password" name="password" value="{{ old('password', $setting->password) }}" class="block border border-gray-200 rounded pr-10 pl-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="{{ __('Password') }}" />
                             <div @click="togglePassword" class="absolute inset-y-0 right-0 w-10 my-px mr-px flex items-center justify-center rounded-r text-gray-500 cursor-pointer">
                                 <x-heroicon-s-eye x-show="passwordType === 'password'" class="w-5 h-5"></x-heroicon-s-eye>
                                 <x-heroicon-s-eye-off x-show="passwordType === 'text'" class="w-5 h-5"></x-heroicon-s-eye-off>
@@ -46,21 +55,21 @@
                         </div>
                     </div>
                     <div class="space-y-1">
-                        <label for="name" class="text-gray-900 font-semibold">发件人</label>
-                        <input type="text" id="name" name="name" value="{{ old('name', $setting->name) }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入发件人">
+                        <label for="name" class="text-gray-900 font-semibold">{{ __('From Name') }}</label>
+                        <input type="text" id="name" name="name" value="{{ old('name', $setting->name) }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="{{ __('From Name') }}">
                     </div>
                     <div class="space-y-1">
-                        <label for="address" class="text-gray-900 font-semibold">发件人邮箱</label>
-                        <input type="email" id="address" name="address" value="{{ old('host', $setting->address) }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入发件人邮箱">
+                        <label for="address" class="text-gray-900 font-semibold">{{ __('From Address') }}</label>
+                        <input type="email" id="address" name="address" value="{{ old('host', $setting->address) }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="{{ __('From Address') }}">
                     </div>
                 </div>
             </div>
             <div class="py-3 px-5 lg:px-6 w-full bg-gray-50 space-x-2">
                 <button type="submit" class="inline-flex justify-center items-center space-x-2 rounded border font-semibold focus:outline-none px-3 py-2 leading-5 text-sm border-indigo-700 bg-indigo-700 text-white hover:text-white hover:bg-indigo-800 hover:border-indigo-800 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 active:bg-indigo-700 active:border-indigo-700">
-                    <span>{{ __('Submit') }}</span>
+                    <span>{{ __('Save') }}</span>
                 </button>
                 <button type="button" @click="$dispatch('open-modal', { open: true })" class="inline-flex justify-center items-center space-x-2 rounded border font-semibold focus:outline-none px-3 py-2 leading-5 text-sm border-green-700 bg-green-700 text-white hover:text-white hover:bg-green-800 hover:border-green-800 focus:ring focus:ring-green-500 focus:ring-opacity-50 active:bg-green-700 active:border-green-700">
-                    发送测试邮件
+                    <span>{{ __('Send test email') }}</span>
                 </button>
             </div>
         </form>
@@ -91,7 +100,7 @@
             >
                 <div class="py-4 px-5 lg:px-6 w-full bg-gray-50 flex justify-between items-center">
                     <h3 class="font-medium">
-                        发送测试邮件
+                        {{ __('Send test email') }}
                     </h3>
                     <div class="-my-4">
                         <button
@@ -108,8 +117,8 @@
                     <div class="p-5 lg:p-6 flex-grow w-full">
                         <div class="space-y-6">
                             <div class="space-y-1">
-                                <label for="email" class="text-gray-900 font-semibold">邮箱地址</label>
-                                <input type="email" id="email" name="email" value="{{ old('email') }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入邮箱地址">
+                                <label for="email" class="text-gray-900 font-semibold">{{ __('Email') }}</label>
+                                <input type="email" id="email" name="email" value="{{ old('email') }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="{{ __('Email') }}">
                             </div>
                         </div>
                     </div>
@@ -119,13 +128,13 @@
                             class="inline-flex justify-center items-center space-x-2 border font-semibold focus:outline-none px-3 py-2 leading-5 text-sm rounded border-transparent text-indigo-600 hover:text-indigo-400 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 active:text-indigo-600"
                             @click="closeModal"
                         >
-                            取消
+                            <span>{{ __('Cancel') }}</span>
                         </button>
                         <button
                             type="submit"
                             class="inline-flex justify-center items-center space-x-2 border font-semibold focus:outline-none px-3 py-2 leading-5 text-sm rounded border-indigo-700 bg-indigo-700 text-white hover:text-white hover:bg-indigo-800 hover:border-indigo-800 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 active:bg-indigo-700 active:border-indigo-700"
                         >
-                            提交
+                            <span>{{ __('Submit') }}</span>
                         </button>
                     </div>
                 </form>

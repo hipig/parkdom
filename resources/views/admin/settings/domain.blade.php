@@ -1,26 +1,26 @@
 @extends('layouts.admin')
-@section('title', '系统设置-域名')
+@section('title', joinTitle([__('Domain'), __('Settings')]))
 
 @section('content')
     <div class="flex flex-col rounded shadow-sm bg-white overflow-hidden" x-data="settingContainer">
         <div class="py-4 px-5 lg:px-6 w-full bg-gray-50">
-            <h3>域名设置</h3>
+            <h3 class="font-medium">{{ __('Domain') }}</h3>
         </div>
         <form action="{{ route('admin.settings.domain') }}" method="post">
             <div class="p-5 lg:p-6 flex-grow w-full">
                 @csrf
                 <div class="space-y-6 md:w-2/3">
                     <div class="space-y-1">
-                        <label for="currency" class="text-gray-900 font-semibold">币种</label>
+                        <label for="currency" class="text-gray-900 font-semibold">{{ __('Currency') }}</label>
                         <select id="currency" name="currency" x-model="currency" class="w-full block border border-gray-200 rounded px-3 py-2 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
                             <template x-for="currency in currencyList">
                                 <option x-text="currency.code"></option>
                             </template>
                         </select>
-                        <p class="text-sm text-gray-500">为您的新域名设置默认币种</p>
+                        <p class="text-sm text-gray-500">{{ __('This sets the default currency for new domains in your account.') }}</p>
                     </div>
                     <div class="space-y-1">
-                        <label for="offer_status" class="text-gray-900 font-semibold">允许报价</label>
+                        <label for="offer_status" class="text-gray-900 font-semibold">{{ __('Allow Offer') }}</label>
                         <div class="flex items-center space-x-6">
                             <label class="flex items-center">
                                 <input type="radio" name="allow_offer" value="1" x-model="allowOffer" class="border border-gray-200 h-4 w-4 text-indigo-500 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" />
@@ -31,24 +31,24 @@
                                 <span class="ml-2">{{ __('Disable') }}</span>
                             </label>
                         </div>
-                        <p class="text-sm text-gray-500">允许客户报价</p>
+                        <p class="text-sm text-gray-500">{{ __('Allow buyers make offers.') }}</p>
                     </div>
                     <div class="space-y-1" x-show="allowOffer == 1">
-                        <label for="min_price" class="text-gray-900 font-semibold">最低价格</label>
+                        <label for="min_price" class="text-gray-900 font-semibold">{{ __('Min Price') }}</label>
                         <div class="flex items-center">
                             <div class="flex-1 min-w-0 relative">
                                 <div class="absolute inset-y-0 left-0 w-8 my-px ml-px flex items-center justify-center pointer-events-none rounded-l">
                                     <span class="text-gray-500" x-text="currencyPrefix"></span>
                                 </div>
-                                <input type="text" id="min_price" name="min_price" value="{{ old('min_price', $setting->min_price) }}" class="block border border-gray-200 rounded pl-8 pr-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入最低价格">
+                                <input type="text" id="min_price" name="min_price" value="{{ old('min_price', $setting->min_price) }}" class="block border border-gray-200 rounded pl-8 pr-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="{{ __('Min Price') }}">
                             </div>
                         </div>
-                        <p class="text-sm text-gray-500">仅适用于启用了“允许报价”的域名</p>
+                        <p class="text-sm text-gray-500">{{ __('Only applies to domains with "Allow Offer" enabled.') }}</p>
                     </div>
                     <div class="space-y-1" x-data="buyLinkContainer">
                         <label for="notify_email" class="text-gray-900 font-semibold space-x-1">
-                            <span>购买按钮</span>
-                            <button type="button" class="text-sm text-gray-500 px-2 border border-gray-200 hover:bg-gray-50 rounded shadow-sm" @click="addItem">增加一个</button>
+                            <span>{{ __('Buy Links') }}</span>
+                            <button type="button" class="text-sm text-gray-500 px-2 border border-gray-200 hover:bg-gray-50 rounded shadow-sm" @click="addItem">{{ __('Add a new') }}</button>
                         </label>
                         <div class="border border-gray-200 rounded divide-y divide-gray-200" @drop.prevent="drop" @dragover.prevent="dragover($event)">
                             <template x-for="(link, i) in linkList" hidden>
@@ -64,12 +64,12 @@
                                             <input type="hidden" :name="'buy_links['+i+'][title]'" x-model="link.title" hidden>
                                             <div class="grid grid-cols-3 gap-4">
                                                 <div class="space-y-1">
-                                                    <label for="" class="text-sm font-semibold">按钮名称</label>
+                                                    <label for="" class="text-sm font-semibold">{{ __('Link Title') }}</label>
                                                     <input type="text" :name="'buy_links['+i+'][label]'" x-model="link.label" class="block border border-gray-200 rounded px-3 py-2 leading-5 text-sm w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="Buy with paypal">
                                                 </div>
                                                 <div class="col-span-2">
                                                     <div class="space-y-1">
-                                                        <label for="" class="text-sm font-semibold">按钮链接</label>
+                                                        <label for="" class="text-sm font-semibold">{{ __('Link Value') }}</label>
                                                         <div class="relative">
                                                             <div class="absolute inset-y-0 left-0 w-11 my-px ml-px flex items-center justify-center pointer-events-none rounded-l bg-gray-100 border-r border-gray-200">
                                                                 <span class="text-sm text-gray-500">URL</span>
@@ -88,14 +88,14 @@
                                 </div>
                             </template>
                         </div>
-                        <p x-show="linkList.length > 0" class="text-sm text-gray-500"><span class="text-red-500">{domain}</span> 将自动替换为当前域名</p>
+                        <p x-show="linkList.length > 0" class="text-sm text-gray-500">{!! __('You can use :domain to insert the current domain name.', ['domain' => '<span class="text-red-500">{domain}</span>']) !!}</p>
                     </div>
 
                 </div>
             </div>
             <div class="py-3 px-5 lg:px-6 w-full bg-gray-50">
                 <button type="submit" class="inline-flex justify-center items-center space-x-2 rounded border font-semibold focus:outline-none px-3 py-2 leading-5 text-sm border-indigo-700 bg-indigo-700 text-white hover:text-white hover:bg-indigo-800 hover:border-indigo-800 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 active:bg-indigo-700 active:border-indigo-700">
-                    <span>{{ __('Submit') }}</span>
+                    <span>{{ __('Save') }}</span>
                 </button>
             </div>
         </form>

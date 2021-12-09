@@ -33,7 +33,7 @@
                         'active' => if_route('admin.settings.mail'),
                     ],
                     [
-                        'label' => __('Contact'),
+                        'label' => __('Social'),
                         'href' => route('admin.settings.contact'),
                         'active' => if_route('admin.settings.contact'),
                     ],
@@ -45,7 +45,7 @@
                 'active' => if_route_pattern(['admin.domains.*', 'admin.domainCategories.*']),
                 'children' => [
                     [
-                        'label' => __('Domain Categories'),
+                        'label' => __('Categories'),
                         'href' => route('admin.domainCategories.index'),
                         'active' => if_route_pattern('admin.domainCategories.*'),
                     ],
@@ -70,7 +70,7 @@
                     [
                         'label' => __('Domain Visits'),
                         'href' => route('admin.domainVisits.index'),
-                        'active' => if_route('admin.domainVisits.*'),
+                        'active' => if_route_pattern('admin.domainVisits.*'),
                     ],
                     [
                         'label' => __('Visit Statistics'),

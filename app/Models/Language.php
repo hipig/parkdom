@@ -26,7 +26,7 @@ class Language extends Model
     public function setDefault($default)
     {
         if ($default) {
-            self::query()->update(['default' => false]);
+            static::query()->update(['default' => false]);
             $this->default = true;
             $this->save();
         }

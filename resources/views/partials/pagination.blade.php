@@ -28,14 +28,8 @@
 
     <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
       <div>
-        <p class="text-gray-500 leading-5">
-          显示第
-          <span class="font-medium">{{ $paginator->firstItem() }}</span>
-          至
-          <span class="font-medium">{{ $paginator->lastItem() }}</span>
-          ，共
-          <span class="font-medium">{{ $paginator->total() }}</span>
-          条数据
+        <p class="text-gray-700 leading-5 font-medium">
+            {{ __('Show to :first-:last of :total', ['first' => $paginator->firstItem(), 'last' => $paginator->lastItem(), 'total' => $paginator->total()]) }}
         </p>
       </div>
 

@@ -1,10 +1,10 @@
 @extends('layouts.admin')
-@section('title', '系统设置-联系方式')
+@section('title', joinTitle([__('Social'), __('Settings')]))
 
 @section('content')
     <div class="flex flex-col rounded shadow-sm bg-white overflow-hidden" x-data="settingContainer">
         <div class="py-4 px-5 lg:px-6 w-full bg-gray-50">
-            <h3>联系方式设置</h3>
+            <h3 class="font-medium">{{ __('Social') }}</h3>
         </div>
         <form action="{{ route('admin.settings.contact') }}" method="post">
             <div class="p-5 lg:p-6 flex-grow w-full">
@@ -25,7 +25,7 @@
             </div>
             <div class="py-3 px-5 lg:px-6 w-full bg-gray-50">
                 <button type="submit" class="inline-flex justify-center items-center space-x-2 rounded border font-semibold focus:outline-none px-3 py-2 leading-5 text-sm border-indigo-700 bg-indigo-700 text-white hover:text-white hover:bg-indigo-800 hover:border-indigo-800 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 active:bg-indigo-700 active:border-indigo-700">
-                    <span>{{ __('Submit') }}</span>
+                    <span>{{ __('Save') }}</span>
                 </button>
             </div>
         </form>

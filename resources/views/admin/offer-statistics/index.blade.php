@@ -1,11 +1,10 @@
 @extends('layouts.admin')
-@section('title', '报价统计')
+@section('title', __('Offer Statistics'))
 
 @section('breadcrumb')
     <x-admin.breadcrumb.list>
         <x-admin.breadcrumb.item href="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</x-admin.breadcrumb.item>
-        <x-admin.breadcrumb.item href="javascript:;">概述统计</x-admin.breadcrumb.item>
-        <x-admin.breadcrumb.item>报价</x-admin.breadcrumb.item>
+        <x-admin.breadcrumb.item>{{ __('Offer Statistics') }}</x-admin.breadcrumb.item>
     </x-admin.breadcrumb.list>
 @endsection
 
@@ -13,7 +12,7 @@
     <div class="space-y-8">
         <div class="flex flex-col rounded shadow-sm bg-white overflow-hidden" x-data="monthlyCountContainer">
             <div class="py-4 px-5 lg:px-6 w-full bg-gray-50">
-                <h3>月度报价次数</h3>
+                <h3 class="font-medium">{{ __('Monthly Offers') }}</h3>
             </div>
             <div class="flex-grow w-full">
                 <div class="w-full h-96" x-ref="monthly-count-chart"></div>
@@ -21,7 +20,7 @@
         </div>
         <div class="flex flex-col rounded shadow-sm bg-white overflow-hidden" x-data="monthlyPriceContainer">
             <div class="py-4 px-5 lg:px-6 w-full bg-gray-50">
-                <h3>月度报价金额</h3>
+                <h3 class="">{{ __('Monthly Offer Amount') }}</h3>
             </div>
             <div class="flex-grow w-full">
                 <div class="w-full h-96" x-ref="monthly-price-chart"></div>

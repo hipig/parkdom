@@ -14,6 +14,9 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, MustVerifyEmail;
 
+    const ROLE_ADMIN = 1;
+    const ROLE_USER = 0;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -52,6 +55,11 @@ class User extends Authenticatable
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format($this->dateFormat ?: 'Y-m-d H:i:s');
+    }
+
+    public function isAdmin()
+    {
+        return $this->role === self::ROLE_ADMIN;
     }
 
     public function setLocale($locale)

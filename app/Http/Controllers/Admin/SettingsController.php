@@ -32,7 +32,7 @@ class SettingsController extends Controller
         ]));
         $setting->save();
 
-        return back()->with('success', '修改基础设置成功！');
+        return back()->with('success', __(':name setting saved successfully.', ['name' => __('General')]));
     }
 
     public function editDomain(DomainSetting $setting)
@@ -50,7 +50,7 @@ class SettingsController extends Controller
         ]));
         $setting->save();
 
-        return back()->with('success', '修改域名设置成功！');
+        return back()->with('success', __(':name setting saved successfully.', ['name' => __('Domain')]));
     }
 
     public function editOffer(OfferSetting $setting, MailSetting $mailSetting)
@@ -68,7 +68,7 @@ class SettingsController extends Controller
         ]));
         $setting->save();
 
-        return back()->with('success', '修改报价设置成功！');
+        return back()->with('success', __(':name setting saved successfully.', ['name' => __('Offer')]));
     }
 
     public function editMail(MailSetting $setting)
@@ -89,7 +89,7 @@ class SettingsController extends Controller
         ]));
         $setting->save();
 
-        return back()->with('success', '修改邮箱设置成功！');
+        return back()->with('success', __(':name setting saved successfully.', ['name' => __('Mail')]));
     }
 
     public function sendTestMail(MailTestSendRequest $request)
@@ -98,7 +98,7 @@ class SettingsController extends Controller
 
         Mail::to($email)->send(new TestSend());
 
-        return back()->with('success', "发送测试邮件成功，请进入 {$email} 邮箱内查看");
+        return back()->with('success', __('The test email sent successfully, please enter the :email mailbox to view', ['email' => $email]));
     }
 
     public function editContact(ContactSetting $setting)
@@ -119,6 +119,6 @@ class SettingsController extends Controller
         ]));
         $setting->save();
 
-        return back()->with('success', '修改联系方式设置成功！');
+        return back()->with('success', __(':name setting saved successfully.', ['name' => __('Social')]));
     }
 }

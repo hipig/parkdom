@@ -1,10 +1,10 @@
 @extends('layouts.admin')
-@section('title', __('Domain Categories'))
+@section('title', __('Categories'))
 
 @section('breadcrumb')
     <x-admin.breadcrumb.list>
         <x-admin.breadcrumb.item href="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</x-admin.breadcrumb.item>
-        <x-admin.breadcrumb.item>{{ __('Domain Categories') }}</x-admin.breadcrumb.item>
+        <x-admin.breadcrumb.item>{{ __('Categories') }}</x-admin.breadcrumb.item>
     </x-admin.breadcrumb.list>
 @endsection
 
@@ -13,8 +13,8 @@
         <div class="py-4 px-5 lg:px-6 flex-grow w-full">
             <form action="{{ route('admin.domainCategories.index') }}" method="get" class="space-y-3 sm:space-y-0 sm:flex sm:items-center sm:space-x-4">
                 <div class="flex items-center space-x-1">
-                    <label for="name" class="flex-shrink-0 text-sm">名称：</label>
-                    <input type="text" id="name" name="name" value="{{ old('name', request()->name) }}" class="block border border-gray-200 rounded px-3 py-2 leading-5 text-sm w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="关键字">
+                    <label for="name" class="flex-shrink-0 font-medium text-sm">{{ __('Name') }}</label>
+                    <input type="text" id="name" name="name" value="{{ old('name', request()->name) }}" class="block border border-gray-200 rounded px-3 py-2 leading-5 text-sm w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="{{ __('Name') }}">
                 </div>
                 <button type="submit" class="inline-flex justify-center items-center space-x-2 border font-semibold focus:outline-none px-3 py-2 leading-5 text-sm rounded border-indigo-700 bg-indigo-700 text-white hover:text-white hover:bg-indigo-800 hover:border-indigo-800 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 active:bg-indigo-700 active:border-indigo-700">
                     <span>{{ __('Search') }}</span>

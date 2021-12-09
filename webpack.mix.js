@@ -24,3 +24,7 @@ mix.js('resources/vendor/filepond/filepond.js', 'public/vendor/filepond')
   .postCss('resources/vendor/filepond/filepond.css', 'public/vendor/filepond', [
     require("tailwindcss"),
   ]);
+
+if (mix.inProduction()) {
+  mix.version();
+}

@@ -4,7 +4,7 @@
 @section('breadcrumb')
     <x-admin.breadcrumb.list>
         <x-admin.breadcrumb.item href="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</x-admin.breadcrumb.item>
-        <x-admin.breadcrumb.item href="{{ route('admin.domainCategories.index') }}">{{ __('Domain Categories') }}</x-admin.breadcrumb.item>
+        <x-admin.breadcrumb.item href="{{ route('admin.domainCategories.index') }}">{{ __('Categories') }}</x-admin.breadcrumb.item>
         <x-admin.breadcrumb.item>{{ __('New') }}</x-admin.breadcrumb.item>
     </x-admin.breadcrumb.list>
 @endsection

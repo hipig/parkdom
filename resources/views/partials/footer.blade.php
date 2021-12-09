@@ -6,9 +6,7 @@
                class="font-medium text-indigo-600 hover:text-indigo-400">{{ config('app.name') }}</a> © 2021
         </div>
         <div class="pb-4 pt-1 md:pt-4 inline-flex items-center justify-center">
-            <span>由</span>
-            <a href="#" target="_blank" class="font-medium text-indigo-600 hover:text-indigo-400 mx-1">hipig</a>
-            <span>设计和编码</span>
+            {!! __('Crafted with by ❤ :name', ['name' => '<a href="#" target="_blank" class="font-medium text-indigo-600 hover:text-indigo-400 mx-1">hipig</a>']) !!}
         </div>
     </div>
 </footer>
