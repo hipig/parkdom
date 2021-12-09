@@ -59,7 +59,7 @@
                     </div>
                     <div class="space-y-1">
                         <label for="description" class="text-gray-900 font-semibold">{{ __('Description') }}</label>
-                        <x-admin.form.translate name="description" type="textarea"></x-admin.form.translate>
+                        <x-admin.form.translate name="description" :value="$domain->getTranslations('description')" type="textarea"></x-admin.form.translate>
                     </div>
                 </div>
             </div>

@@ -22,7 +22,7 @@
                         <label for="domains" class="text-gray-900 font-semibold"><span class="text-red-600 px-1">*</span>{{ __('Domain') }}</label>
                         <textarea id="domains" name="domains" class="w-full block border border-gray-200 rounded px-3 py-2 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" rows="4" placeholder="Example.com
 Example.net"></textarea>
-                        <p class="text-sm text-gray-500">{{ __('Multiple domains, please wrap') }}</p>
+                        <p class="text-sm text-gray-500">{{ __('Multiple domains, please wrap.') }}</p>
                     </div>
                     <div class="grid grid-cols-3 gap-6">
                         <div class="col-span-2 space-y-1">

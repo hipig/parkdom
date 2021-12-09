@@ -15,10 +15,10 @@ class CreateDomainCategoriesTable extends Migration
     {
         Schema::create('domain_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->comment('名称');
-            $table->string('icon')->nullable()->comment('图标');
-            $table->integer('sort')->default(0)->comment('排序');
-            $table->tinyInteger('status')->default(\App\Models\DomainCategory::STATUS_ENABLE)->comment('{{ __('Status') }}：1-启用 2-禁用');
+            $table->string('name');
+            $table->string('icon')->nullable();
+            $table->integer('sort')->default(0);
+            $table->tinyInteger('status')->default(\App\Models\DomainCategory::STATUS_ENABLE);
             $table->timestamps();
         });
     }

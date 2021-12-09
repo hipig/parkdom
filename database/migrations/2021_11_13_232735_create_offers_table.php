@@ -15,16 +15,16 @@ class CreateOffersTable extends Migration
     {
         Schema::create('offers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('domain_id')->comment('域名ID');
-            $table->string('name')->comment('姓名');
-            $table->string('email')->comment('邮箱');
-            $table->string('phone')->nullable()->comment('手机号码');
-            $table->decimal('offer_price', 10)->comment('报价');
-            $table->string('ip')->comment('IP');
-            $table->string('country')->nullable()->comment('国家');
-            $table->string('country_code')->nullable()->comment('国家编码');
-            $table->text('content')->nullable()->comment('内容');
-            $table->boolean('is_noticed')->default(false)->comment('是否已通知');
+            $table->unsignedBigInteger('domain_id');
+            $table->string('name');
+            $table->string('email');
+            $table->string('phone')->nullable();
+            $table->decimal('offer_price', 10);
+            $table->string('ip');
+            $table->string('country')->nullable();
+            $table->string('country_code')->nullable();
+            $table->text('content')->nullable();
+            $table->boolean('is_noticed')->default(false);
             $table->timestamps();
         });
     }

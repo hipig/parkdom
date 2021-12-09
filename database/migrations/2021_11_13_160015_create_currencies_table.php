@@ -15,9 +15,9 @@ class CreateCurrenciesTable extends Migration
     {
         Schema::create('currencies', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->unique()->comment('编码');
-            $table->string('prefix')->comment('前缀');
-            $table->tinyInteger('status')->default(\App\Models\Currency::STATUS_ENABLE)->comment('{{ __('Status') }}：1-启用 2-禁用');
+            $table->string('code')->unique();
+            $table->string('prefix');
+            $table->tinyInteger('status')->default(\App\Models\Currency::STATUS_ENABLE);
             $table->timestamps();
         });
     }

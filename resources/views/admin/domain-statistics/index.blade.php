@@ -60,7 +60,7 @@
                         </button>
                     </template>
                     <template x-if="noMore">
-                        <span class="text-sm text-gray-500">{{ __('No more.') }}</span>
+                        <span class="text-sm text-gray-500">{{ __('No More.') }}</span>
                     </template>
                 </div>
             </div>

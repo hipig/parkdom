@@ -6,6 +6,7 @@ use App\ModelTraits\StatusScope;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class Language extends Model
 {
@@ -15,7 +16,6 @@ class Language extends Model
         'code',
         'name',
         'direction',
-        'default',
         'status',
     ];
 
@@ -26,7 +26,7 @@ class Language extends Model
     public function setDefault($default)
     {
         if ($default) {
-            static::query()->update(['default' => false]);
+            static::query()->whereKeyNot($this->id)->update(['default' => false]);
             $this->default = true;
             $this->save();
         }

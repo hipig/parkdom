@@ -15,9 +15,9 @@ class CreateDomainHitsTable extends Migration
     {
         Schema::create('domain_hits', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('domain_id')->nullable()->comment('域名ID');
-            $table->string('date')->comment('日期');
-            $table->integer('times')->default(0)->comment('点击次数');
+            $table->unsignedBigInteger('domain_id')->nullable();
+            $table->string('date');
+            $table->integer('times')->default(0);
             $table->timestamps();
         });
     }

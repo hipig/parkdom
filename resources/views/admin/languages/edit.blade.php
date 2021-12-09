@@ -29,7 +29,7 @@
                     </div>
                     <div class="space-y-1">
                         <div class="flex items-center space-x-3">
-                            <input type="checkbox" id="default" name="default" class="form-switch transition-all duration-150 ease-out rounded-full h-7 w-12 text-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" {{ $language->default ? 'checked' : '' }}>
+                            <input type="checkbox" id="default" name="default" class="form-switch transition-all duration-150 ease-out rounded-full h-7 w-12 text-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" {{ old('default', $language->default) ? 'checked' : '' }}>
                             <label for="default" class="font-medium">
                                 {{ __('Default') }}
                             </label>

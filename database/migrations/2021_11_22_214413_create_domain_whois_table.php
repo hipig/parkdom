@@ -15,11 +15,11 @@ class CreateDomainWhoisTable extends Migration
     {
         Schema::create('domain_whois', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('domain_id')->comment('域名ID');
-            $table->string('registrar')->nullable()->comment('注册商');
-            $table->string('created_date')->nullable()->comment('创建日期');
-            $table->string('expired_date')->nullable()->comment('过期日期');
-            $table->string('name_server')->nullable()->comment('域名服务器');
+            $table->unsignedBigInteger('domain_id');
+            $table->string('registrar')->nullable();
+            $table->string('created_date')->nullable();
+            $table->string('expired_date')->nullable();
+            $table->string('name_server')->nullable();
             $table->timestamps();
         });
     }

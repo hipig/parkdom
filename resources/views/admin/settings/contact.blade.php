@@ -12,13 +12,13 @@
                 <div class="space-y-6 md:w-2/3">
                     <div class="flex items-center space-x-6">
                         @foreach($setting->toArray() as $key => $value)
-                            <button type="button" @click="switchContact('{{ $key }}')" class="px-4 py-1.5 border-2 rounded capitalize" :class="[activeContact === '{{ $key }}' ? 'border-indigo-700 text-indigo-700 font-semibold' : 'border-gray-200 text-gray-900']">{{ $key }}</button>
+                            <button type="button" @click="switchContact('{{ $key }}')" class="px-4 py-1.5 border-2 rounded capitalize" :class="[activeContact === '{{ $key }}' ? 'border-indigo-700 text-indigo-700 font-semibold' : 'border-gray-200 text-gray-900']">{{ __(\Illuminate\Support\Str::ucfirst($key)) }}</button>
                         @endforeach
                     </div>
                     @foreach($setting->toArray() as $key => $value)
                         <div class="space-y-1" x-show="activeContact === '{{ $key }}'">
-                            <label for="{{ $key }}" class="text-gray-900 font-semibold capitalize">{{ $key }}</label>
-                            <input type="text" id="{{ $key }}" name="{{ $key }}" value="{{ old($key, $value) }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入{{ \Illuminate\Support\Str::ucfirst($key) }}">
+                            <label for="{{ $key }}" class="text-gray-900 font-semibold capitalize">{{ __(\Illuminate\Support\Str::ucfirst($key)) }}</label>
+                            <input type="text" id="{{ $key }}" name="{{ $key }}" value="{{ old($key, $value) }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="{{ __(\Illuminate\Support\Str::ucfirst($key)) }}">
                         </div>
                     @endforeach
                 </div>
