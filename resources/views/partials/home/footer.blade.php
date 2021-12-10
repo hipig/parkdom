@@ -63,7 +63,7 @@
     </div>
 </div>
 <footer id="page-footer" class="bg-white">
-    <div class="w-full max-w-7xl mx-auto px-4 py-8 lg:px-8 lg:py-16">
+    <div class="w-full max-w-7xl mx-auto px-4 py-8 lg:px-8 lg:py-12">
         <div class="flex flex-col md:flex-row-reverse md:justify-between space-y-3 md:space-y-0">
             <nav class="space-x-4">
                 <a href="javascript:void(0)" class="text-gray-400 hover:text-indigo-600">
@@ -94,9 +94,9 @@
                 </a>
             </nav>
         </div>
-        <hr class="my-5" />
+        <hr class="my-3" />
         <div class="flex justify-between">
-            <div class="text-gray-600">
+            <div class="text-gray-600 text-sm">
                 © 2021 <span class="font-medium">Parkdom</span>. All rights reserved.
             </div>
             <div class="space-x-2 sm:space-x-4">
