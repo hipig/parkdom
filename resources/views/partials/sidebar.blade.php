@@ -42,12 +42,21 @@
         <div class="p-4 w-full">
             <ul class="text-gray-300 space-y-1">
                 <li>
-                    <a href="javascript:;" class="flex items-center justify-center space-x-2 px-3 py-2 bg-gray-800 hover:bg-opacity-75 text-white transition ease-out duration-100 rounded">
+                    @if(if_route_pattern('admin.*'))
+                        <a href="javascript:;" class="flex items-center justify-center space-x-2 px-3 py-2 bg-gray-800 hover:bg-opacity-75 text-white transition ease-out duration-100 rounded">
+                            <span class="flex-none flex items-center opacity-75">
+                                <x-heroicon-s-user-circle class="w-5 h-5"/>
+                            </span>
+                            <span class="tex-sm">{{ __('User Dashboard') }}</span>
+                        </a>
+                    @else
+                        <a href="javascript:;" class="flex items-center justify-center space-x-2 px-3 py-2 bg-gray-800 hover:bg-opacity-75 text-white transition ease-out duration-100 rounded">
                         <span class="flex-none flex items-center opacity-75">
                             <x-heroicon-s-user-circle class="w-5 h-5"/>
                         </span>
-                        <span class="tex-sm">{{ __('User Dashboard') }}</span>
-                    </a>
+                            <span class="tex-sm">{{ __('Admin Dashboard') }}</span>
+                        </a>
+                    @endif
                 </li>
             </ul>
         </div>

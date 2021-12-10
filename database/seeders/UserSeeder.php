@@ -14,10 +14,11 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::create([
+        $user = User::forceCreate([
             'name' => 'admin',
             'email' => 'admin@admin.test',
-            'password' => 'password'
+            'password' => 'password',
+            'role' => User::ROLE_ADMIN
         ]);
         $user->markEmailAsVerified();
     }

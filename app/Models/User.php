@@ -59,7 +59,7 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        return $this->role === self::ROLE_ADMIN;
+        return $this->role == self::ROLE_ADMIN;
     }
 
     public function setLocale($locale)
