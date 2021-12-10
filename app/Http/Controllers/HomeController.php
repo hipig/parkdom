@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\DomainVisited;
 use App\Models\Domain;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class HomeController extends Controller
@@ -19,6 +20,10 @@ class HomeController extends Controller
             event(new DomainVisited($bindDomain, $host, $ip));
 
             return view('domains.show', ['domain' => $bindDomain]);
+        }
+
+        if (Auth::check()) {
+            return redirect()->route('dashboard');
         }
 
         return  view('home.landing');

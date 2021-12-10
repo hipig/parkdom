@@ -19,7 +19,7 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|string',
+            'email' => 'required|string|email',
             'password' => 'required|string|min:6',
         ];
     }
@@ -36,7 +36,7 @@ class LoginRequest extends FormRequest
         $this->ensureIsNotRateLimited();
 
         $credentials = [
-            $this->username() => $this->username,
+            'email' => $this->email,
             'password' => $this->password,
         ];
 
@@ -44,7 +44,7 @@ class LoginRequest extends FormRequest
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'username' => __('auth.failed'),
+                'email' => __('auth.failed'),
             ]);
         }
 
@@ -76,11 +76,6 @@ class LoginRequest extends FormRequest
         ]);
     }
 
-    public function username()
-    {
-        return filter_var($this->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
-    }
-
     /**
      * Get the rate limiting throttle key for the request.
      *
@@ -88,6 +83,6 @@ class LoginRequest extends FormRequest
      */
     public function throttleKey()
     {
-        return Str::lower($this->input('username')).'|'.$this->ip();
+        return Str::lower($this->email).'|'.$this->ip();
     }
 }

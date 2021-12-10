@@ -12,7 +12,7 @@
         @foreach(config('app.locales') as $code => $locale)
             <div x-show="activeTab == '{{ $code }}'">
                 @if($type === 'input')
-                    <input type="text" id="{{ $name }}_{{ $code }}" name="{{ $name }}[{{ $code }}]" value="{{ old(join('.', [$name, $code]), $value) }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="{{ $placeholder ?? __(\Illuminate\Support\Str::ucfirst($name)) }}">
+                    <input type="text" id="{{ $name }}_{{ $code }}" name="{{ $name }}[{{ $code }}]" value="{{ old(join('.', [$name, $code]), $value[$code] ?? '') }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="{{ $placeholder ?? __(\Illuminate\Support\Str::ucfirst($name)) }}">
                 @elseif($type === 'textarea')
                     <textarea id="{{ $name }}_{{ $code }}" name="{{ $name }}[{{ $code }}]" class="w-full block border border-gray-200 rounded px-3 py-2 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" rows="4" placeholder="{{ $placeholder ?? __(\Illuminate\Support\Str::ucfirst($name)) }}">{{ old(join('.', [$name, $code]), $value[$code] ?? '') }}</textarea>
                 @endif

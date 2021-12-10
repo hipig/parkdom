@@ -34,7 +34,7 @@
                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                     </svg>
                 </button>
-                <a href="javascript:void(0)" class="inline-flex justify-center items-center space-x-1 border font-semibold focus:outline-none px-3 py-2 leading-5 text-sm rounded border-white bg-transparent text-white shadow-sm">
+                <a href="{{ route('login') }}" class="inline-flex justify-center items-center space-x-1 border font-semibold focus:outline-none px-3 py-2 leading-5 text-sm rounded border-white bg-transparent text-white shadow-sm">
                     <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="inline-block w-5 h-5 -mx-px"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
                     <span>Start Parking</span>
                 </a>

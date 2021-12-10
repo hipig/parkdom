@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\ModelTraits;
+namespace App\Traits\Models;
 
 
 use App\Models\Model;

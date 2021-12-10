@@ -8,6 +8,7 @@ use Spatie\LaravelSettings\Settings;
 
 class GeneralSetting extends Settings
 {
+
     /**
      * Site Name
      *
@@ -34,5 +35,15 @@ class GeneralSetting extends Settings
     public static function group(): string
     {
         return  'general';
+    }
+
+    public function getTranslation($key)
+    {
+        return is_array($this->{$key}) ? ($this->{$key}[$this->getLocale()] ?? '') : $this->{$key};
+    }
+
+    public function getLocale()
+    {
+        return config('app.locale');
     }
 }

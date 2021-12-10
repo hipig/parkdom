@@ -12,15 +12,15 @@
                 <div class="space-y-6 md:w-2/3">
                     <div class="space-y-1">
                         <label for="site_name" class="text-gray-900 font-semibold">{{ __('Site Name') }}</label>
-                        <input type="text" id="site_name" name="site_name" value="{{ old('site_name', $setting->site_name) }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="{{ __('Site Name') }}">
+                        <x-admin.form.translate name="site_name" :value="$setting->site_name"></x-admin.form.translate>
                     </div>
                     <div class="space-y-1">
                         <label for="site_keywords" class="text-gray-900 font-semibold">{{ __('Site Keywords') }}</label>
-                        <input type="text" id="site_keywords" name="site_keywords" value="{{ old('site_keywords', $setting->site_keywords) }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="{{ __('Site Keywords') }}">
+                        <x-admin.form.translate name="site_keywords" :value="$setting->site_keywords"></x-admin.form.translate>
                     </div>
                     <div class="space-y-1">
                         <label for="site_description" class="text-gray-900 font-semibold">{{ __('Site Description') }}</label>
-                        <textarea id="site_description" name="site_description" class="w-full block border border-gray-200 rounded px-3 py-2 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" rows="4" placeholder="{{ __('Site Description') }}">{{ old('site_description', $setting->site_description) }}</textarea>
+                        <x-admin.form.translate name="site_description" :value="$setting->site_description" type="textarea"></x-admin.form.translate>
                     </div>
                 </div>
             </div>

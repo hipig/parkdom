@@ -7,7 +7,7 @@
                     <x-dynamic-component :component="$icon" class="w-5 h-5"/>
                 </span>
             @endif
-            <span class="flex-grow tex-sm">{{ $label }}</span>
+            <span class="flex-grow tex-sm font-medium">{{ $label }}</span>
             {{ $badge ?? '' }}
         </a>
     </li>
@@ -27,7 +27,7 @@
           <x-dynamic-component :component="$icon" class="w-5 h-5"/>
         </span>
             @endif
-            <span class="flex-grow tex-sm">{{ $label }}</span>
+            <span class="flex-grow tex-sm font-medium">{{ $label }}</span>
             <span
                 class="transform transition ease-out duration-150 opacity-75 rotate-0"
                 x-bind:class="{

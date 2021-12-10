@@ -19,23 +19,37 @@
                 @csrf
                 @method('put')
                 <div class="space-y-6 md:w-2/3">
-                    <div class="space-y-1">
-                        <label for="language" class="text-gray-900 font-semibold">{{ __('Name') }}</label>
-                        <div class="py-2 text-gray-700">{{ $language->name }}</div>
-                    </div>
-                    <div class="space-y-1">
-                        <label for="language" class="text-gray-900 font-semibold">{{ __('Code') }}</label>
-                        <div class="py-2 text-gray-700">{{ $language->code }}</div>
-                    </div>
-                    <div class="space-y-1">
-                        <div class="flex items-center space-x-3">
-                            <input type="checkbox" id="default" name="default" class="form-switch transition-all duration-150 ease-out rounded-full h-7 w-12 text-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" {{ old('default', $language->default) ? 'checked' : '' }}>
-                            <label for="default" class="font-medium">
-                                {{ __('Default') }}
-                            </label>
+                    <div class="grid grid-cols-1 md:grid-cols-2">
+                        <div class="space-y-1">
+                            <label for="language" class="text-gray-900 font-semibold">{{ __('Name') }}</label>
+                            <div class="py-2 text-gray-700">{{ $language->name }}</div>
+                        </div>
+                        <div class="space-y-1">
+                            <label for="language" class="text-gray-900 font-semibold">{{ __('Code') }}</label>
+                            <div class="py-2 text-gray-700">{{ $language->code }}</div>
                         </div>
                     </div>
-
+                    @if(!$language->default)
+                        <div class="space-y-1">
+                            <div class="flex items-center space-x-3">
+                                <input type="checkbox" id="default" name="default" class="form-switch transition-all duration-150 ease-out rounded-full h-7 w-12 text-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" {{ old('default', $language->default) ? 'checked' : '' }}>
+                                <label for="default" class="font-medium">
+                                    {{ __('Default') }}
+                                </label>
+                            </div>
+                        </div>
+                    @endif
+                    <div class="space-y-1">
+                        <label for="cover" class="text-gray-900 font-semibold">{{ __('Status') }}</label>
+                        <div class="w-full md:w-3/5 space-x-6">
+                            @foreach(\App\Models\Language::$statusMap as $key => $value)
+                                <label class="inline-flex items-center space-x-2">
+                                    <input id="status" type="radio" name="status" value="{{ $key }}" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" {{ old('status', \App\Models\DomainCategory::STATUS_ENABLE) == $key ? 'checked' : '' }}>
+                                    <span>{{ $value }}</span>
+                                </label>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="py-3 px-5 lg:px-6 w-full bg-gray-50 space-x-2">

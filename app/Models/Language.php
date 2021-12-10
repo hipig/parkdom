@@ -2,11 +2,9 @@
 
 namespace App\Models;
 
-use App\ModelTraits\StatusScope;
+use App\Traits\Models\StatusScope;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Log;
 
 class Language extends Model
 {
