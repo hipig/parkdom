@@ -9,8 +9,7 @@ class DomainsController extends Controller
 {
     public function index(Request $request)
     {
-        $domains = Domain::query()->paginate();
-
+        $domains = Domain::latest()->paginate();
         return view('domains.index', compact('domains'));
     }
 

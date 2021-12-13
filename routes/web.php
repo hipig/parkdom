@@ -18,14 +18,7 @@ use App\Http\Controllers\Auth;
 
 Route::post('locale', [Controllers\LocaleController::class, 'update'])->name('locale.update');
 
-Route::middleware([])->group(function () {
-
-    Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
-
-    Route::get('domains', [Controllers\DomainsController::class, 'index'])->name('domains.index');
-    Route::get('domains/{domain}', [Controllers\DomainsController::class, 'show'])->name('domains.show');
-
-});
+Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware('guest')->group(function () {
 
@@ -50,7 +43,13 @@ Route::middleware('auth')->group(function () {
         Route::get('security', [Controllers\AccountController::class, 'security'])->name('security');
         Route::post('security', [Controllers\AccountController::class, 'updateSecurity'])->name('security.update');
 
+        Route::get('delete', [Controllers\AccountController::class, 'delete'])->name('delete');
+        Route::post('delete', [Controllers\AccountController::class, 'confirmDelete'])->name('delete.confirm');
+
     });
+
+    // Domains
+    Route::resource('domains', Controllers\DomainsController::class);
 
     // Admin
     Route::prefix('admin')->name('admin.')->group(function () {

@@ -16,8 +16,8 @@
             [
                 'label' => __('Domains'),
                 'icon' => 'heroicon-s-globe-alt',
-                'href' => '',
-                'active' => false,
+                'href' => route('domains.index'),
+                'active' => if_route_pattern('domains.*'),
             ],
             [
                 'label' => __('Offers'),

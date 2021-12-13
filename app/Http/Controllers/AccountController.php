@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DeleteAccountRequest;
 use App\Http\Requests\UpdateSecurityRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -45,5 +46,18 @@ class AccountController extends Controller
         $user->save();
 
         return back()->with('success', __(':name saved successfully.', ['name' => 'Security']));
+    }
+
+    public function delete()
+    {
+        return view('account.delete');
+    }
+
+    public function confirmDelete(DeleteAccountRequest $request)
+    {
+        $user = Auth::user();
+        $user->delete();
+
+        return redirect()->route('home');
     }
 }

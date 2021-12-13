@@ -38,7 +38,7 @@
                 </div>
             </div>
         </a>
-        <a href="#" class="flex flex-col rounded shadow-sm bg-white overflow-hidden group">
+        <a href="{{ route('account.delete') }}" class="flex flex-col rounded shadow-sm bg-white overflow-hidden group">
             <div class="p-5 flex items-center justify-between space-x-4">
                 <div class="flex items-center space-x-4">
                     <div class="p-1.5 text-red-600 bg-red-100 rounded-xl">

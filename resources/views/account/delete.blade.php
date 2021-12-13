@@ -1,34 +1,26 @@
 @extends('layouts.app')
-@section('title', joinTitle([__('Security'), __('Account')]))
+@section('title', joinTitle([__('Delete'), __('Account')]))
 
 @section('breadcrumb')
     <x-admin.breadcrumb.list>
         <x-admin.breadcrumb.item href="{{ route('dashboard') }}">{{ __('Dashboard') }}</x-admin.breadcrumb.item>
         <x-admin.breadcrumb.item href="{{ route('account.index') }}">{{ __('Account') }}</x-admin.breadcrumb.item>
-        <x-admin.breadcrumb.item>{{ __('Security') }}</x-admin.breadcrumb.item>
+        <x-admin.breadcrumb.item>{{ __('Delete') }}</x-admin.breadcrumb.item>
     </x-admin.breadcrumb.list>
 @endsection
 
 @section('content')
     <div class="flex flex-col rounded shadow-sm bg-white overflow-hidden">
         <div class="py-4 px-5 lg:px-6 w-full bg-gray-50">
-            <h3>{{ __('Security') }}</h3>
+            <h3>{{ __('Delete') }}</h3>
         </div>
-        <form action="{{ route('account.security.update') }}" method="post">
+        <form action="{{ route('account.delete.confirm') }}" method="post">
             <div class="p-5 lg:p-6 flex-grow w-full">
                 @csrf
                 <div class="space-y-6 md:w-2/3">
                     <div class="space-y-1">
                         <label for="current_password" class="text-gray-900 font-semibold"><span class="text-red-600 px-1">*</span>{{ __('Current Password') }}</label>
                         <input type="password" id="current_password" name="current_password" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="{{ __('Current password') }}">
-                    </div>
-                    <div class="space-y-1">
-                        <label for="new_password" class="text-gray-900 font-semibold"><span class="text-red-600 px-1">*</span>{{ __('New Password') }}</label>
-                        <input type="password" id="password" name="password" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="{{ __('New Password') }}">
-                    </div>
-                    <div class="space-y-1">
-                        <label for="password_confirmation" class="text-gray-900 font-semibold"><span class="text-red-600 px-1">*</span>{{ __('Confirm New Password') }}</label>
-                        <input type="password" id="password_confirmation" name="password_confirmation" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="{{ __('Confirm New Password') }}">
                     </div>
                 </div>
             </div>

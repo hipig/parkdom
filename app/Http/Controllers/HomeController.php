@@ -15,7 +15,7 @@ class HomeController extends Controller
         $host = $request->getHost();
         $ip = $request->ip();
 
-        $appHost = parse_url(config('app.url'));
+        $appHost = parse_url(config('app.url'), PHP_URL_HOST);
         if (!Str::contains($appHost, $host)) {
             event(new DomainVisited($bindDomain, $host, $ip));
 
