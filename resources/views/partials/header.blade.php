@@ -54,7 +54,7 @@
                     <x-admin.dropdown.menu>
                         <div class="p-2 space-y-1">
                             <x-admin.dropdown.item label="{{ __('Account') }}" icon="heroicon-s-user-circle"
-                                                   href="{{ route('admin.profile.update') }}"></x-admin.dropdown.item>
+                                                   href="{{ route('account.index') }}"></x-admin.dropdown.item>
                             <x-admin.dropdown.item label="{{ __('Settings') }}" icon="heroicon-s-cog" href="#"></x-admin.dropdown.item>
                         </div>
                         <div class="p-2 space-y-1">

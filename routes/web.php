@@ -39,6 +39,18 @@ Route::middleware('auth')->group(function () {
     // User
     Route::get('dashboard', [Controllers\DashboardController::class, 'index'])->name('dashboard');
 
+    // Account
+    Route::prefix('account')->name('account.')->group(function () {
+
+        Route::get('/', [Controllers\AccountController::class, 'index'])->name('index');
+
+        Route::get('profile', [Controllers\AccountController::class, 'profile'])->name('profile');
+        Route::post('profile', [Controllers\AccountController::class, 'updateProfile'])->name('profile.update');
+
+        Route::get('security', [Controllers\AccountController::class, 'security'])->name('security');
+        Route::post('security', [Controllers\AccountController::class, 'updateSecurity'])->name('security.update');
+
+    });
 
     // Admin
     Route::prefix('admin')->name('admin.')->group(function () {

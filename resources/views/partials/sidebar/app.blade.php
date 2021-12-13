@@ -8,10 +8,10 @@
         ],
         __('Main') => [
             [
-                'label' => __('Settings'),
-                'icon' => 'heroicon-s-cog',
-                'href' => '',
-                'active' => false,
+                'label' => __('Account'),
+                'icon' => 'heroicon-s-user-circle',
+                'href' => route('account.index'),
+                'active' => if_route_pattern('account.*'),
             ],
             [
                 'label' => __('Domains'),
@@ -26,8 +26,8 @@
                 'active' => if_route_pattern('admin.offers.*')
             ],
             [
-                'label' => __('Statistics'),
-                'icon' => 'heroicon-s-chart-square-bar',
+                'label' => __('Pages'),
+                'icon' => 'heroicon-s-document-text',
                 'href' => '',
                 'active' => false,
             ],

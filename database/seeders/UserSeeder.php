@@ -18,6 +18,8 @@ class UserSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@admin.test',
             'password' => 'password',
+            'timezone' => 'Asia/Shanghai',
+            'locale' => 'en',
             'role' => User::ROLE_ADMIN
         ]);
         $user->markEmailAsVerified();

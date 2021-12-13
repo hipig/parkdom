@@ -16,7 +16,7 @@ class HomeController extends Controller
         $ip = $request->ip();
 
         $appHost = parse_url(config('app.url'));
-        if (!Str::contains($host, $appHost)) {
+        if (!Str::contains($appHost, $host)) {
             event(new DomainVisited($bindDomain, $host, $ip));
 
             return view('domains.show', ['domain' => $bindDomain]);
